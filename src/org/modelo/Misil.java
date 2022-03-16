@@ -1,5 +1,7 @@
 package org.modelo;
 
+import java.util.Collection;
+
 public abstract class Misil {
 
 	private int numMisiles;
@@ -10,7 +12,7 @@ public abstract class Misil {
 	 * @param pPosicionDisparo
 	 * @param pAnchuraTablero
 	 */
-	public Collection<Integert> obtArea(int pPosicionDisparo, int pAnchuraTablero) {
+	public Collection<Integer> obtArea(int pPosicionDisparo, int pAnchuraTablero) {
 		// TODO - implement Misil.obtArea
 		throw new UnsupportedOperationException();
 	}

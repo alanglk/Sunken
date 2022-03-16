@@ -18,7 +18,7 @@ public class Jugador {
 	 * @param pOrientacion
 	 * @param pLongitud
 	 */
-	public void colocarBarco(int pPos, string pOrientacion, int pLongitud) {
+	public void colocarBarco(int pPos, String pOrientacion, int pLongitud) {
 		// TODO - implement Jugador.colocarBarco
 		throw new UnsupportedOperationException();
 	}

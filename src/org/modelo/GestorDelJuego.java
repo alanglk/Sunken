@@ -12,7 +12,8 @@ public class GestorDelJuego {
 	}
 
 	public static GestorDelJuego getMiGestorDelJuego() {
-		return this.miGestorDelJuego;
+		if(miGestorDelJuego == null) miGestorDelJuego = new GestorDelJuego();
+		return miGestorDelJuego;
 	}
 
 	public void colocarBarcos() {

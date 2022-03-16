@@ -1,5 +1,7 @@
 package org.modelo;
 
+import java.util.Collection;
+
 public class Bomba extends Misil {
 
 	/**

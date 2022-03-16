@@ -21,7 +21,7 @@ public class Enemigo {
 		throw new UnsupportedOperationException();
 	}
 
-	private string obtOrientacion() {
+	private String obtOrientacion() {
 		// TODO - implement Enemigo.obtOrientacion
 		throw new UnsupportedOperationException();
 	}

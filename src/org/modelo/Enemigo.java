@@ -1,5 +1,9 @@
 package org.modelo;
 
+import org.modelo.barco.ListaBarcos;
+import org.modelo.misil.ListaMisiles;
+import org.modelo.misil.Misil;
+
 public class Enemigo {
 
 	private Tablero tableroEnemigo;

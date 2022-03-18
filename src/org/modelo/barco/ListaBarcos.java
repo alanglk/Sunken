@@ -1,4 +1,6 @@
-package org.modelo;
+package org.modelo.barco;
+
+import org.modelo.barco.Barco;
 
 import java.util.Collection;
 

@@ -3,7 +3,7 @@ package org.modelo.misil;
 public class FactoriaMisiles {
     private static FactoriaMisiles miFactoriaMisiles;
 
-    private FactoriaMisiles FactoriaMisiles(){
+    private  FactoriaMisiles(){
 
     }
     public static FactoriaMisiles getFactoriaMisiles(){
@@ -14,8 +14,11 @@ public class FactoriaMisiles {
         return miFactoriaMisiles;
     }
     public Misil crearBarco(String pTipo){
-        if(pTipo.equals(Misil.BOMBA))
-            return new Bomba();
+        Misil pMisil=null;
+        if(pTipo.equals(Misil.BOMBA)) {
+            pMisil = new Bomba();
+        }
+        return pMisil;
         //ELSE IF...
     }
 

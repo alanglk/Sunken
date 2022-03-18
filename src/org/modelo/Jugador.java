@@ -11,30 +11,34 @@ public class Jugador {
 	private ListaBarcos listaBarcosJ;
 	private ListaMisiles listaMisilesJ;
 
-	public Jugador() {
-		// TODO - implement Jugador.Jugador
-		throw new UnsupportedOperationException();
+	public Jugador(String pNombre) {
+		this.nombre=pNombre;
+		this.tableroJugador=new Tablero();
+		this.listaBarcosJ=new ListaBarcos();
+		this.listaMisilesJ=new ListaMisiles();
 	}
 
-	/**
-	 * 
-	 * @param pPos
-	 * @param pOrientacion
-	 * @param pLongitud
-	 */
 	public void colocarBarco(int pPos, String pOrientacion, int pLongitud) {
-		// TODO - implement Jugador.colocarBarco
-		throw new UnsupportedOperationException();
+		if(this.listaBarcosJ.estaDisponible(pLongitud)){
+			if(this.tableroJugador.sePuedeColocar(pPos,pOrientacion,pLongitud)){
+				this.tableroJugador.colocarBarco(pPos,pOrientacion,pLongitud);
+				this.listaBarcosJ.actualizarEstadoBarco(pLongitud);
+				if (this.listaBarcosJ.estanTodosBarcosColocados()){
+					GestorDelJuego.getMiGestorDelJuego().jugarPartida();
+				}
+			}
+			else{
+				System.err.println("No se puede colocar en esa posición el barco");
+			}
+		}
+		else{
+			System.err.println("No esta disponible el barco");
+		}
 	}
 
-	/**
-	 * 
-	 * @param pMisil
-	 * @param pCasilla
-	 */
+
 	public void recibirDisparo(Misil pMisil, Casilla pCasilla) {
-		// TODO - implement Jugador.recibirDisparo
-		throw new UnsupportedOperationException();
+
 	}
 
 }

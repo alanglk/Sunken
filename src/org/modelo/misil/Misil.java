@@ -15,14 +15,14 @@ public abstract class Misil {
 	public abstract Collection<Integer> obtArea(int pPosicionDisparo, int pAnchuraTablero) ;
 
 	public boolean sePuedeDisparar() {
-		if (this.numMisiles=0){
+		if (this.numMisiles==0){
 			return false;
 		}
 		return true;
 	}
 
 	protected void decrementarNumMisiles() {
-		if this.numMisiles==0{
+		if (this.numMisiles==0){
 
 		}
 		else{

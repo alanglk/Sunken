@@ -26,9 +26,8 @@ public class Enemigo {
 			b1=itr.next();
 			int posicion=this.obtPos();
 			String orientacion=this.obtOrientacion();
-			int longitud=b1.getLongitud();
-			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,longitud)){
-				this.tableroEnemigo.colocarBarco(posicion,orientacion,longitud);
+			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,b1)){
+				this.tableroEnemigo.colocarBarco(posicion,orientacion,b1);
 			}
 		}
 	}

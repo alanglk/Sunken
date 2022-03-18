@@ -18,11 +18,11 @@ public class Jugador {
 		this.listaMisilesJ=new ListaMisiles();
 	}
 
-	public void colocarBarco(int pPos, String pOrientacion, int pLongitud) {
-		if(this.listaBarcosJ.estaDisponible(pLongitud)){
-			if(this.tableroJugador.sePuedeColocar(pPos,pOrientacion,pLongitud)){
-				this.tableroJugador.colocarBarco(pPos,pOrientacion,pLongitud);
-				this.listaBarcosJ.actualizarEstadoBarco(pLongitud);
+	public void colocarBarco(int pPos, String pOrientacion, String pTipoBarco) {
+		if(this.listaBarcosJ.estaDisponible(pTipoBarco)){
+			if(this.tableroJugador.sePuedeColocar(pPos,pOrientacion,pTipoBarco)){
+				this.tableroJugador.colocarBarco(pPos,pOrientacion,pTipoBarco);
+				this.listaBarcosJ.actualizarEstadoBarco(pTipoBarco);
 				if (this.listaBarcosJ.estanTodosBarcosColocados()){
 					GestorDelJuego.getMiGestorDelJuego().jugarPartida();
 				}

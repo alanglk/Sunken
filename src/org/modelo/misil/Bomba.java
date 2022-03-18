@@ -8,11 +8,7 @@ import java.util.List;
 
 public class Bomba extends Misil {
 
-    /**
-     * @param pPosicion
-     * @param pAnchuraTablero
-     */
-    public ArrayList<Integer> obtArea(int pPosicion) {
+    public ArrayList<Integer> obtArea(int pPosicion,int pAnchuraTablero) {
         ArrayList<Integer> listaInt = new ArrayList<Integer>();
         listaInt.add(pPosicion);
 		return listaInt;

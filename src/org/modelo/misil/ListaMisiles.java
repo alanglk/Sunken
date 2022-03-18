@@ -1,63 +1,47 @@
 package org.modelo.misil;
 
-import java.util.Collection;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ListaMisiles {
 
-    private Collection<Misil> lista;
+    private ArrayList<Misil> lista;
 
     public ListaMisiles() {
         new ArrayList<Misil>();
     }
 
-    /**
-     * @param pMisil
-     * @param pPosicionDisparo
-     * @param pAnchuraTablero
-     */
-    private Collection<Integer> obtAreaMisil(Misil pMisil, int pPosicionDisparo, int pAnchuraTablero) {
-        return pMisil.obtArea(pPosicionDisparo, pAnchuraTablero);
+    private ArrayList<Integer> obtAreaMisil(String pTipoMisil, int pPosicionDisparo, int pAnchuraTablero) {
+        return obtMisil(pTipoMisil).obtArea(pPosicionDisparo, pAnchuraTablero);
     }
 
-    /**
-     * @param pMisil
-     */
-    public boolean sePuedeDisparar(Misil pMisil) {
-        return (pMisil.sePuedeDisparar());
+    public boolean sePuedeDisparar(String pTipoMisil) {
+        return obtMisil(pTipoMisil).sePuedeDisparar();
     }
 
     private Iterator<Misil> getIterador() {
         return (this.lista.iterator());
-
     }
 
-    /**
-     * @param pMisil
-     */
     private Misil obtMisil(String pTipo) {
         Iterator<Misil> itr = this.getIterador();
-        Misil aux = null;
+        Misil misil = null;
         boolean enc = false;
 
         while (itr.hasNext() && !enc) {
-            aux = itr.next();
-            if (pTipo.equals(Misil.BOMBA)) {
-                if (aux instanceof Bomba)
-                    enc = true;
-            }
+            misil = itr.next();
+            if(misil.esTipo(pTipo))
+                enc = true;
         }
 
-        if (!enc)
-            aux = null;
-
-        return (aux);
+        if (!enc) misil = null;
+        return (misil);
     }
 
-    public void añadirMisil(Misil pMisil){
-        this.lista.add(pMisil);
-        pMisil.incrementarNumMisiles();
+    public void añadirMisil(String pTipoMisil){
+        Misil misil = FactoriaMisiles.getInstance().crearMisil(pTipoMisil);
+        this.lista.add(misil);
+        misil.incrementarNumMisiles();
     }
 
 }

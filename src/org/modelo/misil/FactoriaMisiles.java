@@ -1,22 +1,24 @@
 package org.modelo.misil;
 
+import org.modelo.barco.*;
+
 public class FactoriaMisiles {
     private static FactoriaMisiles miFactoriaMisiles;
 
-    private FactoriaMisiles FactoriaMisiles(){
+    private FactoriaMisiles(){}
 
-    }
-    public static FactoriaMisiles getFactoriaMisiles(){
-        if (miFactoriaMisiles==null)
-
-            miFactoriaMisiles=new FactoriaMisiles();
-
+    public static FactoriaMisiles getInstance(){
+        if (miFactoriaMisiles==null) miFactoriaMisiles = new FactoriaMisiles();
         return miFactoriaMisiles;
     }
-    public Misil crearBarco(String pTipo){
+
+    public Misil crearMisil(String pTipo){
+        Misil nuevoMisil = null;
+
         if(pTipo.equals(Misil.BOMBA))
-            return new Bomba();
-        //ELSE IF...
+            nuevoMisil = new Bomba();
+
+        return nuevoMisil;
     }
 
 }

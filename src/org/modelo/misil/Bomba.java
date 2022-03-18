@@ -1,18 +1,23 @@
 package org.modelo.misil;
 
-import org.modelo.misil.Misil;
-
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class Bomba extends Misil {
 
-    public ArrayList<Integer> obtArea(int pPosicion,int pAnchuraTablero) {
-        ArrayList<Integer> listaInt = new ArrayList<Integer>();
-        listaInt.add(pPosicion);
-		return listaInt;
+    public Bomba() {
+        super(-1, true, Misil.BOMBA);
     }
 
+    // Obtener el area del disparo
+    public ArrayList<Integer> obtArea(int pPosicionDisparo, int pAnchuraTablero){
+        ArrayList<Integer> listaInt = new ArrayList<Integer>();
 
+        if(sePuedeDisparar()){
+            listaInt.add(pPosicionDisparo);
+
+            decrementarNumMisiles();
+        }
+
+        return listaInt;
+    }
 }

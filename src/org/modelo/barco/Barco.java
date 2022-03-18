@@ -35,6 +35,5 @@ public abstract class Barco {
 
 	public boolean esTipo(String tipoBarco) {
 		return tipo.equals(tipoBarco);
-
 	}
 }

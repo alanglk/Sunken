@@ -2,6 +2,7 @@ package org.modelo.misil;
 
 import org.modelo.misil.Misil;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class Bomba extends Misil {
@@ -11,14 +12,10 @@ public class Bomba extends Misil {
 	 * @param pPosicion
 	 * @param pAnchuraTablero
 	 */
-	public Collection<Integer> obtArea(int pPosicion, int pAnchuraTablero) {
-		// TODO - implement Bomba.obtArea
-		throw new UnsupportedOperationException();
+	public ArrayList<Integer> obtArea(int pPosicion, int pAnchuraTablero) {
+
 	}
 
-	protected void decrementarNumMisiles() {
-		// TODO - implement Bomba.decrementarNumMisiles
-		throw new UnsupportedOperationException();
-	}
+
 
 }

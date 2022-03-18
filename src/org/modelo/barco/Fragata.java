@@ -1,4 +1,7 @@
-package org.modelo;
+package org.modelo.barco;
+
+import org.modelo.Casilla;
+import org.modelo.barco.Barco;
 
 public class Fragata extends Barco {
 

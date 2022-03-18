@@ -1,4 +1,6 @@
-package org.modelo;
+package org.modelo.misil;
+
+import org.modelo.misil.Misil;
 
 import java.util.Collection;
 

@@ -4,7 +4,7 @@ import org.modelo.barco.Barco;
 
 public class Submarino extends Barco {
 
-	private String nombre;
-	private int longitud;
-
+	public Submarino() {
+		super(3, Barco.SUBMARINO);
+	}
 }

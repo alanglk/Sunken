@@ -2,43 +2,44 @@ package org.modelo.barco;
 
 import org.modelo.barco.Barco;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 public class ListaBarcos {
 
-	private Collection<Barco> lista;
+	private ArrayList<Barco> lista;
 
 	public ListaBarcos() {
-		// TODO - implement ListaBarcos.ListaBarcos
-		throw new UnsupportedOperationException();
+		lista = new ArrayList<Barco>();
 	}
 
-	private void getIterator() {
-		// TODO - implement ListaBarcos.getIterator
-		throw new UnsupportedOperationException();
+	private Iterator<Barco> getIterator() {
+		return lista.iterator();
 	}
 
-	/**
-	 * 
-	 * @param pLongitud
-	 */
-	public boolean estaDisponible(int pLongitud) {
-		// TODO - implement ListaBarcos.estaDisponible
-		throw new UnsupportedOperationException();
+	public boolean estaDisponible(String tipoBarco) {
+		return this.buscarBarcoNoColocado(tipoBarco) != null;
 	}
 
-	/**
-	 * 
-	 * @param pLontidud
-	 */
-	public void actualizarEstadoBarco(int pLontidud) {
-		// TODO - implement ListaBarcos.actualizarEstadoBarco
-		throw new UnsupportedOperationException();
+	public void actualizarEstadoBarcoColocado(String tipoBarco) {
+		buscarBarcoNoColocado(tipoBarco).actualizarBarcoColocado();
 	}
 
-	private Barco buscarBarco() {
-		// TODO - implement ListaBarcos.buscarBarco
-		throw new UnsupportedOperationException();
+	private Barco buscarBarcoNoColocado(String tipoBarco) {
+		Iterator<Barco> itr = getIterator();
+		boolean encontradoYDisp = false;
+		Barco barco = null;
+
+		while(itr.hasNext() && !encontradoYDisp){
+			barco = itr.next();
+
+			if(barco.esTipo(tipoBarco)){
+				if(!barco.estaColocado())
+					encontradoYDisp = true;
+			}
+		}
+		return barco;
 	}
 
 }

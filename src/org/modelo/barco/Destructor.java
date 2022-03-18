@@ -1,8 +1,7 @@
 package org.modelo.barco;
 
 public class Destructor extends Barco {
-
-	private String nombre;
-	private int longitud;
-
+	public Destructor() {
+		super(2, Barco.DESTRUCTOR);
+	}
 }

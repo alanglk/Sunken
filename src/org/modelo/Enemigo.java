@@ -5,6 +5,7 @@ import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
+import java.util.Iterator;
 import java.util.Random;
 
 public class Enemigo {
@@ -20,10 +21,10 @@ public class Enemigo {
 	}
 
 	public void colocarBarcoEnemigo() {
-		Iterator itr=this.listaBarcosE.getIterator();
+		Iterator itr=listaBarcosE.getIterator();
 		Barco b1;
 		while(itr.hasNext()){
-			b1=itr.next();
+			b1= (Barco) itr.next();
 			int posicion=this.obtPos();
 			String orientacion=this.obtOrientacion();
 			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,b1)){

@@ -6,20 +6,19 @@ public class FactoriaMisiles {
     private  FactoriaMisiles(){
 
     }
-    public static FactoriaMisiles getFactoriaMisiles(){
+    public static FactoriaMisiles getInstance(){
         if (miFactoriaMisiles==null)
 
             miFactoriaMisiles=new FactoriaMisiles();
 
         return miFactoriaMisiles;
     }
-    public Misil crearBarco(String pTipo){
-        Misil pMisil=null;
-        if(pTipo.equals(Misil.BOMBA)) {
-            pMisil = new Bomba();
-        }
-        return pMisil;
-        //ELSE IF...
-    }
+    public Misil crearMisil(String pTipo){
+        Misil misil = null;
 
+        if(pTipo.equals(Misil.BOMBA))
+            misil = new Bomba();
+
+        return misil;
+    }
 }

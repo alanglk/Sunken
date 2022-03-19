@@ -13,14 +13,9 @@ public class GestorDelJuego {
 		throw new UnsupportedOperationException();
 	}
 
-	public static GestorDelJuego getMiGestorDelJuego() {
+	public static GestorDelJuego getInstance() {
 		if(miGestorDelJuego == null) miGestorDelJuego = new GestorDelJuego();
 		return miGestorDelJuego;
-	}
-
-	public void colocarBarcos() {
-		// TODO - implement GestorDelJuego.colocarBarcos
-		throw new UnsupportedOperationException();
 	}
 
 	public void jugarPartida() {

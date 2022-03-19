@@ -44,5 +44,9 @@ public class ListaBarcos {
 
 		return todosColocados;
 	}
+	
+	public int size() {
+		return this.lista.size();
+	}
 
 }

@@ -64,5 +64,14 @@ public class Enemigo {
 		// TODO - implement Enemigo.recibirDisparo
 		throw new UnsupportedOperationException();
 	}
+	
+	public boolean tieneBarcosEnemigo() {
+		boolean tiene = false;
+		if(this.listaBarcosE.size() > 0) {
+			tiene= true;
+		}
+		else {tiene = false;}
+		return tiene;
+	}
 
 }

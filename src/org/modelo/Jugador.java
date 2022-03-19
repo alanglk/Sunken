@@ -50,5 +50,21 @@ public class Jugador {
 	public void recibirDisparo(Misil pMisil, Casilla pCasilla) {
 
 	}
+	
+	public boolean tieneBarcosJugador() {
+		boolean tiene = false;
+		if(this.listaBarcosJ.size() > 0) {
+			tiene= true;
+		}
+		else {tiene = false;}
+		return tiene;
+	}
+	
+//	public boolean misilDisponible(Misil pMisil) {
+//		return this.listaMisilesJ.sePuedeDisparar(pMisil);
+//	}
 
+//	public void actualizarListaMisilesJugador(Misil pMisil) {
+//		
+//	}
 }

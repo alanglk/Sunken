@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class ListaMisiles {
-
     private ArrayList<Misil> lista;
 
     public ListaMisiles() {
         new ArrayList<Misil>();
     }
 
-    private ArrayList<Integer> obtAreaMisil(String pTipoMisil, int pPosicionDisparo, int pAnchuraTablero) {
+    private ArrayList<Integer> obtAreaMisil(ETipoMisil pTipoMisil, int pPosicionDisparo, int pAnchuraTablero) {
         return obtMisil(pTipoMisil).obtArea(pPosicionDisparo, pAnchuraTablero);
     }
 
-    public boolean sePuedeDisparar(String pTipoMisil) {
+    public boolean sePuedeDisparar(ETipoMisil pTipoMisil) {
         return obtMisil(pTipoMisil).sePuedeDisparar();
     }
 
@@ -23,7 +22,7 @@ public class ListaMisiles {
         return (this.lista.iterator());
     }
 
-    private Misil obtMisil(String pTipo) {
+    private Misil obtMisil(ETipoMisil pTipo) {
         Iterator<Misil> itr = this.getIterador();
         Misil misil = null;
         boolean enc = false;
@@ -38,7 +37,7 @@ public class ListaMisiles {
         return (misil);
     }
 
-    public void añadirMisil(String pTipoMisil){
+    public void añadirMisil(ETipoMisil pTipoMisil){
         Misil misil = FactoriaMisiles.getInstance().crearMisil(pTipoMisil);
         this.lista.add(misil);
         misil.incrementarNumMisiles();

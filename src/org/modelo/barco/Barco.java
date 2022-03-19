@@ -3,12 +3,7 @@ package org.modelo.barco;
 import java.util.ArrayList;
 
 public abstract class Barco {
-	public static final String FRAGATA = "fragata";
-	public static final String DESTRUCTOR = "desturctor";
-	public static final String PORTAVIONES = "portaviones";
-	public static final String SUBMARINO = "submarino";
-
-	private String tipo = null;
+	private ETipoBarco tipo = null;
 
 	private ArrayList<Integer> posicionesBarco;
 	private int longitud;
@@ -16,13 +11,17 @@ public abstract class Barco {
 	private boolean colocado;
 	private boolean hundido;
 
-	public Barco(int pLongitud, String pTipo) {
+	public Barco(int pLongitud, ETipoBarco pTipo) {
 		posicionesBarco = new ArrayList<Integer>();
 
 		this.tipo = pTipo;
 		this.longitud = pLongitud;
 		this.hundido = false;
 		this.colocado = false;
+	}
+
+	public int getLongitud(){
+		return longitud;
 	}
 
 	public void actualizarBarcoColocado(){
@@ -33,7 +32,8 @@ public abstract class Barco {
 		return this.colocado;
 	}
 
-	public boolean esTipo(String tipoBarco) {
+	public boolean esTipo(ETipoBarco tipoBarco) {
 		return tipo.equals(tipoBarco);
 	}
+
 }

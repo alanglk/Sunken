@@ -1,16 +1,15 @@
 package org.modelo.misil;
 
+import org.modelo.barco.ETipoBarco;
+
 import java.util.ArrayList;
 
 public abstract class Misil {
-	public static final String BOMBA = "Bomba";
-
-
-	private String tipo = null;
+	private ETipoMisil tipo = null;
 	private int numMisiles;
 	private boolean ilimitado;
 
-	public Misil(int pNumMisilesInicial, boolean pIlimitado, String pTipo){
+	public Misil(int pNumMisilesInicial, boolean pIlimitado, ETipoMisil pTipo){
 		this.numMisiles = pNumMisilesInicial;
 		this.ilimitado = pIlimitado;
 		this.tipo = pTipo;
@@ -37,7 +36,7 @@ public abstract class Misil {
 			this.numMisiles++;
 	}
 
-	public boolean esTipo(String pTipo){
+	public boolean esTipo(ETipoMisil pTipo){
 		return tipo.equals(pTipo);
 	}
 }

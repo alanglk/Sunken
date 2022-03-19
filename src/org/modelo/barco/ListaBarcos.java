@@ -18,15 +18,7 @@ public class ListaBarcos {
 		return lista.iterator();
 	}
 
-	public boolean estaDisponible(String tipoBarco) {
-		return this.buscarBarcoNoColocado(tipoBarco) != null;
-	}
-
-	public void actualizarEstadoBarcoColocado(String tipoBarco) {
-		buscarBarcoNoColocado(tipoBarco).actualizarBarcoColocado();
-	}
-
-	private Barco buscarBarcoNoColocado(String tipoBarco) {
+	public Barco obtenerBarcoNoColocado(ETipoBarco tipoBarco) {
 		Iterator<Barco> itr = getIterator();
 		boolean encontradoYDisp = false;
 		Barco barco = null;
@@ -40,6 +32,17 @@ public class ListaBarcos {
 			}
 		}
 		return barco;
+	}
+
+	public boolean estanTodosBarcosColocados(){
+		Iterator<Barco> itr = getIterator();
+		boolean todosColocados = true;
+
+		while(itr.hasNext() && todosColocados){
+			todosColocados = itr.next().estaColocado();
+		}
+
+		return todosColocados;
 	}
 
 }

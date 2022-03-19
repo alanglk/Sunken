@@ -10,19 +10,19 @@ public class FactoriaBarcos {
         return mFactoria;
     }
 
-    public Barco crearBarco(String pTipo){
+    public Barco crearBarco(ETipoBarco pTipo){
         Barco nuevoBarco = null;
 
-        if(pTipo.equals(Barco.FRAGATA))
+        if(pTipo.equals(ETipoBarco.FRAGATA))
             nuevoBarco = new Fragata();
 
-        if (pTipo.equals(Barco.DESTRUCTOR))
+        if (pTipo.equals(ETipoBarco.DESTRUCTOR))
             nuevoBarco = new Destructor();
 
-        if(pTipo.equals(Barco.PORTAVIONES))
+        if(pTipo.equals(ETipoBarco.PORTAVIONES))
             nuevoBarco = new Portaviones();
 
-        if(pTipo.equals(Barco.SUBMARINO))
+        if(pTipo.equals(ETipoBarco.SUBMARINO))
             nuevoBarco = new Submarino();
 
         return nuevoBarco;

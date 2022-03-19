@@ -1,6 +1,7 @@
 package org.modelo;
 
 import org.modelo.barco.Barco;
+import org.modelo.barco.EOrientaconBarco;
 import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
@@ -26,7 +27,7 @@ public class Enemigo {
 		while(itr.hasNext()){
 			b1= (Barco) itr.next();
 			int posicion=this.obtPos();
-			String orientacion=this.obtOrientacion();
+			EOrientaconBarco orientacion=this.obtOrientacion();
 			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,b1)){
 				this.tableroEnemigo.colocarBarco(posicion,orientacion,b1);
 			}
@@ -44,17 +45,18 @@ public class Enemigo {
 			System.out.println("Numero aleatorio: " + random);
 		}
 	}
-	private String obtOrientacion() {
-		//TODO Si random es 0 la orientacion es horizontal y si es 1 vertical
+	private EOrientaconBarco obtOrientacion() {
+		//Si random es 0 la orientacion es horizontal y si es 1 vertical
 		Random r=new Random();
 		int queOrientacion=r.nextInt(2);
-		String orientacion;
+
+		EOrientaconBarco orientacion;
 		if(queOrientacion==0){
-			orientacion="horizontal";
+			orientacion = EOrientaconBarco.ESTE;
+		} else{
+			orientacion = EOrientaconBarco.SUR;
 		}
-		else{
-			orientacion="vertical";
-		}
+
 		return orientacion;
 	}
 

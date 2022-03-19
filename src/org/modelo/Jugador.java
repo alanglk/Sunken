@@ -1,5 +1,8 @@
 package org.modelo;
 
+import org.modelo.barco.Barco;
+import org.modelo.barco.EOrientaconBarco;
+import org.modelo.barco.ETipoBarco;
 import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
@@ -18,21 +21,28 @@ public class Jugador {
 		this.listaMisilesJ=new ListaMisiles();
 	}
 
-	public void colocarBarco(int pPos, String pOrientacion, String pTipoBarco) {
-		if(this.listaBarcosJ.estaDisponible(pTipoBarco)){
-			if(this.tableroJugador.sePuedeColocar(pPos,pOrientacion,pTipoBarco)){
-				this.tableroJugador.colocarBarco(pPos,pOrientacion,pTipoBarco);
-				this.listaBarcosJ.actualizarEstadoBarco(pTipoBarco);
-				if (this.listaBarcosJ.estanTodosBarcosColocados()){
-					GestorDelJuego.getMiGestorDelJuego().jugarPartida();
+	public void colocarBarco(int pPos, EOrientaconBarco pOrientacion, ETipoBarco pTipoBarco) throws Exception {
+		Barco barco = listaBarcosJ.obtenerBarcoNoColocado(pTipoBarco);
+
+		// Si hay un barco disponible comprobamos si se puede colocar en la posicion
+		if(barco != null){
+
+			// Si se puede colocar, lo colocamos y actualizamos el estado del barco
+			if(tableroJugador.sePuedeColocar(pPos,pOrientacion,barco)){
+				tableroJugador.colocarBarco(pPos,pOrientacion,barco);
+				barco.actualizarBarcoColocado();
+
+				// Comprobamos si estan todos los barcos colocados. Si lo estan iniciamos la partida
+				if (listaBarcosJ.estanTodosBarcosColocados()){
+					GestorDelJuego.getInstance().jugarPartida();
 				}
+
+			} else{
+				throw new Exception("ERROR: No se puede colocar en esa posición el barco");
 			}
-			else{
-				System.err.println("No se puede colocar en esa posición el barco");
-			}
-		}
-		else{
-			System.err.println("No esta disponible el barco");
+
+		}else{
+			throw new Exception("ERROR: No esta disponible el barco");
 		}
 	}
 

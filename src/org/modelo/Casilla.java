@@ -2,12 +2,13 @@ package org.modelo;
 
 public class Casilla {
 
-	private Estado estado;
-	private int posicion;
+	private EEstadoCasilla estado;
 
-	public Casilla() {
-		// TODO - implement Casilla.Casilla
-		throw new UnsupportedOperationException();
+	public Casilla(EEstadoCasilla pEstado) {
+		estado = pEstado;
 	}
 
+	public boolean esAgua(){
+		return estado.equals(EEstadoCasilla.AGUA);
+	}
 }

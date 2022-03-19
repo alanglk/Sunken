@@ -13,10 +13,10 @@ public class FactoriaMisiles {
 
         return miFactoriaMisiles;
     }
-    public Misil crearMisil(String pTipo){
+    public Misil crearMisil(ETipoMisil pTipo){
         Misil misil = null;
 
-        if(pTipo.equals(Misil.BOMBA))
+        if(pTipo.equals(ETipoMisil.BOMBA))
             misil = new Bomba();
 
         return misil;

@@ -5,6 +5,6 @@ import org.modelo.Casilla;
 public class Fragata extends Barco {
 
 	public Fragata() {
-		super(1, Barco.FRAGATA);
+		super(1, ETipoBarco.FRAGATA);
 	}
 }

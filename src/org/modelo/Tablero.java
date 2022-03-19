@@ -35,13 +35,15 @@ public class Tablero {
 
 		}else if(pOrien.equals(EOrientaconBarco.SUR)){
 			// Desde la posición hacia abajo
-			sePuede = sePuedeColocarNorte(pPos - longitud * size, longitud);
+			sePuede = sePuedeColocarNorte(pPos - (longitud -1) * size, longitud);
 
 		}else if(pOrien.equals(EOrientaconBarco.ESTE)){
 			// Desde la posición hacia la derecha
+			sePuede = sePuedeColocarEste(pPos, longitud);
 
 		}else if(pOrien.equals(EOrientaconBarco.OESTE)){
 			// Desde la posición hacia la izquierda
+			sePuede = sePuedeColocarEste(pPos - (longitud -1), longitud);
 
 		}
 

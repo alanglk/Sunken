@@ -4,6 +4,7 @@ import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
 import org.modelo.barco.ETipoBarco;
 import org.modelo.barco.ListaBarcos;
+import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
@@ -47,7 +48,7 @@ public class Jugador {
 	}
 
 
-	public void recibirDisparo(Misil pMisil, Casilla pCasilla) {
+	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
 
 	}
 	

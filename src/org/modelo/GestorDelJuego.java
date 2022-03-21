@@ -1,5 +1,6 @@
 package org.modelo;
 
+import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.Misil;
 
 import java.util.ArrayList;
@@ -21,10 +22,10 @@ public class GestorDelJuego {
 	}
 
 	public void jugarPartida() {
-		Misil p1;
-		Casilla p2;
+		ETipoMisil p1;
+		int p2;
 		p1=null;
-		p2=null;
+		p2=0;
 		boolean terminar = false;
 		//Todos los barcos de Jugador est�n colocados, colocamos los del enemigo
 		this.enemigo.colocarBarcoEnemigo();

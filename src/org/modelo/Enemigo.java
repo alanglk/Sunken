@@ -22,15 +22,15 @@ public class Enemigo {
 	}
 
 	public void colocarBarcoEnemigo() {
-		Iterator itr=listaBarcosE.getIterator();
-		Barco b1;
-		while(itr.hasNext()){
-			b1= (Barco) itr.next();
+		int i = 0; Barco b1;
+		while((b1 = listaBarcosE.obtenerBarcoEnPos(i)) != null){
 			int posicion=this.obtPos();
 			EOrientaconBarco orientacion=this.obtOrientacion();
 			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,b1)){
 				this.tableroEnemigo.colocarBarco(posicion,orientacion,b1);
 			}
+
+			i++;
 		}
 	}
 

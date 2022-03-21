@@ -1,9 +1,6 @@
 package org.modelo.barco;
 
-import org.modelo.barco.Barco;
-
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
 public class ListaBarcos {
@@ -49,4 +46,7 @@ public class ListaBarcos {
 		return this.lista.size();
 	}
 
+	public Barco obtenerBarcoEnPos(int pPos){
+		return lista.get(pPos);
+	}
 }

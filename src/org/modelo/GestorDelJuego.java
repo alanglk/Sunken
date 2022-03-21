@@ -1,9 +1,6 @@
 package org.modelo;
 
 import org.modelo.misil.ETipoMisil;
-import org.modelo.misil.Misil;
-
-import java.util.ArrayList;
 
 public class GestorDelJuego {
 
@@ -44,12 +41,7 @@ public class GestorDelJuego {
 		}
 	}
 
-	/**
-	 * 
-	 * @param pMIsil
-	 * @param pCasilla
-	 */
-	public void dispararMisilJugador(Misil pMisil, Casilla pCasilla) {
+	public void dispararMisilJugador(ETipoMisil pMisil, int pPos) {
 		//Falta toda la implementaci�n de otras clases
 		/*if(this.jugador.misilDisponible(pMisil)) {
 			this.enemigo.recibirDisparo(pMisil, pCasilla);
@@ -57,12 +49,7 @@ public class GestorDelJuego {
 		}*/
 	}
 
-	/**
-	 * 
-	 * @param pMisil
-	 * @param pCasilla
-	 */
-	public void dispararMIsilEnem(Misil pMisil, Casilla pCasilla) {
+	public void dispararMIsilEnem(ETipoMisil pMisil, int pPos) {
 		//Falta toda la implementaci�n de otras clases
 		/*if(this.enemigo.misilDisponible(pMisil)) {
 			this.jugador.recibirDisparo(pMisil, pCasilla);

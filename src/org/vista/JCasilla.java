@@ -5,6 +5,6 @@ import javax.swing.*;
 public class JCasilla extends JLabel {
 
     public JCasilla(String pText){
-        super(pText);
+        super(pText, SwingConstants.CENTER);
     }
 }

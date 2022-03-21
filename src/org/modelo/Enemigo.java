@@ -2,10 +2,9 @@ package org.modelo;
 
 import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
-import org.modelo.barco.ETipoBarco;
 import org.modelo.barco.ListaBarcos;
+import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.ListaMisiles;
-import org.modelo.misil.Misil;
 
 import java.util.Random;
 
@@ -60,7 +59,7 @@ public class Enemigo {
 		return orientacion;
 	}
 
-	public void recibirDisparo(ETipoBarco pMisil, int pPos) {
+	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
 		// TODO - implement Enemigo.recibirDisparo
 		throw new UnsupportedOperationException();
 	}

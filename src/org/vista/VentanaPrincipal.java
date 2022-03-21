@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class VentanaPrincipal extends JFrame {
 
+    private JPanel panelTableros;
     private PanelTablero tableroJugador;
     private PanelTablero tableroEnemigo;
 
@@ -12,19 +13,22 @@ public class VentanaPrincipal extends JFrame {
         super("SUNKEN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setBounds(0, 0, 300, 300);
+        setBounds(0, 0, 500, 500);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
         setLayout(new BorderLayout());
 
         // incluir los modulos de la vista
+        panelTableros = new JPanel();
+        panelTableros.setLayout(new GridLayout(2, 1, 0, 10));
+        add(panelTableros, BorderLayout.CENTER);
+
         tableroJugador = new PanelTablero();
-        add(tableroJugador, BorderLayout.CENTER);
+        panelTableros.add(tableroJugador);
 
         tableroEnemigo = new PanelTablero();
-        add(tableroEnemigo, BorderLayout.CENTER);
-
+        panelTableros.add(tableroEnemigo);
 
         setVisible(true);
     }

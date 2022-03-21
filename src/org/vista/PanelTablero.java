@@ -8,34 +8,46 @@ import java.awt.*;
 public class PanelTablero extends JPanel {
 
     private final int size = 10;
+    private JPanel panelCasillas;
 
     public PanelTablero() {
         super();
         setLayout(new BorderLayout());
 
-        // creamos los ejes
-        anadirEjeX();
-        anadirEjeY();
-
-        // creamos el tablero
-        crearTablero();
+        crearPanelCasillas();
+        add(panelCasillas, BorderLayout.CENTER);
     }
 
-    private void anadirEjeX(){
+    private void crearPanelCasillas(){
+        panelCasillas = new JPanel();
+        panelCasillas.setLayout(new GridLayout(size + 1, size + 1, 0, 0));
+
+        // Espacio en blanco superior que separa los ejes
+        panelCasillas.add(new JLabel(""));
+
+        // Coordenadas del eje X
         for(int i = 0; i < size; i++){
-            add(new JLabel(String.valueOf(i)), BorderLayout.NORTH);
+            JLabel coord = new JLabel(String.valueOf(i), SwingConstants.CENTER);
+            coord.setOpaque(true);
+
+            if(i % 2 == 0)
+                coord.setBackground(Color.GRAY);
+            else
+                coord.setBackground(Color.LIGHT_GRAY);
+
+            panelCasillas.add(coord);
         }
-    }
 
-    private void anadirEjeY(){
         char car = 'A';
-        for(int i = 0; i < size; i++){
-            add(new JLabel(String.valueOf(car)), BorderLayout.WEST);
+        for(int j = 0; j < size; j++){
+            // Coordenada del eje Y
+            panelCasillas.add(new JLabel(String.valueOf(car)));
+
+            // Fila de casillas
+            for(int i = 0; i < size; i++)
+                panelCasillas.add(new JCasilla("-"));
+
             car++;
         }
-    }
-
-    private void crearTablero(){
-
     }
 }

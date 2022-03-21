@@ -6,7 +6,6 @@ import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
-import java.util.Iterator;
 import java.util.Random;
 
 public class Enemigo {

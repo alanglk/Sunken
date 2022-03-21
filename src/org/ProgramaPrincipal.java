@@ -1,5 +1,7 @@
 package org;
 
+import org.vista.VentanaPrincipal;
+
 public class ProgramaPrincipal {
 
     public static void main(String[] args){
@@ -11,5 +13,7 @@ public class ProgramaPrincipal {
         System.out.println("commit Alvaro portatil");
         System.out.println("commit Alvaro portatil");
         System.out.println("commit Crespo");
+        new VentanaPrincipal();
+
     }
 }

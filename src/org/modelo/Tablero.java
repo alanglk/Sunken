@@ -147,7 +147,7 @@ public class Tablero {
 		}
 	}
 	
-	public void disparoRecibido(ArrayList<Integer> pAreaDisparo,) {
+	public void disparoRecibido(ArrayList<Integer> pAreaDisparo) {
 	int cont=0;
 	int dir=0;
 	while(cont<pAreaDisparo.size()){

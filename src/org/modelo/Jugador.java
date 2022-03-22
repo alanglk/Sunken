@@ -8,6 +8,8 @@ import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
+import java.util.Iterator;
+
 public class Jugador {
 
 	private String nombre;
@@ -62,7 +64,7 @@ public class Jugador {
 	}
 	
 	public boolean misilDisponible(ETipoMisil pMisil) {
-		return this.listaMisilesJ.sePuedeDisparar(pMisil);
+		return (listaMisilesJ.sePuedeDisparar(pMisil));
 	}
 
 //	public void actualizarListaMisilesJugador(Misil pMisil) {

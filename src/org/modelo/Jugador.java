@@ -61,9 +61,9 @@ public class Jugador {
 		return tiene;
 	}
 	
-//	public boolean misilDisponible(Misil pMisil) {
-//		return this.listaMisilesJ.sePuedeDisparar(pMisil);
-//	}
+	public boolean misilDisponible(ETipoMisil pMisil) {
+		return this.listaMisilesJ.sePuedeDisparar(pMisil);
+	}
 
 //	public void actualizarListaMisilesJugador(Misil pMisil) {
 //		

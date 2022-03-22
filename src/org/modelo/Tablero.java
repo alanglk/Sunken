@@ -128,4 +128,9 @@ public class Tablero {
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
 	}
+	
+	public void disparoRecibido() {}
+	
+	
+	
 }

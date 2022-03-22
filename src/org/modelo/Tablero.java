@@ -127,9 +127,16 @@ public class Tablero {
 	public void colocarBarco(int pPos, EOrientaconBarco POrientacion, Barco pBarco) {
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
+		int cont=0;
+		int pos=pPos;
+		while (cont < pBarco.getLongitud()){
+			this.listaCasillas.get(pos).setId(pBarco.getId());
+		}
 	}
 	
-	public void disparoRecibido() {}
+	public void disparoRecibido() {
+
+	}
 	
 	
 	

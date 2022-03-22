@@ -1,13 +1,13 @@
 package org.modelo.barco;
 
 public class FactoriaBarcos {
-    private static FactoriaBarcos mFactoria;
+    private static FactoriaBarcos mFatoria;
 
     private FactoriaBarcos(){}
 
     public static FactoriaBarcos getInstance(){
-        if(mFactoria == null) mFactoria = new FactoriaBarcos();
-        return mFactoria;
+        if(mFatoria == null) mFatoria = new FactoriaBarcos();
+        return mFatoria;
     }
 
     public Barco crearBarco(ETipoBarco pTipo){

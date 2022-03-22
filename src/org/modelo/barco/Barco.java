@@ -1,6 +1,7 @@
 package org.modelo.barco;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public abstract class Barco {
 	private ETipoBarco tipo = null;
@@ -29,6 +30,19 @@ public abstract class Barco {
 	}
 
 	public int getId(){return this.id;}
+
+	public void eliminarCasilla(int pCasilla){
+		Iterator<Integer> itr=this.posicionesBarco.iterator();
+		int aux;
+		boolean enc=false;
+		while (itr.hasNext()&&!enc){
+			aux=itr.next();
+			if(pCasilla==aux) {
+				this.posicionesBarco.remove(aux);
+				enc=true;
+			}
+			}
+	}
 
 	public void actualizarBarcoColocado(){
 		this.colocado = true;

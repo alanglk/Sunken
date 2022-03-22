@@ -158,7 +158,8 @@ public class Tablero {
 			}
 			else{
 				this.listaCasillas.get(dir).setEstado("BARCO");
-				//Jugador.getInstance().; this.listaCasillas.get(dir).getIdBarco()
+				this.listaCasillas.get(dir).actualizarBarco(dir);
+
 			}
 
 		}

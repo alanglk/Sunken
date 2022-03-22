@@ -36,7 +36,7 @@ public class GestorDelJuego {
 			else {terminar = true;}
 			if(this.jugador.tieneBarcosJugador() && !terminar) {
 				//p1 es un misil y p2 es una casilla
-				this.dispararMIsilEnem(p1, p2);
+				this.dispararMisilEnem(p1, p2);
 				this.jugador.recibirDisparo(p1, p2);
 			}
 			else {terminar = true;}

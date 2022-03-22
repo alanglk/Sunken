@@ -25,6 +25,6 @@ public class Casilla {
 	public int getId(){return this.id;}
 
 	public void setEstado(String pEstado){
-		this.estado=pEstado;
+		this.estado.equals(pEstado);
 	}
 }

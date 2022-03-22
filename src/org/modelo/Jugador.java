@@ -62,7 +62,9 @@ public class Jugador {
 		int cont=0;
 		boolean enc=false;
 		while(cont<this.listaBarcosJ.size() && !enc){
-			if(pId==this.listaBarcosJ.obtenerBarcoEnPos(cont).)
+			if(this.listaBarcosJ.obtenerBarcoEnPos(cont).esBarcoId(pId)){
+
+			}
 		}
 	}
 	

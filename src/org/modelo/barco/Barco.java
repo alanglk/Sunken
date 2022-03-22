@@ -21,7 +21,9 @@ public abstract class Barco {
 		this.colocado = false;
 		this.id=pId;
 	}
-
+	public boolean esBarcoId(int pId){
+		return(pId==this.id);
+	}
 	public int getLongitud(){
 		return longitud;
 	}

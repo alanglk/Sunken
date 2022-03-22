@@ -6,8 +6,6 @@ import org.modelo.misil.ETipoMisil;
 public class GestorDelJuego {
 
 	private static GestorDelJuego miGestorDelJuego;
-	private Jugador jugador;
-	private Enemigo enemigo;
 
 	private GestorDelJuego() {
 		// TODO - implement GestorDelJuego.GestorDelJuego
@@ -26,19 +24,19 @@ public class GestorDelJuego {
 		p2=0;
 		boolean terminar = false;
 		//Todos los barcos de Jugador est�n colocados, colocamos los del enemigo
-		this.enemigo.colocarBarcoEnemigo();
+		Enemigo.getInstance().colocarBarcoEnemigo();
 		//Disparamos misiles hasta que alg�n jugador gane
 		while(!terminar) {
-			if(this.enemigo.tieneBarcosEnemigo()) {
+			if(Enemigo.getInstance().tieneBarcosEnemigo()) {
 				//p1 es un misil y p2 es una casilla
 				this.dispararMisilJugador(p1, p2);
-				this.enemigo.recibirDisparo(p1, p2);
+				Enemigo.getInstance().recibirDisparo(p1, p2);
 			}
 			else {terminar = true;}
-			if(this.jugador.tieneBarcosJugador() && !terminar) {
+			if(Jugador.getInstance().tieneBarcosJugador() && !terminar) {
 				//p1 es un misil y p2 es una casilla
 				this.dispararMisilEnem(p1, p2);
-				this.jugador.recibirDisparo(p1, p2);
+				Jugador.getInstance().recibirDisparo(p1, p2);
 			}
 			else {terminar = true;}
 		}
@@ -60,5 +58,12 @@ public class GestorDelJuego {
 		}*/
 	}
 
-	public void notificarCasillaPresionada(FormularioControlador pDatos){}
+	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
+		if (Jugador.getInstance().tieneBarcosJugador()){
+			Jugador.getInstance().colocarBarco(pDatos.posicion,pDatos.orientacion,pDatos.tipoBarco);
+		}
+		else{
+			Enemigo.getInstance().recibirDisparo(pDatos.tipoMisil,pDatos.posicion);
+		}
+	}
 }

@@ -14,7 +14,17 @@ public class Casilla {
 		return estado.equals(EEstadoCasilla.AGUA);
 	}
 
+	public boolean tieneBarco(){
+		return(this.id==-1);
+
+	}
+
 	public void setId(int pId){
 		this.id=pId;
+	}
+	public int getId(){return this.id;}
+
+	public void setEstado(String pEstado){
+		this.estado=pEstado;
 	}
 }

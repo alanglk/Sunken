@@ -1,5 +1,7 @@
 package org.modelo;
 
 public enum EEstadoCasilla {
-    AGUA
+    AGUA,
+    INCOGNITA,
+    BARCO,
 }

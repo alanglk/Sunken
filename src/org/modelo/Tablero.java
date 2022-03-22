@@ -147,8 +147,20 @@ public class Tablero {
 		}
 	}
 	
-	public void disparoRecibido(ArrayList<int> pArea) {
+	public void disparoRecibido(ArrayList<Integer> pAreaDisparo,) {
+	int cont=0;
+	int dir=0;
+	while(cont<pAreaDisparo.size()){
+		dir=pAreaDisparo.get(cont);
+		if(this.listaCasillas.get(dir).tieneBarco()){
+			this.listaCasillas.get(dir).setEstado("AGUA");
+		}
+		else{
+			this.listaCasillas.get(dir).setEstado("BARCO");
 
+		}
+
+	}
 
 	}
 	

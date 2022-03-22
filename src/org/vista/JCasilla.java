@@ -1,11 +1,9 @@
 package org.vista;
 
-import org.modelo.controlador.ControladorVentanaPrincipal;
+import org.controlador.ControladorVentanaPrincipal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class JCasilla extends JButton{
 

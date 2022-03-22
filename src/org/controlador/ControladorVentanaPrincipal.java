@@ -1,4 +1,4 @@
-package org.modelo.controlador;
+package org.controlador;
 
 import org.modelo.GestorDelJuego;
 import org.modelo.barco.EOrientaconBarco;

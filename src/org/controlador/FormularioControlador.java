@@ -1,4 +1,4 @@
-package org.modelo.controlador;
+package org.controlador;
 
 import org.modelo.barco.EOrientaconBarco;
 import org.modelo.barco.ETipoBarco;

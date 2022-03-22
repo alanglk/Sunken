@@ -1,6 +1,6 @@
 package org.modelo;
 
-import org.modelo.controlador.FormularioControlador;
+import org.controlador.FormularioControlador;
 import org.modelo.misil.ETipoMisil;
 
 public class GestorDelJuego {

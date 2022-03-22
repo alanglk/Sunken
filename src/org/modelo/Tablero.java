@@ -153,11 +153,12 @@ public class Tablero {
 		while(cont<pAreaDisparo.size()){
 			dir=pAreaDisparo.get(cont);
 			if(this.listaCasillas.get(dir).tieneBarco()){
-				//El método casillaRecibeDisparoJugador, que está en Casilla, llamará a jugador para ver el estado de sus casillas
+				//El mï¿½todo casillaRecibeDisparoJugador, que estï¿½ en Casilla, llamarï¿½ a jugador para ver el estado de sus casillas
 				this.listaCasillas.get(dir).casillaRecibeDisparoJugador(this.listaCasillas.get(dir));
 			}
 			else{
 				this.listaCasillas.get(dir).setEstado("BARCO");
+				//Jugador.getInstance().; this.listaCasillas.get(dir).getIdBarco()
 			}
 
 		}

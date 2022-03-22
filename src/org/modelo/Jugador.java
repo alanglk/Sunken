@@ -57,6 +57,14 @@ public class Jugador {
 	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
 
 	}
+
+	public void actualizarCasillaBarco(int casillaPos, int pId){
+		int cont=0;
+		boolean enc=false;
+		while(cont<this.listaBarcosJ.size() && !enc){
+			if(pId==this.listaBarcosJ.obtenerBarcoEnPos(cont).)
+		}
+	}
 	
 	public boolean tieneBarcosJugador() {
 		boolean tiene = false;

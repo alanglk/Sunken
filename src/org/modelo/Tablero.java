@@ -124,8 +124,34 @@ public class Tablero {
 		return sePuede;
 	}
 
-	public void colocarBarco(int pPos, EOrientaconBarco POrientacion, Barco pBarco) {
+	public void colocarBarco(int pPos, EOrientaconBarco pOrientacion, Barco pBarco) {
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
+		int cont=0;
+		int pos=pPos;
+		while (cont < pBarco.getLongitud()){
+			this.listaCasillas.get(pos).setId(pBarco.getId());
+			if pOrientacion.equals("Norte")){
+				pos=pos+10;
+			}
+			else if(pOrientacion.equals("Sur")){
+				pos=pos-10;
+			}
+			else if (pOrientacion.equals("Oeste")){
+				pos--;
+			}
+			else{
+				pos++
+			}
+			cont++;
+		}
 	}
+	
+	public void disparoRecibido(ArrayList<int> pArea) {
+
+
+	}
+	
+	
+	
 }

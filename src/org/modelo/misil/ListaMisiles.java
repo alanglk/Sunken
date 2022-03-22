@@ -37,7 +37,7 @@ public class ListaMisiles {
         return (misil);
     }
 
-    public void añadirMisil(ETipoMisil pTipoMisil){
+    public void anadirMisil(ETipoMisil pTipoMisil){
         Misil misil = FactoriaMisiles.getInstance().crearMisil(pTipoMisil);
         this.lista.add(misil);
         misil.incrementarNumMisiles();

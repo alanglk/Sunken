@@ -8,8 +8,11 @@ import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
+import java.util.Iterator;
+
 public class Jugador {
 
+	private static Jugador miJugador;
 	private String nombre;
 	private Tablero tableroJugador;
 	private ListaBarcos listaBarcosJ;
@@ -20,6 +23,11 @@ public class Jugador {
 		this.tableroJugador=new Tablero();
 		this.listaBarcosJ=new ListaBarcos();
 		this.listaMisilesJ=new ListaMisiles();
+	}
+	
+	public static Jugador getInstance(String pNombre) {
+		if(miJugador == null) miJugador = new Jugador(pNombre);
+		return miJugador;
 	}
 
 	public void colocarBarco(int pPos, EOrientaconBarco pOrientacion, ETipoBarco pTipoBarco) throws Exception {
@@ -61,9 +69,9 @@ public class Jugador {
 		return tiene;
 	}
 	
-//	public boolean misilDisponible(Misil pMisil) {
-//		return this.listaMisilesJ.sePuedeDisparar(pMisil);
-//	}
+	public boolean misilDisponible(ETipoMisil pMisil) {
+		return (listaMisilesJ.sePuedeDisparar(pMisil));
+	}
 
 //	public void actualizarListaMisilesJugador(Misil pMisil) {
 //		

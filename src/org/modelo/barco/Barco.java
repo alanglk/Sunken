@@ -7,22 +7,26 @@ public abstract class Barco {
 
 	private ArrayList<Integer> posicionesBarco;
 	private int longitud;
+	private int id;
 
 	private boolean colocado;
 	private boolean hundido;
 
-	public Barco(int pLongitud, ETipoBarco pTipo) {
+	public Barco(int pLongitud, ETipoBarco pTipo,int pId) {
 		posicionesBarco = new ArrayList<Integer>();
 
 		this.tipo = pTipo;
 		this.longitud = pLongitud;
 		this.hundido = false;
 		this.colocado = false;
+		this.id=pId;
 	}
 
 	public int getLongitud(){
 		return longitud;
 	}
+
+	public int getId(){return this.id;}
 
 	public void actualizarBarcoColocado(){
 		this.colocado = true;

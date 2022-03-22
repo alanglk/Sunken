@@ -30,12 +30,14 @@ public class GestorDelJuego {
 		//Disparamos misiles hasta que alg�n jugador gane
 		while(!terminar) {
 			if(this.enemigo.tieneBarcosEnemigo()) {
+				//p1 es un misil y p2 es una casilla
 				this.dispararMisilJugador(p1, p2);
 				this.enemigo.recibirDisparo(p1, p2);
 			}
 			else {terminar = true;}
 			if(this.jugador.tieneBarcosJugador() && !terminar) {
-				this.dispararMIsilEnem(p1, p2);
+				//p1 es un misil y p2 es una casilla
+				this.dispararMisilEnem(p1, p2);
 				this.jugador.recibirDisparo(p1, p2);
 			}
 			else {terminar = true;}
@@ -50,7 +52,7 @@ public class GestorDelJuego {
 		}*/
 	}
 
-	public void dispararMIsilEnem(ETipoMisil pMisil, int pPos) {
+	public void dispararMisilEnem(ETipoMisil pMisil, int pPos) {
 		//Falta toda la implementaci�n de otras clases
 		/*if(this.enemigo.misilDisponible(pMisil)) {
 			this.jugador.recibirDisparo(pMisil, pCasilla);

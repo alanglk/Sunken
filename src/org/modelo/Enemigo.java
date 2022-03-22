@@ -10,6 +10,7 @@ import java.util.Random;
 
 public class Enemigo {
 
+	private static Enemigo miEnemigo;
 	private Tablero tableroEnemigo;
 	private ListaBarcos listaBarcosE;
 	private ListaMisiles listaMisilesE;
@@ -18,6 +19,11 @@ public class Enemigo {
 		this.tableroEnemigo=new Tablero();
 		this.listaBarcosE=new ListaBarcos();
 		this.listaMisilesE=new ListaMisiles();
+	}
+	
+	public static Enemigo getInstance() {
+		if(miEnemigo == null) miEnemigo = new Enemigo();
+		return miEnemigo;
 	}
 
 	public void colocarBarcoEnemigo() {

@@ -41,11 +41,11 @@ public class PanelTablero extends JPanel {
         char car = 'A';
         for(int j = 0; j < size; j++){
             // Coordenada del eje Y
-            panelCasillas.add(new JLabel(String.valueOf(car)));
+            panelCasillas.add(new JLabel(String.valueOf(car), SwingConstants.CENTER));
 
             // Fila de casillas
             for(int i = 0; i < size; i++)
-                panelCasillas.add(new JCasilla("-"));
+                panelCasillas.add(new JCasilla(i)); // TODO: CAMBIAR ESTO
 
             car++;
         }

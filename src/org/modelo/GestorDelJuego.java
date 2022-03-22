@@ -1,5 +1,6 @@
 package org.modelo;
 
+import org.modelo.controlador.FormularioControlador;
 import org.modelo.misil.ETipoMisil;
 
 public class GestorDelJuego {
@@ -57,4 +58,5 @@ public class GestorDelJuego {
 		}*/
 	}
 
+	public void notificarCasillaPresionada(FormularioControlador pDatos){}
 }

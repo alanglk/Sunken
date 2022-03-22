@@ -1,10 +1,47 @@
 package org.vista;
 
+import org.modelo.controlador.ControladorVentanaPrincipal;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public class JCasilla extends JLabel {
+public class JCasilla extends JButton{
 
-    public JCasilla(String pText){
-        super(pText, SwingConstants.CENTER);
+    private final int width = 1;
+    private final int height = 1;
+    private boolean mouseEntered = false;
+
+    private final int pos;
+
+    public JCasilla(int pPos){
+        super();
+        pos = pPos;
+
+        setMinimumSize(new Dimension(width, height));
+        setPreferredSize(new Dimension(width, height));
+        setMaximumSize(new Dimension(width, height));
+        setSize(new Dimension(width, height));
+
+        setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
+
+        setBackground(Color.CYAN);
+        setOpaque(true);
+
+        addMouseListener(ControladorVentanaPrincipal.getInstance());
+    }
+
+    public void setMouseEntered(boolean pMouseEntered){
+        mouseEntered = pMouseEntered;
+        updateMouseHover();
+    }
+    private void updateMouseHover(){
+        if(mouseEntered) setBackground(Color.GRAY);
+        else setBackground(Color.CYAN);
+    }
+
+    public int getPos(){
+        return pos;
     }
 }

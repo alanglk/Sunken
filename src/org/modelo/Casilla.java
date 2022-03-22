@@ -3,11 +3,11 @@ package org.modelo;
 public class Casilla {
 
 	private EEstadoCasilla estado;
-	private int id;
+	private int idBarco;
 
 	public Casilla(EEstadoCasilla pEstado) {
 		estado = pEstado;
-		id=-1;
+		idBarco=-1;
 	}
 
 	public boolean esAgua(){
@@ -15,16 +15,23 @@ public class Casilla {
 	}
 
 	public boolean tieneBarco(){
-		return(this.id==-1);
+		return(this.idBarco==-1);
 
 	}
 
-	public void setId(int pId){
-		this.id=pId;
+	public void setId(int pIdBarco){
+		this.idBarco=pIdBarco;
 	}
-	public int getId(){return this.id;}
+	public int getIdBarco(){return this.idBarco;}
 
 	public void setEstado(String pEstado){
 		this.estado.equals(pEstado);
 	}
+	
+	public void casillaRecibeDisparoJugador(Casilla lugar) {
+		//El método obtiene el barco que está en la posición del tablero. Falta comprobar el estado completo del barco
+		Jugador.getInstance().obtListaBarcos().obtenerBarcoEnPos(lugar.getIdBarco());
+	}
+	
+	
 }

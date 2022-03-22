@@ -147,22 +147,24 @@ public class Tablero {
 		}
 	}
 	
-	public void disparoRecibido(ArrayList<Integer> pAreaDisparo) {
-	int cont=0;
-	int dir=0;
-	while(cont<pAreaDisparo.size()){
-		dir=pAreaDisparo.get(cont);
-		if(this.listaCasillas.get(dir).tieneBarco()){
-			this.listaCasillas.get(dir).setEstado("AGUA");
-		}
-		else{
-			this.listaCasillas.get(dir).setEstado("BARCO");
+	public void disparoRecibidoJugador(ArrayList<Integer> pAreaDisparo) {
+		int cont=0;
+		int dir=0;
+		while(cont<pAreaDisparo.size()){
+			dir=pAreaDisparo.get(cont);
+			if(this.listaCasillas.get(dir).tieneBarco()){
+				//El método casillaRecibeDisparoJugador, que está en Casilla, llamará a jugador para ver el estado de sus casillas
+				this.listaCasillas.get(dir).casillaRecibeDisparoJugador(this.listaCasillas.get(dir));
+			}
+			else{
+				this.listaCasillas.get(dir).setEstado("BARCO");
+			}
 
 		}
 
 	}
-
-	}
+	
+	//disparoRecibidoEnemigo
 	
 	
 	

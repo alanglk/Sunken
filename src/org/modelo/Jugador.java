@@ -13,20 +13,18 @@ import java.util.Iterator;
 public class Jugador {
 
 	private static Jugador miJugador;
-	private String nombre;
 	private Tablero tableroJugador;
 	private ListaBarcos listaBarcosJ;
 	private ListaMisiles listaMisilesJ;
 
-	public Jugador(String pNombre) {
-		this.nombre=pNombre;
+	public Jugador() {
 		this.tableroJugador=new Tablero();
 		this.listaBarcosJ=new ListaBarcos();
 		this.listaMisilesJ=new ListaMisiles();
 	}
 	
-	public static Jugador getInstance(String pNombre) {
-		if(miJugador == null) miJugador = new Jugador(pNombre);
+	public static Jugador getInstance() {
+		if(miJugador == null) miJugador = new Jugador();
 		return miJugador;
 	}
 
@@ -72,6 +70,11 @@ public class Jugador {
 	public boolean misilDisponible(ETipoMisil pMisil) {
 		return (listaMisilesJ.sePuedeDisparar(pMisil));
 	}
+	
+	public ListaBarcos obtListaBarcos() {
+		return this.listaBarcosJ;
+	}
+	
 
 //	public void actualizarListaMisilesJugador(Misil pMisil) {
 //		

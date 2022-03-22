@@ -37,7 +37,11 @@ public class ControladorVentanaPrincipal implements MouseListener {
             int pos = casilla.getPos();
             FormularioControlador datos = new FormularioControlador(pos, barcoSel, orientacionSel, misilSel);
 
-            GestorDelJuego.getInstance().notificarCasillaPresionada(datos);
+            try {
+                GestorDelJuego.getInstance().notificarCasillaPresionada(datos);
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
     }
 

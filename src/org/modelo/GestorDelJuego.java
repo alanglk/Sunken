@@ -7,10 +7,10 @@ public class GestorDelJuego {
 
 	private static GestorDelJuego miGestorDelJuego;
 
-	private GestorDelJuego() {
+	/*private GestorDelJuego() {
 		// TODO - implement GestorDelJuego.GestorDelJuego
 		throw new UnsupportedOperationException();
-	}
+	}*/
 
 	public static GestorDelJuego getInstance() {
 		if(miGestorDelJuego == null) miGestorDelJuego = new GestorDelJuego();

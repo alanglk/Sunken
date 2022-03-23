@@ -49,4 +49,8 @@ public class ListaBarcos {
 	public Barco obtenerBarcoEnPos(int pPos){
 		return lista.get(pPos);
 	}
+
+	public void añadirBarco(Barco b1){
+		lista.add(b1);
+	}
 }

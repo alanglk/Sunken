@@ -48,7 +48,7 @@ public class PanelTablero extends JPanel {
 
             // Fila de casillas
             for(int i = 0; i < size; i++)
-                panelCasillas.add(new JCasilla(10*j+1, panelEnemigo));
+                panelCasillas.add(new JCasilla(10*j+i, panelEnemigo));
 
             car++;
         }

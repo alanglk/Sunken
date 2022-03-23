@@ -3,74 +3,84 @@ package org.modelo;
 import org.controlador.FormularioControlador;
 import org.modelo.misil.ETipoMisil;
 
-public class GestorDelJuego {
+import java.util.Observable;
+
+public class GestorDelJuego extends Observable {
 
 	private static GestorDelJuego miGestorDelJuego;
+	private boolean juegoIniciado = false;
 
-	/*private GestorDelJuego() {
-		// TODO - implement GestorDelJuego.GestorDelJuego
-		throw new UnsupportedOperationException();
-	}*/
+	private GestorDelJuego() {}
 
 	public static GestorDelJuego getInstance() {
 		if(miGestorDelJuego == null) miGestorDelJuego = new GestorDelJuego();
 		return miGestorDelJuego;
 	}
 
-	public void jugarPartida() {
-		ETipoMisil p1;
-		int p2;
-		p1=null;
-		p2=0;
-		boolean terminar = false;
-		//Todos los barcos de Jugador est�n colocados, colocamos los del enemigo
+	public void iniciarPartida() {
+		// Se han colocado todos los barcos del jugador.
+		// Marcamos el estado como partida iniciada y decidimos el orden de juego.
 		Enemigo.getInstance().colocarBarcoEnemigo();
-		//Disparamos misiles hasta que alg�n jugador gane
-		while(!terminar) {
-			if(Enemigo.getInstance().tieneBarcosEnemigo()) {
-				//p1 es un misil y p2 es una casilla
-				this.dispararMisilJugador(p1, p2);
-				Enemigo.getInstance().recibirDisparo(p1, p2);
-			}
-			else {terminar = true;}
-			if(Jugador.getInstance().tieneBarcosJugador() && !terminar) {
-				//p1 es un misil y p2 es una casilla
-				this.dispararMisilEnem(p1, p2);
-				Jugador.getInstance().recibirDisparo(p1, p2);
-			}
-			else {terminar = true;}
+
+		// Numero random que indicará si empieza el enemigo o el jugador
+		int random = 1;
+
+		if(!juegoIniciado && random == 1)
+			realizarDisparoEnemigo();
+
+		juegoIniciado = true;
+	}
+
+	private void realizarDisparoJugador(int pPos, ETipoMisil pMisil) {
+		Jugador jugador = Jugador.getInstance();
+		Enemigo enemigo = Enemigo.getInstance();
+		if(jugador.misilDisponible(pMisil)) {
+			enemigo.recibirDisparo(pMisil, pPos);
 		}
 	}
 
-	public void dispararMisilJugador(ETipoMisil pMisil, int pPos) {
-		//Falta toda la implementaci�n de otras clases
-		/*if(this.jugador.misilDisponible(pMisil)) {
-			this.enemigo.recibirDisparo(pMisil, pCasilla);
-			this.jugador.actualizarListaMisilesJugador(pMisil);
-		}*/
-	}
-
-	public void dispararMisilEnem(ETipoMisil pMisil, int pPos) {
-		//Falta toda la implementaci�n de otras clases
-		/*if(this.enemigo.misilDisponible(pMisil)) {
-			this.jugador.recibirDisparo(pMisil, pCasilla);
-			this.enemigo.actualizarListaMisilesEnemigo(pMisil);
-		}*/
+	private void realizarDisparoEnemigo() {
+		// TODO: Implementar realizarDisparo() en Enemigo
+		//Enemigo.getInstance().realizarDisparo();
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
-		/*if (Jugador.getInstance().tieneBarcosJugador()){
-			Jugador.getInstance().colocarBarco(pDatos.posicion,pDatos.orientacion,pDatos.tipoBarco);
-		}
-		else{
-			Enemigo.getInstance().recibirDisparo(pDatos.tipoMisil,pDatos.posicion);
-		}*/
 
-		System.out.println("--- INFORMACION ---");
-		System.out.println("Posicion: " + pDatos.posicion);
-		System.out.println("Tablero enemigo: " + pDatos.tableroEnemigo);
-		System.out.println("Barco: " + pDatos.tipoBarco);
-		System.out.println("Orientacion: " + pDatos.orientacion);
-		System.out.println("Tipo misil: " + pDatos.tipoMisil);
+		if(!juegoIniciado ){
+			if(!pDatos.tableroEnemigo){
+				// Los datos son del tablero del Jugador.
+
+				if(pDatos.tipoBarco != null && pDatos.orientacion != null) {
+					Jugador.getInstance().colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
+
+					// Comprobamos si estan todos los barcos del Jugador colocados. Si lo estan iniciamos la partida
+					if (Jugador.getInstance().estanTodosBarcosColocados())
+						iniciarPartida();
+
+					actualizarIntefaz();
+				}
+			}
+			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
+
+		}else{
+			// Presionamos una casilla para realizar un disparo
+			System.out.println("--- DISPARO ---");
+		}
+	}
+
+	// --------- Metodos para enviar datos a la interfaz ---------
+
+	private void actualizarIntefaz(){
+		// Avisar a los observers de que se ha producido un cambio
+		setChanged();
+		notifyObservers();
+	}
+
+	public EEstadoCasilla getEstadoCasillaJugador(){
+		return EEstadoCasilla.AGUA;
+	}
+
+	public EEstadoCasilla getEstadoCasillaEnemigo(){
+		return EEstadoCasilla.OCULTO;
 	}
 }

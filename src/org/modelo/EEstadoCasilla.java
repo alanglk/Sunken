@@ -2,6 +2,6 @@ package org.modelo;
 
 public enum EEstadoCasilla {
     AGUA,
-    INCOGNITA,
+    OCULTO,
     BARCO,
 }

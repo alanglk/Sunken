@@ -15,7 +15,7 @@ public class PanelBarcos extends JPanel {
     private final ButtonGroup grupoBotonesBarcos;
 
     public PanelBarcos(){
-        setLayout(new GridLayout(1,5,0,0));
+        setLayout(new GridLayout(5,1,0,0));
 
         grupoBotonesBarcos =new ButtonGroup();
 

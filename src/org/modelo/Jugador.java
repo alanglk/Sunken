@@ -28,23 +28,17 @@ public class Jugador {
 		return miJugador;
 	}
 
-	public void colocarBarco(int pPos, EOrientaconBarco pOrientacion, ETipoBarco pTipoBarco) throws Exception {
+	public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {
 		Barco barco = listaBarcosJ.obtenerBarcoNoColocado(pTipoBarco);
 
 		// Si hay un barco disponible comprobamos si se puede colocar en la posicion
 		if(barco != null){
-
 			// Si se puede colocar, lo colocamos y actualizamos el estado del barco
 			if(tableroJugador.sePuedeColocar(pPos,pOrientacion,barco)){
 				tableroJugador.colocarBarco(pPos,pOrientacion,barco);
 				barco.actualizarBarcoColocado();
 
-				// Comprobamos si estan todos los barcos colocados. Si lo estan iniciamos la partida
-				if (listaBarcosJ.estanTodosBarcosColocados()){
-					GestorDelJuego.getInstance().jugarPartida();
-				}
-
-			} else{
+			}else{
 				throw new Exception("ERROR: No se puede colocar en esa posición el barco");
 			}
 
@@ -72,13 +66,8 @@ public class Jugador {
 		}
 	}
 	
-	public boolean tieneBarcosJugador() {
-		boolean tiene = false;
-		if(this.listaBarcosJ.size() > 0) {
-			tiene= true;
-		}
-		else {tiene = false;}
-		return tiene;
+	public boolean estanTodosBarcosColocados() {
+		return listaBarcosJ.estanTodosBarcosColocados();
 	}
 	
 	public boolean misilDisponible(ETipoMisil pMisil) {

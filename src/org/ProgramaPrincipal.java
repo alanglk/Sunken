@@ -7,6 +7,8 @@ import org.modelo.barco.FactoriaBarcos;
 import org.modelo.barco.Fragata;
 import org.vista.VentanaPrincipal;
 
+import java.awt.*;
+
 public class ProgramaPrincipal {
 
     public static void main(String[] args){
@@ -16,9 +18,12 @@ public class ProgramaPrincipal {
         System.out.println("╚════██║██║   ██║██║╚██╗██║██╔═██╗ ██╔══╝  ██║╚██╗██║");
         System.out.println("███████║╚██████╔╝██║ ╚████║██║  ██╗███████╗██║ ╚████");
         System.out.println("╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝");
-        new VentanaPrincipal();
 
-
-
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new VentanaPrincipal();
+            }
+        });
     }
 }

@@ -1,5 +1,7 @@
 package org.vista;
 
+import org.controlador.ControladorVentanaPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -17,8 +19,9 @@ public class PanelMisiles extends JPanel {
 
     private JRadioButton getBotonRadio(String text) {
         JRadioButton boton = new JRadioButton(text);
-        grupoBotonesMisiles.add(boton);
         boton.setHorizontalAlignment(SwingConstants.CENTER);
+        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
+        grupoBotonesMisiles.add(boton);
 
         return boton;
     }

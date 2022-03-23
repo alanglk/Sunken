@@ -60,7 +60,6 @@ public class Jugador {
 
 	public void actualizarCasillaBarco(int casillaPos, int pId){
 		int cont=0;
-		int cont2=0;
 		Barco aux=null;
 		boolean enc=false;
 		while(cont<this.listaBarcosJ.size() && !enc){

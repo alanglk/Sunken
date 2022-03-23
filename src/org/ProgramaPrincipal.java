@@ -1,19 +1,24 @@
 package org;
 
+import org.modelo.Jugador;
+import org.modelo.barco.Barco;
+import org.modelo.barco.ETipoBarco;
+import org.modelo.barco.FactoriaBarcos;
+import org.modelo.barco.Fragata;
 import org.vista.VentanaPrincipal;
 
 public class ProgramaPrincipal {
 
     public static void main(String[] args){
-        System.out.println("---SUNKEN---");
-        System.out.println("commit Danel");
-        System.out.println("commit Alvaro");
-        System.out.println("commit Alan");
-        System.out.println("commit Adrian");
-        System.out.println("commit Alvaro portatil");
-        System.out.println("commit Alvaro portatil");
-        System.out.println("commit Crespo");
+        System.out.println("███████╗██╗   ██╗███╗   ██╗██╗  ██╗███████╗███╗   ██");
+        System.out.println("██╔════╝██║   ██║████╗  ██║██║ ██╔╝██╔════╝████╗  ██");
+        System.out.println("███████╗██║   ██║██╔██╗ ██║█████╔╝ █████╗  ██╔██╗ ██║");
+        System.out.println("╚════██║██║   ██║██║╚██╗██║██╔═██╗ ██╔══╝  ██║╚██╗██║");
+        System.out.println("███████║╚██████╔╝██║ ╚████║██║  ██╗███████╗██║ ╚████");
+        System.out.println("╚══════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═══╝");
         new VentanaPrincipal();
+
+
 
     }
 }

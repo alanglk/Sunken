@@ -34,10 +34,10 @@ public class VentanaPrincipal extends JFrame {
         add(panelControladoresPrincipal,BorderLayout.EAST);
         add(panelTableros, BorderLayout.CENTER);
 
-        tableroJugador = new PanelTablero();
+        tableroJugador = new PanelTablero(false);
         panelTableros.add(tableroJugador);
 
-        tableroEnemigo = new PanelTablero();
+        tableroEnemigo = new PanelTablero(true);
         panelTableros.add(tableroEnemigo);
 
         panelBarcos = new PanelBarcos();

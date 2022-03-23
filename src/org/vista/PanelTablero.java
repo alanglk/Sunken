@@ -9,9 +9,12 @@ public class PanelTablero extends JPanel {
 
     private final int size = 10;
     private JPanel panelCasillas;
+    private final boolean panelEnemigo;
 
-    public PanelTablero() {
+    public PanelTablero(boolean pPanelEnemigo) {
         super();
+        panelEnemigo = pPanelEnemigo;
+
         setLayout(new BorderLayout());
 
         crearPanelCasillas();
@@ -45,7 +48,7 @@ public class PanelTablero extends JPanel {
 
             // Fila de casillas
             for(int i = 0; i < size; i++)
-                panelCasillas.add(new JCasilla(i)); // TODO: CAMBIAR ESTO
+                panelCasillas.add(new JCasilla(10*j+1, panelEnemigo));
 
             car++;
         }

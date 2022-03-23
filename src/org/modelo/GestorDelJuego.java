@@ -59,11 +59,18 @@ public class GestorDelJuego {
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
-		if (Jugador.getInstance().tieneBarcosJugador()){
+		/*if (Jugador.getInstance().tieneBarcosJugador()){
 			Jugador.getInstance().colocarBarco(pDatos.posicion,pDatos.orientacion,pDatos.tipoBarco);
 		}
 		else{
 			Enemigo.getInstance().recibirDisparo(pDatos.tipoMisil,pDatos.posicion);
-		}
+		}*/
+
+		System.out.println("--- INFORMACION ---");
+		System.out.println("Posicion: " + pDatos.posicion);
+		System.out.println("Tablero enemigo: " + pDatos.tableroEnemigo);
+		System.out.println("Barco: " + pDatos.tipoBarco);
+		System.out.println("Orientacion: " + pDatos.orientacion);
+		System.out.println("Tipo misil: " + pDatos.tipoMisil);
 	}
 }

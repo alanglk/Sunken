@@ -11,11 +11,13 @@ public class JCasilla extends JButton{
     private final int height = 1;
     private boolean mouseEntered = false;
 
+    private final boolean casillaEnemigo;
     private final int pos;
 
-    public JCasilla(int pPos){
+    public JCasilla(int pPos, boolean pCasillaEnemigo){
         super();
         pos = pPos;
+        casillaEnemigo = pCasillaEnemigo;
 
         setMinimumSize(new Dimension(width, height));
         setPreferredSize(new Dimension(width, height));
@@ -42,4 +44,6 @@ public class JCasilla extends JButton{
     public int getPos(){
         return pos;
     }
+
+    public boolean esEnemigo(){ return casillaEnemigo; }
 }

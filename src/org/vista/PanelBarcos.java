@@ -1,5 +1,7 @@
 package org.vista;
 
+import org.controlador.ControladorVentanaPrincipal;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,11 +11,14 @@ public class PanelBarcos extends JPanel {
     private JRadioButton botonSubmarino;
     private JRadioButton botonDestuctor;
 
-    private JComboBox<String> despegableOrientacion;
-    private final ButtonGroup grupoBotonesBarcos =new ButtonGroup();
+    private JDespOrien despegableOrientacion;
+    private final ButtonGroup grupoBotonesBarcos;
 
     public PanelBarcos(){
         setLayout(new GridLayout(1,5,0,0));
+
+        grupoBotonesBarcos =new ButtonGroup();
+
         botonFragata = getBotonRadio("Fragata");
         botonPortaviones = getBotonRadio("Portaviones");
         botonSubmarino = getBotonRadio("Submarino");
@@ -24,7 +29,7 @@ public class PanelBarcos extends JPanel {
         add(botonSubmarino);
         add(botonDestuctor);
 
-        despegableOrientacion = getDespegableOrientacion();
+        despegableOrientacion = new JDespOrien();
         add(despegableOrientacion);
     }
 
@@ -32,17 +37,10 @@ public class PanelBarcos extends JPanel {
     // ------------------------- Componentes -------------------------------
     private JRadioButton getBotonRadio(String text){
         JRadioButton boton = new JRadioButton(text);
-        grupoBotonesBarcos.add(boton);
+        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
         boton.setHorizontalAlignment(SwingConstants.CENTER);
 
+        grupoBotonesBarcos.add(boton);
         return boton;
-    }
-
-    private JComboBox<String> getDespegableOrientacion(){
-        String[] opciones={"Norte","Sur","Este","Oeste"};
-        if(despegableOrientacion==null){
-            despegableOrientacion=new JComboBox<>(opciones);
-        }
-        return despegableOrientacion;
     }
 }

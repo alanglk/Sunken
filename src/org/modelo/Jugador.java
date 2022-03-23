@@ -49,12 +49,11 @@ public class Jugador {
 
 
 	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-
+		//Este método llamará al tablero para cambiar el estado de sus casillas y ver a qué barco le han dado
 	}
 
 	public void actualizarCasillaBarco(int casillaPos, int pId){
 		int cont=0;
-		int cont2=0;
 		Barco aux=null;
 		boolean enc=false;
 		while(cont<this.listaBarcosJ.size() && !enc){
@@ -77,10 +76,4 @@ public class Jugador {
 	public ListaBarcos obtListaBarcos() {
 		return this.listaBarcosJ;
 	}
-
-	
-
-//	public void actualizarListaMisilesJugador(Misil pMisil) {
-//		
-//	}
 }

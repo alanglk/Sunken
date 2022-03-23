@@ -50,7 +50,7 @@ public class ListaBarcos {
 		return lista.get(pPos);
 	}
 
-	public void añadirBarco(Barco b1){
+	public void anadirBarco(Barco b1){
 		lista.add(b1);
 	}
 }

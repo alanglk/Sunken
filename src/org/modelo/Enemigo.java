@@ -66,8 +66,7 @@ public class Enemigo {
 	}
 
 	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-		// TODO - implement Enemigo.recibirDisparo
-		throw new UnsupportedOperationException();
+		//Este método llamará al tablero para cambiar el estado de sus casillas
 	}
 	
 	public boolean tieneBarcosEnemigo() {

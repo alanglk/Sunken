@@ -148,6 +148,7 @@ public class Tablero {
 	}
 	
 	public void disparoRecibidoJugador(ArrayList<Integer> pAreaDisparo) {
+		//Este método mira a ver las casillas disparadas y cambia su estado
 		int cont=0;
 		int dir=0;
 		while(cont<pAreaDisparo.size()){
@@ -165,9 +166,4 @@ public class Tablero {
 		}
 
 	}
-	
-	//disparoRecibidoEnemigo
-	
-	
-	
 }

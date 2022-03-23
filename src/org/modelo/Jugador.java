@@ -55,7 +55,7 @@ public class Jugador {
 
 
 	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-
+		//Este método llamará al tablero para cambiar el estado de sus casillas y ver a qué barco le han dado
 	}
 
 	public void actualizarCasillaBarco(int casillaPos, int pId){

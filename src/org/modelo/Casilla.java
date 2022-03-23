@@ -29,7 +29,7 @@ public class Casilla {
 	}
 	
 	public void casillaRecibeDisparoJugador(Casilla lugar) {
-		//El mï¿½todo obtiene el barco que estï¿½ en la posiciï¿½n del tablero. Falta comprobar el estado completo del barco
+		//Este método obtiene el barco que está en esa casilla y comprueba su estado completo y también llamará a actualizarCasillaBarco de Jugador
 		Jugador.getInstance().obtListaBarcos().obtenerBarcoEnPos(lugar.getIdBarco());
 	}
 

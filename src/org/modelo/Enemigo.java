@@ -6,6 +6,7 @@ import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.ListaMisiles;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemigo {
@@ -66,9 +67,11 @@ public class Enemigo {
 	}
 
 	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-		//Este método llamará al tablero para cambiar el estado de sus casillas
+		ArrayList<Integer> lista= new ArrayList<Integer>();
+		if (pMisil.equals(ETipoMisil.BOMBA))
+			lista.add(pPos);
+		this.tableroEnemigo.disparoRecibidoJugador(lista);
 	}
-	
 	public boolean tieneBarcosEnemigo() {
 		boolean tiene = false;
 		if(this.listaBarcosE.size() > 0) {

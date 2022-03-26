@@ -8,6 +8,7 @@ import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Jugador {
@@ -49,8 +50,12 @@ public class Jugador {
 
 
 	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-		//Este método llamará al tablero para cambiar el estado de sus casillas y ver a qué barco le han dado
-	}
+		ArrayList<Integer> lista= new ArrayList<Integer>();
+		if (pMisil.equals(ETipoMisil.BOMBA))
+			lista.add(pPos);
+			this.tableroJugador.disparoRecibidoJugador(lista);
+		}
+
 
 	public void actualizarCasillaBarco(int casillaPos, int pId){
 		int cont=0;

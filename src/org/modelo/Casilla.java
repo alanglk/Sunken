@@ -4,10 +4,12 @@ public class Casilla {
 
 	private EEstadoCasilla estado;
 	private int idBarco;
+	private boolean tieneBarco;
 
 	public Casilla(EEstadoCasilla pEstado) {
 		estado = pEstado;
 		idBarco=-1;
+		tieneBarco=false;
 	}
 
 	public boolean esAgua(){
@@ -15,7 +17,7 @@ public class Casilla {
 	}
 
 	public boolean tieneBarco(){
-		return(this.idBarco==-1);
+		return(this.tieneBarco);
 
 	}
 
@@ -29,12 +31,13 @@ public class Casilla {
 	}
 	
 	public void casillaRecibeDisparoJugador(Casilla lugar) {
-		//Este método obtiene el barco que está en esa casilla y comprueba su estado completo y también llamará a actualizarCasillaBarco de Jugador
+		//Este mï¿½todo obtiene el barco que estï¿½ en esa casilla y comprueba su estado completo y tambiï¿½n llamarï¿½ a actualizarCasillaBarco de Jugador
 		Jugador.getInstance().obtListaBarcos().obtenerBarcoEnPos(lugar.getIdBarco());
 	}
 
 
     public void actualizarBarco(int pPosicion) {
 		Jugador.getInstance().actualizarCasillaBarco(pPosicion,this.idBarco);
+		this.tieneBarco=true;
     }
 }

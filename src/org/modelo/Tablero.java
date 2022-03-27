@@ -128,7 +128,8 @@ public class Tablero {
 	public void colocarBarco(int pPos, EOrientaconBarco pOrientacion, Barco pBarco) {
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
-		int cont=0;
+
+		/*int cont=0;
 		int pos=pPos;
 		while (cont < pBarco.getLongitud()){
 			this.listaCasillas.get(pos).ponerBarco(pBarco.getId());
@@ -145,17 +146,35 @@ public class Tablero {
 				pos++;
 			}
 			cont++;
+		}*/
+
+		if(pOrientacion.equals(EOrientaconBarco.NORTE)){
+			colocarBarcoNorte(pPos, pBarco);
 		}
+		else if (pOrientacion.equals(EOrientaconBarco.SUR)){
+			colocarBarcoNorte(pPos - size * pBarco.getLongitud(), pBarco);
+		}
+		else if(pOrientacion.equals(EOrientaconBarco.ESTE)){
+			colocarBarcoEste(pPos, pBarco);
+		}
+		else if(pOrientacion.equals(EOrientaconBarco.OESTE)){
+			colocarBarcoEste(pPos + pBarco.getLongitud(), pBarco);
+		}
+
 	}
 
-	private void colocarBarcoNorte(int pPos, EOrientaconBarco pOrientacion, Barco pBarco){
+	private void colocarBarcoNorte(int pPos, Barco pBarco){
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
+		int longitud = pBarco.getLongitud();
 
+		for(int i = 0; i < longitud; i++){
+			listaCasillas.get(pPos - i* size).ponerBarco(pBarco.getId());
+		}
 
 	}
 
-	private void colocarBarcoEste(int pPos, EOrientaconBarco pOrientacion, Barco pBarco){
+	private void colocarBarcoEste(int pPos, Barco pBarco){
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
 

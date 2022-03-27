@@ -36,9 +36,10 @@ public class Enemigo {
 			EOrientaconBarco orientacion=this.obtOrientacion();
 			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,b1)){
 				this.tableroEnemigo.colocarBarco(posicion,orientacion,b1);
+				i++;
 			}
 
-			i++;
+
 		}
 	}
 

@@ -25,7 +25,7 @@ public class GestorDelJuego extends Observable {
 	public void iniciarPartida() {
 		// Se han colocado todos los barcos del jugador.
 		// Marcamos el estado como partida iniciada y decidimos el orden de juego.
-		//Enemigo.getInstance().colocarBarcoEnemigo();
+		Enemigo.getInstance().colocarBarcoEnemigo();
 
 		// Numero random que indicará si empieza el enemigo o el jugador
 		int random = 1;

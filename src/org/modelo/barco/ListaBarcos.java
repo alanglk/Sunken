@@ -51,6 +51,7 @@ public class ListaBarcos {
 	}
 
 	public Barco obtenerBarcoEnPos(int pPos){
+		if(pPos >= lista.size()) return null;
 		return lista.get(pPos);
 	}
 

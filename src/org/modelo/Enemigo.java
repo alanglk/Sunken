@@ -81,4 +81,7 @@ public class Enemigo {
 		return tiene;
 	}
 
+	public EEstadoCasilla getEstadoCasilla(int pPos){
+		return tableroEnemigo.getEstadoCasilla(pPos);
+	}
 }

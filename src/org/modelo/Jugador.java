@@ -81,4 +81,8 @@ public class Jugador {
 	public ListaBarcos obtListaBarcos() {
 		return this.listaBarcosJ;
 	}
+
+	public EEstadoCasilla getEstadoCasilla(int pPos){
+		return tableroJugador.getEstadoCasilla(pPos);
+	}
 }

@@ -153,7 +153,7 @@ public class Tablero {
 		int dir=0;
 		while(cont<pAreaDisparo.size()){
 			dir=pAreaDisparo.get(cont);
-			this.listaCasillas.get(dir).actualizarIncognita();
+			this.listaCasillas.get(dir).actualizarOculto(true);
 			if(this.listaCasillas.get(dir).tieneBarco()){
 				//El m�todo casillaRecibeDisparoJugador, que est� en Casilla, llamar� a jugador para ver el estado de sus casillas
 				this.listaCasillas.get(dir).casillaRecibeDisparoJugador();
@@ -167,4 +167,14 @@ public class Tablero {
 		}
 
 	}
+
+    public EEstadoCasilla getEstadoCasilla(int pPos) {
+		if(pPos < listaCasillas.size()){
+			System.out.println("MALL");
+			return listaCasillas.get(pPos).getEstado();
+		}
+
+
+		return null;
+    }
 }

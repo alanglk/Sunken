@@ -52,17 +52,19 @@ public class JCasilla extends JButton implements Observer {
     public void update(Observable o, Object arg) {
         EEstadoCasilla estado;
 
+        if(casillaEnemigo) estado = GestorDelJuego.getInstance().getEstadoCasillaEnemigo(pos);
+        else estado = GestorDelJuego.getInstance().getEstadoCasillaJugador(pos);
 
-        if(casillaEnemigo) estado = GestorDelJuego.getInstance().getEstadoCasillaEnemigo();
-        else estado = GestorDelJuego.getInstance().getEstadoCasillaJugador();
+        if(estado == null)
+            color = Color.MAGENTA;
 
-        if(estado.equals(EEstadoCasilla.AGUA))
+        else if(estado.equals(EEstadoCasilla.AGUA))
             color = Color.BLUE;
 
-        if(estado.equals(EEstadoCasilla.OCULTO))
+        else if(estado.equals(EEstadoCasilla.OCULTO))
             color = Color.LIGHT_GRAY;
 
-        if(estado.equals(EEstadoCasilla.BARCO))
+        else if(estado.equals(EEstadoCasilla.BARCO))
             color = Color.BLACK;
 
         updateColor();

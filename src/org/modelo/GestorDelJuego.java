@@ -10,7 +10,12 @@ public class GestorDelJuego extends Observable {
 	private static GestorDelJuego miGestorDelJuego;
 	private boolean juegoIniciado = false;
 
-	private GestorDelJuego() {}
+	private GestorDelJuego() {
+		// Inicializar el jugador y el enemigo
+
+		Jugador.getInstance();
+		Enemigo.getInstance();
+	}
 
 	public static GestorDelJuego getInstance() {
 		if(miGestorDelJuego == null) miGestorDelJuego = new GestorDelJuego();
@@ -45,6 +50,7 @@ public class GestorDelJuego extends Observable {
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
+		System.out.println("Casilla 0: " + Jugador.getInstance().getEstadoCasilla(0));
 
 		if(!juegoIniciado ){
 			if(!pDatos.tableroEnemigo){
@@ -57,7 +63,7 @@ public class GestorDelJuego extends Observable {
 					if (Jugador.getInstance().estanTodosBarcosColocados())
 						iniciarPartida();
 
-					actualizarIntefaz();
+					//actualizarIntefaz();
 				}
 			}
 			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
@@ -76,11 +82,11 @@ public class GestorDelJuego extends Observable {
 		notifyObservers();
 	}
 
-	public EEstadoCasilla getEstadoCasillaJugador(){
-		return EEstadoCasilla.AGUA;
+	public EEstadoCasilla getEstadoCasillaJugador(int pPos){
+		return Jugador.getInstance().getEstadoCasilla(pPos);
 	}
 
-	public EEstadoCasilla getEstadoCasillaEnemigo(){
-		return EEstadoCasilla.OCULTO;
+	public EEstadoCasilla getEstadoCasillaEnemigo(int pPos){
+		return Enemigo.getInstance().getEstadoCasilla(pPos);
 	}
 }

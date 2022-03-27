@@ -25,7 +25,7 @@ public class Tablero {
 
 	public boolean sePuedeColocar(int pPos, EOrientaconBarco pOrien, Barco pBarco) {
 		// PRE: Una casilla de origen, una orientacion y un barco. Orientacion: NORTE, SUR, ESTE, OESTE
-		// POST: Un booleano que indique si hay espacio suficiente para colocar el barco
+		// POST: Un booleano que indique si hay espacio suficiente para colocar el barco.
 
 		boolean sePuede = true;
 		int longitud = pBarco.getLongitud();
@@ -36,7 +36,7 @@ public class Tablero {
 
 		}else if(pOrien.equals(EOrientaconBarco.SUR)){
 			// Desde la posición hacia abajo
-			sePuede = sePuedeColocarNorte(pPos - (longitud -1) * size, longitud);
+			sePuede = sePuedeColocarNorte(pPos + (longitud -1) * size, longitud);
 
 		}else if(pOrien.equals(EOrientaconBarco.ESTE)){
 			// Desde la posición hacia la derecha
@@ -154,7 +154,7 @@ public class Tablero {
 			colocarBarcoNorte(pPos, pBarco);
 		}
 		else if (pOrientacion.equals(EOrientaconBarco.SUR)){
-			colocarBarcoNorte(pPos - size * pBarco.getLongitud(), pBarco);
+			colocarBarcoNorte(pPos + size * (pBarco.getLongitud() -1), pBarco);
 		}
 		else if(pOrientacion.equals(EOrientaconBarco.ESTE)){
 			colocarBarcoEste(pPos, pBarco);

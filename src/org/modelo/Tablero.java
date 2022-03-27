@@ -103,18 +103,19 @@ public class Tablero {
 	private boolean sePuedeColocarEste(int pPos, int pLong){
 		boolean sePuede = true;
 
-		// Comprobamos la casilla de la izquierda. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos -1) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua() || (pPos-1)/size!=pPos/size;
+		// Comprobamos la casilla de la izquierda. Si esta posicion esta dentro del rango comprobar la casilla y si se encuentra en la misma linea
+		if(posValida(pPos -1) && ((pPos-1) % size < pPos % size) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua();
 
-		// Comprobamos las casillas de la diagonal izquierda. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + size -1) && sePuede) sePuede = listaCasillas.get(pPos + size -1).esAgua();
-		if(posValida(pPos - size -1) && sePuede) sePuede = listaCasillas.get(pPos - size -1).esAgua();
+		// Comprobamos las diagonales de la izquierda
+		if(posValida(pPos +pLong - size) && ((pPos +pLong - size) % size > pPos % size) && sePuede) sePuede = listaCasillas.get(pPos +pLong - size).esAgua();
+		if(posValida(pPos +pLong + size) && ((pPos +pLong + size) % size > pPos % size) && sePuede) sePuede = listaCasillas.get(pPos +pLong + size).esAgua();
 
-		// Comprobamos la casilla de la derecha. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + pLong) && sePuede) sePuede = listaCasillas.get(pPos + pLong).esAgua() || (pPos+pLong)/size!=pPos/size;
-		// Comprobamos las casillas de la diagonal derecha. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + size + pLong + 1) && sePuede) sePuede = listaCasillas.get(pPos + size + pLong + 1).esAgua();
-		if(posValida(pPos - size +pLong + 1) && sePuede) sePuede = listaCasillas.get(pPos - size +pLong + 1).esAgua();
+		// Comprobamos la casilla de la derecha. Si esta posicion esta dentro del rango comprobar la casilla y si se encuentra en la misma linea
+		if(posValida(pPos + pLong) && ((pPos+pLong) % size > pPos % size) && sePuede) sePuede = listaCasillas.get(pPos + pLong).esAgua();
+
+		// Comprobamos las diagonales de la derecha
+		if(posValida(pPos -1 - size) && ((pPos -1 - size) % size < pPos % size) && sePuede) sePuede = listaCasillas.get(pPos -1 - size).esAgua();
+		if(posValida(pPos -1 + size) && ((pPos -1 + size) % size < pPos % size) && sePuede) sePuede = listaCasillas.get(pPos -1 + size).esAgua();
 
 		// Comprobamos las casillas de la linea que va a ocupar el barco
 		if(sePuede) sePuede = comprobarHorizontal(pPos, pLong);
@@ -124,6 +125,7 @@ public class Tablero {
 
 		// Comprobamos las casillas de la linea de arriba a la que va a ocupar el barco si no estamos en el extremo superior del tablero
 		if(pPos / size != 0 && sePuede) sePuede = comprobarHorizontal(pPos - size, pLong);
+
 
 		return sePuede;
 	}
@@ -135,7 +137,7 @@ public class Tablero {
 		while(i < pLong && sePuede){
 			int pos = startPos + i;
 
-			if(!posValida(pos)) sePuede = false;
+			if(!posValida(pos) || (pos % size < startPos %size)) sePuede = false;
 			else sePuede = listaCasillas.get(pos).esAgua();
 
 			i++;

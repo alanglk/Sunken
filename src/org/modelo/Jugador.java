@@ -1,10 +1,8 @@
 package org.modelo;
 
-import org.modelo.barco.Barco;
-import org.modelo.barco.EOrientaconBarco;
-import org.modelo.barco.ETipoBarco;
-import org.modelo.barco.ListaBarcos;
+import org.modelo.barco.*;
 import org.modelo.misil.ETipoMisil;
+import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.misil.Misil;
 
@@ -20,8 +18,8 @@ public class Jugador {
 
 	public Jugador() {
 		this.tableroJugador=new Tablero();
-		this.listaBarcosJ=new ListaBarcos();
-		this.listaMisilesJ=new ListaMisiles();
+		this.listaBarcosJ=new GeneradorDeBarcos().generarListaBarcos();
+		this.listaMisilesJ=new GeneradorDeMisiles().generarListaMisiles();
 	}
 	
 	public static Jugador getInstance() {

@@ -24,6 +24,6 @@ public class ProgramaPrincipal {
             public void run() {
                 new VentanaPrincipal();
             }
-        });
+        })
     }
 }

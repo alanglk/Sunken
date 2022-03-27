@@ -104,24 +104,20 @@ public class Tablero {
 		boolean sePuede = true;
 
 		// Comprobamos la casilla de la izquierda. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos -1) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua()||(pPos-1)/size!=pPos/size;
+		if(posValida(pPos -1) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua();
 
 		// Comprobamos las casillas de la diagonal izquierda. Si esta posicion esta dentro del rango comprobar la casilla
 		if(posValida(pPos + size -1) && sePuede) sePuede = listaCasillas.get(pPos + size -1).esAgua();
 		if(posValida(pPos - size -1) && sePuede) sePuede = listaCasillas.get(pPos - size -1).esAgua();
 
 		// Comprobamos la casilla de la derecha. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + pLong) && sePuede) sePuede = (listaCasillas.get(pPos + pLong).esAgua()||(pPos+pLong)/size!=pPos/size);
-
+		if(posValida(pPos + pLong) && sePuede) sePuede = listaCasillas.get(pPos + pLong).esAgua();
 		// Comprobamos las casillas de la diagonal derecha. Si esta posicion esta dentro del rango comprobar la casilla
 		if(posValida(pPos + size + pLong + 1) && sePuede) sePuede = listaCasillas.get(pPos + size + pLong + 1).esAgua();
 		if(posValida(pPos - size +pLong + 1) && sePuede) sePuede = listaCasillas.get(pPos - size +pLong + 1).esAgua();
 
 		// Comprobamos las casillas de la linea que va a ocupar el barco
 		if(sePuede) sePuede = comprobarHorizontal(pPos, pLong);
-
-		if(size-(pPos % size) < pLong){sePuede=false;}
-
 
 		// Comprobamos las casillas de la linea de abajo a la que va a ocupar el barco si no estamos en el extremo inferior del tablero
 		if(pPos / size != size-1 && sePuede) sePuede = comprobarHorizontal(pPos + size, pLong);
@@ -194,7 +190,7 @@ public class Tablero {
 			colocarBarcoEste(pPos, pBarco);
 		}
 		else if(pOrientacion.equals(EOrientaconBarco.OESTE)){
-			colocarBarcoEste(pPos - pBarco.getLongitud() + 1, pBarco);
+			colocarBarcoEste(pPos - pBarco.getLongitud()+1, pBarco);
 		}
 
 	}

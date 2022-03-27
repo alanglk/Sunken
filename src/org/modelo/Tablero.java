@@ -51,10 +51,6 @@ public class Tablero {
 		return sePuede;
 	}
 
-	/*
-
-	 */
-
 	private boolean sePuedeColocarNorte(int pPos, int pLong){
 		boolean sePuede = true;
 

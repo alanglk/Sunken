@@ -30,8 +30,8 @@ public class Casilla {
 	}
 	public int getIdBarco(){return this.idBarco;}
 
-	public void setEstado(String pEstado){
-		this.estado.equals(pEstado);
+	public void setEstado(EEstadoCasilla pEstado){
+		this.estado = pEstado;
 	}
 	public void actualizarIncognita(){
 		this.incognita=false;

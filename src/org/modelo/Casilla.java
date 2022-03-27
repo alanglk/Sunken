@@ -4,21 +4,25 @@ public class Casilla {
 
 	private EEstadoCasilla estado;
 	private int idBarco;
-	private boolean tieneBarco;
+	private boolean incognita;
 
 	public Casilla(EEstadoCasilla pEstado) {
 		estado = pEstado;
 		idBarco=-1;
-		tieneBarco=false;
+		incognita=true;
 	}
 
 	public boolean esAgua(){
 		return estado.equals(EEstadoCasilla.AGUA);
 	}
 
-	public boolean tieneBarco(){
-		return(this.tieneBarco);
+	public boolean tieneBarco() {
+		boolean tieneBarco = false;
 
+		if (this.idBarco != -1) {
+			tieneBarco = true;
+		}
+		return (true);
 	}
 
 	public void setId(int pIdBarco){
@@ -29,15 +33,18 @@ public class Casilla {
 	public void setEstado(String pEstado){
 		this.estado.equals(pEstado);
 	}
-	
-	public void casillaRecibeDisparoJugador(Casilla lugar) {
+	public void actualizarIncognita(){
+		this.incognita=false;
+	}
+	public void casillaRecibeDisparoJugador() {
 		//Este m�todo obtiene el barco que est� en esa casilla y comprueba su estado completo y tambi�n llamar� a actualizarCasillaBarco de Jugador
-		Jugador.getInstance().obtListaBarcos().obtenerBarcoEnPos(lugar.getIdBarco());
+		Jugador.getInstance().obtListaBarcos().obtenerBarcoEnPos(this.getIdBarco());
+
 	}
 
 
     public void actualizarBarco(int pPosicion) {
 		Jugador.getInstance().actualizarCasillaBarco(pPosicion,this.idBarco);
-		this.tieneBarco=true;
+
     }
 }

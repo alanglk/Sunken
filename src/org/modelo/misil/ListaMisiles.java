@@ -7,7 +7,7 @@ public class ListaMisiles {
     private ArrayList<Misil> lista;
 
     public ListaMisiles() {
-        new ArrayList<Misil>();
+        this.lista=new ArrayList<Misil>();
     }
 
     private ArrayList<Integer> obtAreaMisil(ETipoMisil pTipoMisil, int pPosicionDisparo, int pAnchuraTablero) {

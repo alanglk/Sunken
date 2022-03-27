@@ -13,21 +13,22 @@ public class GeneradorDeBarcos {
     }
 
     public ListaBarcos generarListaBarcos(){
-        int cont=1;
         ListaBarcos miListaBarcos=new ListaBarcos();
-        while (cont<=4){
-            miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.FRAGATA,cont));
-            cont++;
+        int id = 0;
+
+        for(int i = 0; i < 4; i++){
+            miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.FRAGATA, id));
+            id++;
         }
-        while (cont<=7){
-            miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.DESTRUCTOR,cont));
-            cont++;
+        for(int i = 0; i < 3; i++){
+            miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.DESTRUCTOR, id));
         }
-        while (cont<=9){
-            miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.SUBMARINO,cont));
-            cont++;
+        for(int i = 0; i < 2; i++){
+            miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.SUBMARINO, id));
         }
-        miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.PORTAVIONES,cont));
+
+        miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.PORTAVIONES, id));
+
         return miListaBarcos;
     }
 }

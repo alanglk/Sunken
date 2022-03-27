@@ -28,7 +28,11 @@ public class ListaBarcos {
 					encontradoYDisp = true;
 			}
 		}
-		return barco;
+
+		if(encontradoYDisp)
+			return barco;
+
+		return null;
 	}
 
 	public boolean estanTodosBarcosColocados(){

@@ -29,7 +29,7 @@ public class Jugador {
 
 	public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {
 		Barco barco = listaBarcosJ.obtenerBarcoNoColocado(pTipoBarco);
-
+		System.out.println(barco.toString());
 		// Si hay un barco disponible comprobamos si se puede colocar en la posicion
 		if(barco != null){
 			// Si se puede colocar, lo colocamos y actualizamos el estado del barco

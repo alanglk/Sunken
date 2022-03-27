@@ -25,8 +25,9 @@ public class Casilla {
 		return (true);
 	}
 
-	public void setId(int pIdBarco){
+	public void ponerBarco(int pIdBarco){
 		this.idBarco=pIdBarco;
+		this.estado=EEstadoCasilla.BARCO;
 	}
 
 	public int getIdBarco(){

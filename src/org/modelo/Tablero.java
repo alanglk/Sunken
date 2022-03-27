@@ -131,7 +131,7 @@ public class Tablero {
 		int cont=0;
 		int pos=pPos;
 		while (cont < pBarco.getLongitud()){
-			this.listaCasillas.get(pos).setId(pBarco.getId());
+			this.listaCasillas.get(pos).ponerBarco(pBarco.getId());
 			if (pOrientacion.equals("Norte")){
 				pos=pos+10;
 			}

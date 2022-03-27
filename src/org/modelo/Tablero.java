@@ -159,7 +159,7 @@ public class Tablero {
 				this.listaCasillas.get(dir).casillaRecibeDisparoJugador();
 			}
 			else{
-				this.listaCasillas.get(dir).setEstado("BARCO");
+				this.listaCasillas.get(dir).setEstado(EEstadoCasilla.BARCO);
 				this.listaCasillas.get(dir).actualizarBarco(dir);
 
 			}

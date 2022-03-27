@@ -147,7 +147,21 @@ public class Tablero {
 			cont++;
 		}
 	}
-	
+
+	private void colocarBarcoNorte(int pPos, EOrientaconBarco pOrientacion, Barco pBarco){
+		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
+		// POST: estado de las casillas actualizado
+
+
+	}
+
+	private void colocarBarcoEste(int pPos, EOrientaconBarco pOrientacion, Barco pBarco){
+		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
+		// POST: estado de las casillas actualizado
+
+
+	}
+
 	public void disparoRecibidoJugador(ArrayList<Integer> pAreaDisparo) {
 		//Este m�todo mira a ver las casillas disparadas y cambia su estado
 		int cont=0;

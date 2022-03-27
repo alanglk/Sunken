@@ -50,8 +50,6 @@ public class GestorDelJuego extends Observable {
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
-		System.out.println("Casilla 0: " + Jugador.getInstance().getEstadoCasilla(0));
-
 		if(!juegoIniciado ){
 			if(!pDatos.tableroEnemigo){
 				// Los datos son del tablero del Jugador.
@@ -63,7 +61,6 @@ public class GestorDelJuego extends Observable {
 					if (Jugador.getInstance().estanTodosBarcosColocados())
 						iniciarPartida();
 
-					//actualizarIntefaz();
 				}
 			}
 			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
@@ -72,6 +69,8 @@ public class GestorDelJuego extends Observable {
 			// Presionamos una casilla para realizar un disparo
 			System.out.println("--- DISPARO ---");
 		}
+
+		actualizarIntefaz();
 	}
 
 	// --------- Metodos para enviar datos a la interfaz ---------

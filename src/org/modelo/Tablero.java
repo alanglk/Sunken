@@ -14,6 +14,7 @@ public class Tablero {
 
 		for(int i = 0; i < size * size; i++){
 			Casilla nuevaCasilla = new Casilla(EEstadoCasilla.AGUA);
+			listaCasillas.add(nuevaCasilla);
 		}
 	}
 
@@ -170,10 +171,8 @@ public class Tablero {
 
     public EEstadoCasilla getEstadoCasilla(int pPos) {
 		if(pPos < listaCasillas.size()){
-			System.out.println("MALL");
 			return listaCasillas.get(pPos).getEstado();
 		}
-
 
 		return null;
     }

@@ -53,7 +53,6 @@ public class Casilla {
     }
 
 	public EEstadoCasilla getEstado() {
-		System.out.println("-> Casilla.Estado: " + estado);
 		if(oculto)
 			return EEstadoCasilla.OCULTO;
 

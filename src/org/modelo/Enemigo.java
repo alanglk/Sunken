@@ -2,8 +2,10 @@ package org.modelo;
 
 import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
+import org.modelo.barco.GeneradorDeBarcos;
 import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ETipoMisil;
+import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
 
 import java.util.ArrayList;
@@ -18,8 +20,8 @@ public class Enemigo {
 
 	public Enemigo() {
 		this.tableroEnemigo=new Tablero();
-		this.listaBarcosE=new ListaBarcos();
-		this.listaMisilesE=new ListaMisiles();
+		this.listaBarcosE=new GeneradorDeBarcos().generarListaBarcos();
+		this.listaMisilesE=new GeneradorDeMisiles().generarListaMisiles();
 	}
 	
 	public static Enemigo getInstance() {

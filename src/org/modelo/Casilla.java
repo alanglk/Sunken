@@ -33,8 +33,8 @@ public class Casilla {
 		return this.idBarco;
 	}
 
-	public void setEstado(String pEstado){
-		this.estado.equals(pEstado);
+	public void setEstado(EEstadoCasilla pEstado){
+		this.estado = pEstado;
 	}
 	public void actualizarOculto(boolean pOculto){
 		oculto = pOculto;

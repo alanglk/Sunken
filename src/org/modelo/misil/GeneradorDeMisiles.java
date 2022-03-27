@@ -1,25 +1,19 @@
 package org.modelo.misil;
 
 
-
-import org.modelo.barco.ETipoBarco;
-import org.modelo.barco.GeneradorDeBarcos;
-
-import java.util.ArrayList;
-
 public class GeneradorDeMisiles {
     public GeneradorDeMisiles(){
 
     }
 
-    public Misil generarBarco(ETipoMisil pTipo){
+    public Misil generarMisil(ETipoMisil pTipo){
         Misil miMisil= FactoriaMisiles.getInstance().crearMisil(pTipo);
         return miMisil;
     }
 
-    public ArrayList<Misil> generarListaBarcos(){
-        ArrayList<Misil> miListaMisiles=new ArrayList<Misil>();
-        miListaMisiles.add(this.generarBarco(ETipoMisil.BOMBA));
+    public ListaMisiles generarListaMisiles(){
+        ListaMisiles miListaMisiles=new ListaMisiles();
+        miListaMisiles.anadirMisil(this.generarMisil(ETipoMisil.BOMBA));
         return miListaMisiles;
     }
 }

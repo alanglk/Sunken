@@ -104,14 +104,14 @@ public class Tablero {
 		boolean sePuede = true;
 
 		// Comprobamos la casilla de la izquierda. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos -1) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua();
+		if(posValida(pPos -1) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua() || (pPos-1)/size!=pPos/size;
 
 		// Comprobamos las casillas de la diagonal izquierda. Si esta posicion esta dentro del rango comprobar la casilla
 		if(posValida(pPos + size -1) && sePuede) sePuede = listaCasillas.get(pPos + size -1).esAgua();
 		if(posValida(pPos - size -1) && sePuede) sePuede = listaCasillas.get(pPos - size -1).esAgua();
 
 		// Comprobamos la casilla de la derecha. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + pLong) && sePuede) sePuede = listaCasillas.get(pPos + pLong).esAgua();
+		if(posValida(pPos + pLong) && sePuede) sePuede = listaCasillas.get(pPos + pLong).esAgua() || (pPos+pLong)/size!=pPos/size;
 		// Comprobamos las casillas de la diagonal derecha. Si esta posicion esta dentro del rango comprobar la casilla
 		if(posValida(pPos + size + pLong + 1) && sePuede) sePuede = listaCasillas.get(pPos + size + pLong + 1).esAgua();
 		if(posValida(pPos - size +pLong + 1) && sePuede) sePuede = listaCasillas.get(pPos - size +pLong + 1).esAgua();
@@ -122,40 +122,8 @@ public class Tablero {
 		// Comprobamos las casillas de la linea de abajo a la que va a ocupar el barco si no estamos en el extremo inferior del tablero
 		if(pPos / size != size-1 && sePuede) sePuede = comprobarHorizontal(pPos + size, pLong);
 
-		// Comprobamos las casillas de la linea inferior izquierda y derecha
-		if(pPos / size != size-1 && sePuede){
-			int diagDer = pPos + size + pLong;
-			int diagfIzq = pPos + size -1;
-
-			// El barco no está en el borde izquierdo
-			if((diagfIzq % size) >= pPos % size && sePuede){
-				sePuede = listaCasillas.get(diagfIzq).esAgua();
-			}
-
-			// El barco no está en el borde derecho
-			if((diagDer % size) <= pPos % size && sePuede){
-				sePuede = listaCasillas.get(diagDer).esAgua();
-			}
-		}
-
 		// Comprobamos las casillas de la linea de arriba a la que va a ocupar el barco si no estamos en el extremo superior del tablero
 		if(pPos / size != 0 && sePuede) sePuede = comprobarHorizontal(pPos - size, pLong);
-
-		// Comprobamos las casillas de la linea superior izquierda y derecha
-		if(pPos / size != 0 && sePuede){
-			int diagDer = pPos - size + pLong;
-			int diagfIzq = pPos - size -1;
-
-			// El barco no está en el borde izquierdo
-			if((diagfIzq % size) >= pPos % size && sePuede){
-				sePuede = listaCasillas.get(diagfIzq).esAgua();
-			}
-
-			// El barco no está en el borde derecho
-			if((diagDer % size) <= pPos % size && sePuede){
-				sePuede = listaCasillas.get(diagDer).esAgua();
-			}
-		}
 
 		return sePuede;
 	}

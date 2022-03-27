@@ -51,14 +51,18 @@ public class Tablero {
 		return sePuede;
 	}
 
+	/*
+
+	 */
+
 	private boolean sePuedeColocarNorte(int pPos, int pLong){
 		boolean sePuede = true;
 
 		// Comprobamos la casilla de abajo. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + size)) sePuede = listaCasillas.get(pPos + size).esAgua();
+		if(posValida(pPos + size) && sePuede) sePuede = listaCasillas.get(pPos + size).esAgua();
 
 		// Comprobamos la casilla de arriba. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + pLong*size)) sePuede = listaCasillas.get(pLong*size).esAgua();
+		if(posValida(pPos - pLong*size) && sePuede) sePuede = listaCasillas.get(pPos - pLong*size).esAgua();
 
 		// Comprobamos las casillas de la linea que va a ocupar el barco
 		if(sePuede) sePuede = comprobarVertical(pPos, pLong);
@@ -66,8 +70,16 @@ public class Tablero {
 		// Comprobamos las casillas de la linea izquierda a la que va a ocupar el barco si no estamos en el extremo izquierdo del tablero
 		if(pPos % size != 0 && sePuede) sePuede = comprobarVertical(pPos -1, pLong);
 
+		// Comprobar las casilla izquierda inferior y superior
+		if(pPos % size != 0 && posValida(pPos -1 + size) && sePuede) sePuede = listaCasillas.get(pPos -1 + size).esAgua();
+		if(pPos % size != 0 && posValida(pPos -1 -pLong * size) && sePuede) sePuede = listaCasillas.get(pPos -1 -pLong * size).esAgua();
+
 		// Comprobamos las casillas de la linea derecha a la que va a ocupar el barco si no estamos en el extremo derecho del tablero
 		if(pPos % size != size -1 && sePuede) sePuede = comprobarVertical(pPos +1, pLong);
+
+		// Comprobar las casilla izquierda inferior y superior
+		if(pPos % size != size -1 && posValida(pPos +1 + size) && sePuede) sePuede = listaCasillas.get(pPos +1 + size).esAgua();
+		if(pPos % size != size -1 && posValida(pPos +1 -pLong * size) && sePuede) sePuede = listaCasillas.get(pPos +1 -pLong * size).esAgua();
 
 		return sePuede;
 	}
@@ -92,10 +104,10 @@ public class Tablero {
 		boolean sePuede = true;
 
 		// Comprobamos la casilla de la izquierda. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos -1)) sePuede = listaCasillas.get(pPos -1).esAgua();
+		if(posValida(pPos -1) && sePuede) sePuede = listaCasillas.get(pPos -1).esAgua();
 
 		// Comprobamos la casilla de la derecha. Si esta posicion esta dentro del rango comprobar la casilla
-		if(posValida(pPos + pLong)) sePuede = listaCasillas.get(pPos + pLong).esAgua();
+		if(posValida(pPos + pLong) && sePuede) sePuede = listaCasillas.get(pPos + pLong).esAgua();
 
 		// Comprobamos las casillas de la linea que va a ocupar el barco
 		if(sePuede) sePuede = comprobarHorizontal(pPos, pLong);
@@ -103,8 +115,40 @@ public class Tablero {
 		// Comprobamos las casillas de la linea de abajo a la que va a ocupar el barco si no estamos en el extremo inferior del tablero
 		if(pPos / size != size && sePuede) sePuede = comprobarHorizontal(pPos + size, pLong);
 
+		// Comprobamos las casillas de la linea inferior izquierda y derecha
+		if(pPos / size != size && sePuede){
+			int diagDer = pPos + size + pLong;
+			int diagfIzq = pPos + size -1;
+
+			// El barco no está en el borde izquierdo
+			if((diagfIzq % size) >= pPos % size && sePuede){
+				sePuede = listaCasillas.get(diagfIzq).esAgua();
+			}
+
+			// El barco no está en el borde derecho
+			if((diagDer % size) <= pPos % size && sePuede){
+				sePuede = listaCasillas.get(diagDer).esAgua();
+			}
+		}
+
 		// Comprobamos las casillas de la linea de arriba a la que va a ocupar el barco si no estamos en el extremo superior del tablero
-		if(pPos / size != 0 && sePuede) sePuede = comprobarVertical(pPos - size, pLong);
+		if(pPos / size != 0 && sePuede) sePuede = comprobarHorizontal(pPos - size, pLong);
+
+		// Comprobamos las casillas de la linea superior izquierda y derecha
+		if(pPos / size != 0 && sePuede){
+			int diagDer = pPos - size + pLong;
+			int diagfIzq = pPos - size -1;
+
+			// El barco no está en el borde izquierdo
+			if((diagfIzq % size) >= pPos % size && sePuede){
+				sePuede = listaCasillas.get(diagfIzq).esAgua();
+			}
+
+			// El barco no está en el borde derecho
+			if((diagDer % size) <= pPos % size && sePuede){
+				sePuede = listaCasillas.get(diagDer).esAgua();
+			}
+		}
 
 		return sePuede;
 	}
@@ -129,25 +173,6 @@ public class Tablero {
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
 
-		/*int cont=0;
-		int pos=pPos;
-		while (cont < pBarco.getLongitud()){
-			this.listaCasillas.get(pos).ponerBarco(pBarco.getId());
-			if (pOrientacion.equals("Norte")){
-				pos=pos+10;
-			}
-			else if(pOrientacion.equals("Sur")){
-				pos=pos-10;
-			}
-			else if (pOrientacion.equals("Oeste")){
-				pos--;
-			}
-			else{
-				pos++;
-			}
-			cont++;
-		}*/
-
 		if(pOrientacion.equals(EOrientaconBarco.NORTE)){
 			colocarBarcoNorte(pPos, pBarco);
 		}
@@ -165,7 +190,7 @@ public class Tablero {
 
 	private void colocarBarcoNorte(int pPos, Barco pBarco){
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
-		// POST: estado de las casillas actualizado
+		// POST: estado de las casillas actualizado.
 		int longitud = pBarco.getLongitud();
 
 		for(int i = 0; i < longitud; i++){
@@ -178,6 +203,11 @@ public class Tablero {
 		// PRE: posicion de inicio para colocar el barco, su orientacion y el barco
 		// POST: estado de las casillas actualizado
 
+		int longitud = pBarco.getLongitud();
+
+		for(int i = 0; i < longitud; i++){
+			listaCasillas.get(pPos + i).ponerBarco(pBarco.getId());
+		}
 
 	}
 

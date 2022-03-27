@@ -148,14 +148,15 @@ public class Tablero {
 	}
 	
 	public void disparoRecibidoJugador(ArrayList<Integer> pAreaDisparo) {
-		//Este método mira a ver las casillas disparadas y cambia su estado
+		//Este mï¿½todo mira a ver las casillas disparadas y cambia su estado
 		int cont=0;
 		int dir=0;
 		while(cont<pAreaDisparo.size()){
 			dir=pAreaDisparo.get(cont);
+			this.listaCasillas.get(dir).actualizarIncognita();
 			if(this.listaCasillas.get(dir).tieneBarco()){
 				//El mï¿½todo casillaRecibeDisparoJugador, que estï¿½ en Casilla, llamarï¿½ a jugador para ver el estado de sus casillas
-				this.listaCasillas.get(dir).casillaRecibeDisparoJugador(this.listaCasillas.get(dir));
+				this.listaCasillas.get(dir).casillaRecibeDisparoJugador();
 			}
 			else{
 				this.listaCasillas.get(dir).setEstado("BARCO");

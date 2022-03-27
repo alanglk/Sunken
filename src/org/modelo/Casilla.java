@@ -53,8 +53,8 @@ public class Casilla {
     }
 
 	public EEstadoCasilla getEstado() {
-		if(oculto)
-			return EEstadoCasilla.OCULTO;
+		/*if(oculto)
+			return EEstadoCasilla.OCULTO;*/
 
 		return estado;
 	}

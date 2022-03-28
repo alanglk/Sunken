@@ -73,7 +73,7 @@ public class Enemigo {
 		ArrayList<Integer> lista= new ArrayList<Integer>();
 		if (pMisil.equals(ETipoMisil.BOMBA))
 			lista.add(pPos);
-		this.tableroEnemigo.disparoRecibidoJugador(lista);
+		this.tableroEnemigo.disparoRecibidoEnemigo();
 	}
 	public boolean tieneBarcosEnemigo() {
 		boolean tiene = false;

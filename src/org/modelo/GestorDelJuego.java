@@ -68,6 +68,16 @@ public class GestorDelJuego extends Observable {
 		}else{
 			// Presionamos una casilla para realizar un disparo
 			System.out.println("--- DISPARO ---");
+			if(!pDatos.tableroEnemigo){
+				if(pDatos.tipoMisil!=null){
+					Jugador.getInstance().recibirDisparo(pDatos.tipoMisil,pDatos.posicion);
+				}
+			}
+			else{
+				if(pDatos.tipoMisil!=null){
+					Enemigo.getInstance().recibirDisparo(pDatos.tipoMisil,pDatos.posicion);
+				}
+			}
 		}
 
 		actualizarIntefaz();

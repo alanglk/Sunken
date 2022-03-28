@@ -4,6 +4,7 @@ import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Tablero {
 	private ArrayList<Casilla> listaCasillas;
@@ -207,6 +208,23 @@ public class Tablero {
 		}
 
 
+
+	}
+
+	public void disparoRecibidoEnemigo() {
+		Random r=new Random();
+		int pos=r.nextInt(100);
+		if(!this.listaCasillas.get(pos).tieneBarco()){
+			//El m�todo casillaRecibeDisparoJugador, que est� en Casilla, llamar� a jugador para ver el estado de sus casillas
+			this.listaCasillas.get(pos).setEstado(EEstadoCasilla.AGUA);
+			this.listaCasillas.get(pos).actualizarOculto(false);
+		}
+		else{
+			this.listaCasillas.get(pos).setEstado(EEstadoCasilla.BARCO);
+			this.listaCasillas.get(pos).actualizarBarco(pos);
+			this.listaCasillas.get(pos).actualizarOculto(false);
+
+		}
 
 	}
 

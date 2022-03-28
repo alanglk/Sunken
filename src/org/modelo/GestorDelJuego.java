@@ -61,7 +61,13 @@ public class GestorDelJuego extends Observable {
 			// Presionamos una casilla para realizar un disparo
 			if(pDatos.tableroEnemigo){
 				if(pDatos.tipoMisil!=null){
-					Jugador.getInstance().realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
+
+					if (!Jugador.getInstance().hayBarcosSinHundir()){
+						juegoTerminado = true;
+						System.out.println("GANA EL ENEMIGO");
+					}else{
+						Jugador.getInstance().realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
+					}
 
 					if(!Enemigo.getInstance().hayBarcosSinHundir()){
 						juegoTerminado = true;

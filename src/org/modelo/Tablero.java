@@ -4,16 +4,17 @@ import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Tablero {
 	private ArrayList<Casilla> listaCasillas;
 	private final int size = 10; // Anchura y altura del tablero
 
-	public Tablero() {
+	public Tablero(boolean pOculto) {
 		listaCasillas = new ArrayList<>();
 
 		for(int i = 0; i < size * size; i++){
-			Casilla nuevaCasilla = new Casilla(EEstadoCasilla.AGUA);
+			Casilla nuevaCasilla = new Casilla(i, EEstadoCasilla.AGUA, pOculto);
 			listaCasillas.add(nuevaCasilla);
 		}
 	}
@@ -167,7 +168,7 @@ public class Tablero {
 		int longitud = pBarco.getLongitud();
 
 		for(int i = 0; i < longitud; i++){
-			listaCasillas.get(pPos - i* size).ponerBarco(pBarco.getId());
+			listaCasillas.get(pPos - i* size).ponerBarco(pBarco);
 		}
 
 	}
@@ -179,30 +180,17 @@ public class Tablero {
 		int longitud = pBarco.getLongitud();
 
 		for(int i = 0; i < longitud; i++){
-			listaCasillas.get(pPos + i).ponerBarco(pBarco.getId());
+			listaCasillas.get(pPos + i).ponerBarco(pBarco);
 		}
 
 	}
 
-	public void disparoRecibidoJugador(ArrayList<Integer> pAreaDisparo) {
-		//Este m�todo mira a ver las casillas disparadas y cambia su estado
-		int cont=0;
-		int dir=0;
-		while(cont<pAreaDisparo.size()){
-			dir=pAreaDisparo.get(cont);
-			this.listaCasillas.get(dir).actualizarOculto(true);
-			if(this.listaCasillas.get(dir).tieneBarco()){
-				//El m�todo casillaRecibeDisparoJugador, que est� en Casilla, llamar� a jugador para ver el estado de sus casillas
-				this.listaCasillas.get(dir).casillaRecibeDisparoJugador();
+	public void actualizarCasillasDisparo(ArrayList<Integer> posicionesDisparo){
+		for (int pos: posicionesDisparo) {
+			if(posValida(pos)){
+				listaCasillas.get(pos).actualizarDisparo();
 			}
-			else{
-				this.listaCasillas.get(dir).setEstado(EEstadoCasilla.BARCO);
-				this.listaCasillas.get(dir).actualizarBarco(dir);
-
-			}
-
 		}
-
 	}
 
     public EEstadoCasilla getEstadoCasilla(int pPos) {

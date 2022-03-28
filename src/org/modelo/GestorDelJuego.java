@@ -4,11 +4,13 @@ import org.controlador.FormularioControlador;
 import org.modelo.misil.ETipoMisil;
 
 import java.util.Observable;
+import java.util.Random;
 
 public class GestorDelJuego extends Observable {
 
 	private static GestorDelJuego miGestorDelJuego;
-	private boolean juegoIniciado = false;
+	private boolean colocandoBarcos = true;
+	private boolean juegoTerminado = false;
 
 	private GestorDelJuego() {
 		// Inicializar el jugador y el enemigo
@@ -27,33 +29,23 @@ public class GestorDelJuego extends Observable {
 		// Marcamos el estado como partida iniciada y decidimos el orden de juego.
 		Enemigo.getInstance().colocarBarcoEnemigo();
 
-		// Numero random que indicará si empieza el enemigo o el jugador
-		int random = 1;
+		colocandoBarcos = false;
+		Jugador.getInstance().imprimirBarcos();
+		Enemigo.getInstance().imprimirBarcos();
+		System.out.println("\n========== INICIANDO PARTIDA!! ==========");
+		System.out.println("/////////////////////////////////////////////");
 
-		if(!juegoIniciado && random == 1)
-			realizarDisparoEnemigo();
+		// boolean random que indicará si empieza el enemigo o el jugador
+		boolean turnoEnemigo = new Random().nextBoolean();
 
-		juegoIniciado = true;
-	}
-
-	private void realizarDisparoJugador(int pPos, ETipoMisil pMisil) {
-		Jugador jugador = Jugador.getInstance();
-		Enemigo enemigo = Enemigo.getInstance();
-		if(jugador.misilDisponible(pMisil)) {
-			enemigo.recibirDisparo(pMisil, pPos);
-		}
-	}
-
-	private void realizarDisparoEnemigo() {
-		// TODO: Implementar realizarDisparo() en Enemigo
-		//Enemigo.getInstance().realizarDisparo();
+		if(colocandoBarcos && turnoEnemigo)
+			Enemigo.getInstance().realizarDisparo();
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
-		if(!juegoIniciado ){
+		if(colocandoBarcos){
 			if(!pDatos.tableroEnemigo){
 				// Los datos son del tablero del Jugador.
-
 				if(pDatos.tipoBarco != null && pDatos.orientacion != null) {
 					Jugador.getInstance().colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
 
@@ -65,9 +57,29 @@ public class GestorDelJuego extends Observable {
 			}
 			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
 
-		}else{
+		}else if(!colocandoBarcos && !juegoTerminado){
 			// Presionamos una casilla para realizar un disparo
-			System.out.println("--- DISPARO ---");
+			if(pDatos.tableroEnemigo){
+				if(pDatos.tipoMisil!=null){
+
+					if (!Jugador.getInstance().hayBarcosSinHundir()){
+						juegoTerminado = true;
+						System.out.println("GANA EL ENEMIGO");
+					}else{
+						Jugador.getInstance().realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
+					}
+
+					if(!Enemigo.getInstance().hayBarcosSinHundir() && !juegoTerminado){
+						juegoTerminado = true;
+						System.out.println("GANA EL JUGADOR");
+					}else {
+						Enemigo.getInstance().realizarDisparo();
+					}
+
+				}
+			}else{
+				System.out.println("NO TE PUEDES DISPARAR A TI MISMO");
+			}
 		}
 
 		actualizarIntefaz();

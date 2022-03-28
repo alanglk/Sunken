@@ -8,8 +8,7 @@ public class GeneradorDeBarcos {
     }
 
     public Barco generarBarco(ETipoBarco pTipo,int pId){
-        Barco miBarco=FactoriaBarcos.getInstance().crearBarco(pTipo,pId);
-        return miBarco;
+        return FactoriaBarcos.getInstance().crearBarco(pTipo,pId);
     }
 
     public ListaBarcos generarListaBarcos(){
@@ -22,9 +21,11 @@ public class GeneradorDeBarcos {
         }
         for(int i = 0; i < 3; i++){
             miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.DESTRUCTOR, id));
+            id++;
         }
         for(int i = 0; i < 2; i++){
             miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.SUBMARINO, id));
+            id++;
         }
 
         miListaBarcos.anadirBarco(this.generarBarco(ETipoBarco.PORTAVIONES, id));

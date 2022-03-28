@@ -17,7 +17,7 @@ public class Jugador {
 	private ListaMisiles listaMisilesJ;
 
 	public Jugador() {
-		this.tableroJugador=new Tablero();
+		this.tableroJugador=new Tablero(false);
 		this.listaBarcosJ=new GeneradorDeBarcos().generarListaBarcos();
 		this.listaMisilesJ=new GeneradorDeMisiles().generarListaMisiles();
 	}
@@ -44,20 +44,12 @@ public class Jugador {
 		}else{
 			throw new Exception("ERROR: No esta disponible el barco");
 		}
+
 	}
 
-
-	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-		ArrayList<Integer> lista= new ArrayList<Integer>();
-		if (pMisil.equals(ETipoMisil.BOMBA))
-			lista.add(pPos);
-			this.tableroJugador.disparoRecibidoJugador(lista);
-		}
-
-
-	public void actualizarCasillaBarco(int casillaPos, int pId){
-		int cont=0;
+	public void eliminarCasillaBarco(int casillaPos, int pId){
 		Barco aux=null;
+		int cont=0;
 		boolean enc=false;
 		while(cont<this.listaBarcosJ.size() && !enc){
 			if(this.listaBarcosJ.obtenerBarcoEnPos(cont).esBarcoId(pId)){
@@ -65,22 +57,42 @@ public class Jugador {
 				aux=this.listaBarcosJ.obtenerBarcoEnPos(cont);
 				aux.eliminarCasilla(casillaPos);
 			}
+			cont++;
 		}
 	}
-	
+
+	public void realizarDisparo(ETipoMisil pTipo, int pPos){
+		// Comprobamos si el misil esta disponible
+		if(listaMisilesJ.sePuedeDisparar(pTipo)){
+			ArrayList<Integer> posicionesDisparo = listaMisilesJ.obtAreaMisil(pTipo, pPos, 10);
+			System.out.println("JUGADOR -> disparando: " + posicionesDisparo.toString());
+			Enemigo.getInstance().recibirDisparo(posicionesDisparo);
+		}
+	}
+
+	public void recibirDisparo(ArrayList<Integer> posicionesDisparo){
+		tableroJugador.actualizarCasillasDisparo(posicionesDisparo);
+	}
+
 	public boolean estanTodosBarcosColocados() {
 		return listaBarcosJ.estanTodosBarcosColocados();
 	}
-	
-	public boolean misilDisponible(ETipoMisil pMisil) {
-		return (listaMisilesJ.sePuedeDisparar(pMisil));
+
+	public boolean hayBarcosSinHundir(){
+		return listaBarcosJ.hayBarcosSinHundir();
 	}
-	
+
 	public ListaBarcos obtListaBarcos() {
 		return this.listaBarcosJ;
 	}
 
 	public EEstadoCasilla getEstadoCasilla(int pPos){
 		return tableroJugador.getEstadoCasilla(pPos);
+	}
+
+	// TODO: Eliminar este metodo
+	public void imprimirBarcos(){
+		System.out.println("--------------------------- JUGADOR ---------------------------");
+		listaBarcosJ.imprimirBarcos();
 	}
 }

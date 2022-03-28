@@ -191,17 +191,22 @@ public class Tablero {
 		while(cont<pAreaDisparo.size()){
 			dir=pAreaDisparo.get(cont);
 			this.listaCasillas.get(dir).actualizarOculto(true);
-			if(this.listaCasillas.get(dir).tieneBarco()){
+			if(!this.listaCasillas.get(dir).tieneBarco()){
 				//El m�todo casillaRecibeDisparoJugador, que est� en Casilla, llamar� a jugador para ver el estado de sus casillas
-				this.listaCasillas.get(dir).casillaRecibeDisparoJugador();
+				this.listaCasillas.get(dir).setEstado(EEstadoCasilla.AGUA);
+				this.listaCasillas.get(dir).actualizarOculto(false);
 			}
 			else{
 				this.listaCasillas.get(dir).setEstado(EEstadoCasilla.BARCO);
 				this.listaCasillas.get(dir).actualizarBarco(dir);
+				this.listaCasillas.get(dir).actualizarOculto(false);
 
 			}
 
+
 		}
+
+
 
 	}
 

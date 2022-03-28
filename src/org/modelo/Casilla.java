@@ -37,6 +37,7 @@ public class Casilla {
 	public void setEstado(EEstadoCasilla pEstado){
 		this.estado = pEstado;
 	}
+
 	public void actualizarOculto(boolean pOculto){
 		oculto = pOculto;
 	}

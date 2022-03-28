@@ -61,11 +61,17 @@ public class JCasilla extends JButton implements Observer {
         else if(estado.equals(EEstadoCasilla.AGUA))
             color = Color.BLUE;
 
+        else if(estado.equals(EEstadoCasilla.AGUADISPARO))
+            color = Color.CYAN;
+
         else if(estado.equals(EEstadoCasilla.OCULTO))
             color = Color.LIGHT_GRAY;
 
         else if(estado.equals(EEstadoCasilla.BARCO))
             color = Color.BLACK;
+
+        else if(estado.equals(EEstadoCasilla.HUNDIDO))
+            color = Color.RED;
 
         updateColor();
     }

@@ -58,4 +58,24 @@ public class ListaBarcos {
 	public void anadirBarco(Barco b1){
 		lista.add(b1);
 	}
+
+	public boolean hayBarcosSinHundir(){
+		Iterator<Barco> itr = getIterator();
+		boolean unBarcoSinHundir = false;
+
+		while(itr.hasNext() && !unBarcoSinHundir){
+			if(!itr.next().estaHundido())
+				unBarcoSinHundir = true;
+		}
+
+		return unBarcoSinHundir;
+	}
+
+	//TODO: Eliminar este metodo
+	public void imprimirBarcos(){
+		System.out.println("/////////////////////////////////////////////");
+		for (Barco barco: lista) {
+			barco.imprimirPosiciones();
+		}
+	}
 }

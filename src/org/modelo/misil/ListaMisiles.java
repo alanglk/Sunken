@@ -10,7 +10,7 @@ public class ListaMisiles {
         this.lista=new ArrayList<Misil>();
     }
 
-    private ArrayList<Integer> obtAreaMisil(ETipoMisil pTipoMisil, int pPosicionDisparo, int pAnchuraTablero) {
+    public ArrayList<Integer> obtAreaMisil(ETipoMisil pTipoMisil, int pPosicionDisparo, int pAnchuraTablero) {
         return obtMisil(pTipoMisil).obtArea(pPosicionDisparo, pAnchuraTablero);
     }
 

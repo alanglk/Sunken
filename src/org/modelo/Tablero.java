@@ -14,7 +14,7 @@ public class Tablero {
 		listaCasillas = new ArrayList<>();
 
 		for(int i = 0; i < size * size; i++){
-			Casilla nuevaCasilla = new Casilla(EEstadoCasilla.AGUA, pOculto);
+			Casilla nuevaCasilla = new Casilla(i, EEstadoCasilla.AGUA, pOculto);
 			listaCasillas.add(nuevaCasilla);
 		}
 	}
@@ -168,7 +168,7 @@ public class Tablero {
 		int longitud = pBarco.getLongitud();
 
 		for(int i = 0; i < longitud; i++){
-			listaCasillas.get(pPos - i* size).ponerBarco(pBarco.getId());
+			listaCasillas.get(pPos - i* size).ponerBarco(pBarco);
 		}
 
 	}
@@ -180,52 +180,17 @@ public class Tablero {
 		int longitud = pBarco.getLongitud();
 
 		for(int i = 0; i < longitud; i++){
-			listaCasillas.get(pPos + i).ponerBarco(pBarco.getId());
+			listaCasillas.get(pPos + i).ponerBarco(pBarco);
 		}
 
 	}
 
-	public void disparoRecibidoJugador(ArrayList<Integer> pAreaDisparo) {
-		//Este m�todo mira a ver las casillas disparadas y cambia su estado
-		int cont=0;
-		int dir=0;
-		while(cont<pAreaDisparo.size()){
-			dir=pAreaDisparo.get(cont);
-			this.listaCasillas.get(dir).actualizarOculto(true);
-			if(!this.listaCasillas.get(dir).tieneBarco()){
-				//El m�todo casillaRecibeDisparoJugador, que est� en Casilla, llamar� a jugador para ver el estado de sus casillas
-				this.listaCasillas.get(dir).setEstado(EEstadoCasilla.AGUA);
-				this.listaCasillas.get(dir).actualizarOculto(false);
+	public void actualizarCasillasDisparo(ArrayList<Integer> posicionesDisparo){
+		for (int pos: posicionesDisparo) {
+			if(posValida(pos)){
+				listaCasillas.get(pos).actualizarDisparo();
 			}
-			else{
-				this.listaCasillas.get(dir).setEstado(EEstadoCasilla.BARCO);
-				this.listaCasillas.get(dir).actualizarBarco(dir);
-				this.listaCasillas.get(dir).actualizarOculto(false);
-
-			}
-
-
 		}
-
-
-
-	}
-
-	public void disparoRecibidoEnemigo() {
-		Random r=new Random();
-		int pos=r.nextInt(100);
-		if(!this.listaCasillas.get(pos).tieneBarco()){
-			//El m�todo casillaRecibeDisparoJugador, que est� en Casilla, llamar� a jugador para ver el estado de sus casillas
-			this.listaCasillas.get(pos).setEstado(EEstadoCasilla.AGUA);
-			this.listaCasillas.get(pos).actualizarOculto(false);
-		}
-		else{
-			this.listaCasillas.get(pos).setEstado(EEstadoCasilla.BARCO);
-			this.listaCasillas.get(pos).actualizarBarco(pos);
-			this.listaCasillas.get(pos).actualizarOculto(false);
-
-		}
-
 	}
 
     public EEstadoCasilla getEstadoCasilla(int pPos) {

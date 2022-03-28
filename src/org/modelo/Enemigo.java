@@ -29,6 +29,20 @@ public class Enemigo {
 		return miEnemigo;
 	}
 
+	public void eliminarCasillaBarco(int casillaPos, int pId){
+		Barco aux=null;
+		int cont=0;
+		boolean enc=false;
+		while(cont<this.listaBarcosE.size() && !enc){
+			if(this.listaBarcosE.obtenerBarcoEnPos(cont).esBarcoId(pId)){
+				enc=true;
+				aux=this.listaBarcosE.obtenerBarcoEnPos(cont);
+				aux.eliminarCasilla(casillaPos);
+			}
+			cont++;
+		}
+	}
+
 	public void colocarBarcoEnemigo() {
 		int i = 0; Barco b1;
 		while((b1 = listaBarcosE.obtenerBarcoEnPos(i)) != null){
@@ -38,8 +52,6 @@ public class Enemigo {
 				this.tableroEnemigo.colocarBarco(posicion,orientacion,b1);
 				i++;
 			}
-
-
 		}
 	}
 
@@ -69,22 +81,30 @@ public class Enemigo {
 		return orientacion;
 	}
 
-	public void recibirDisparo(ETipoMisil pMisil, int pPos) {
-		ArrayList<Integer> lista= new ArrayList<Integer>();
-		if (pMisil.equals(ETipoMisil.BOMBA))
-			lista.add(pPos);
-		this.tableroEnemigo.disparoRecibidoEnemigo();
+	public boolean hayBarcosSinHundir() {
+		return listaBarcosE.hayBarcosSinHundir();
 	}
-	public boolean tieneBarcosEnemigo() {
-		boolean tiene = false;
-		if(this.listaBarcosE.size() > 0) {
-			tiene= true;
+
+	public void realizarDisparo(){
+		// Comprobamos si el misil esta disponible
+		if(listaMisilesE.sePuedeDisparar(ETipoMisil.BOMBA)){
+			ArrayList<Integer> posicionesDisparo = listaMisilesE.obtAreaMisil(ETipoMisil.BOMBA, obtPos(), 10);
+			System.out.println("ENEMIGO -> disparando: " + posicionesDisparo.toString());
+			Jugador.getInstance().recibirDisparo(posicionesDisparo);
 		}
-		else {tiene = false;}
-		return tiene;
+	}
+
+	public void recibirDisparo(ArrayList<Integer> posicionesDisparo){
+		tableroEnemigo.actualizarCasillasDisparo(posicionesDisparo);
 	}
 
 	public EEstadoCasilla getEstadoCasilla(int pPos){
 		return tableroEnemigo.getEstadoCasilla(pPos);
+	}
+
+	// TODO: Eliminar este metodo
+	public void imprimirBarcos(){
+		System.out.println("--------------------------- ENEMIGO ---------------------------");
+		listaBarcosE.imprimirBarcos();
 	}
 }

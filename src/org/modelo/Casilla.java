@@ -1,62 +1,51 @@
 package org.modelo;
 
+import org.modelo.barco.Barco;
+
 public class Casilla {
 
+	private int pos;
 	private EEstadoCasilla estado;
 	private int idBarco;
-	private boolean oculto;
+	private boolean enemigo = false;
+	private boolean oculto = false;
 
-	public Casilla(EEstadoCasilla pEstado, boolean pOculto) {
+	public Casilla(int pPos, EEstadoCasilla pEstado, boolean pEnemigo) {
+		pos = pPos;
 		estado = pEstado;
 		idBarco=-1;
-		oculto=pOculto;
+		enemigo = pEnemigo;
+
+		if(pEnemigo) oculto=true;
 	}
 
 	public boolean esAgua(){
 		return estado.equals(EEstadoCasilla.AGUA);
 	}
 
-	public boolean tieneBarco() {
-		boolean tieneBarco = false;
-
-		if (this.idBarco != -1) {
-			tieneBarco = true;
-		}
-		return (true);
-	}
-
-	public void ponerBarco(int pIdBarco){
-		this.idBarco=pIdBarco;
+	public void ponerBarco(Barco pBarco){
+		this.idBarco= pBarco.getId();
 		this.estado=EEstadoCasilla.BARCO;
+
+		pBarco.anadirCasilla(pos);
 	}
 
-	public int getIdBarco(){
-		return this.idBarco;
+	public void actualizarDisparo(){
+		// TODO: Esto hau que cambiarlo en diseño!!!!!
+		if(!enemigo && idBarco != -1)
+			Jugador.getInstance().eliminarCasillaBarco(pos,this.idBarco);
+		else if(idBarco != -1)
+			Enemigo.getInstance().eliminarCasillaBarco(pos,this.idBarco);
+
+		oculto = false;
+		if(estado == EEstadoCasilla.BARCO)
+			estado = EEstadoCasilla.HUNDIDO;
+		else if(estado == EEstadoCasilla.AGUA)
+			estado = EEstadoCasilla.AGUADISPARO;
 	}
-
-	public void setEstado(EEstadoCasilla pEstado){
-		this.estado = pEstado;
-	}
-
-	public void actualizarOculto(boolean pOculto){
-		oculto = pOculto;
-	}
-
-	public void casillaRecibeDisparoJugador() {
-		//Este m�todo obtiene el barco que est� en esa casilla y comprueba su estado completo y tambi�n llamar� a actualizarCasillaBarco de Jugador
-		Jugador.getInstance().obtListaBarcos().obtenerBarcoEnPos(this.getIdBarco());
-
-	}
-
-
-    public void actualizarBarco(int pPosicion) {
-		Jugador.getInstance().actualizarCasillaBarco(pPosicion,this.idBarco);
-
-    }
-
 	public EEstadoCasilla getEstado() {
-		/*if(oculto)
-			return EEstadoCasilla.OCULTO;*/
+		if(oculto)
+			return EEstadoCasilla.OCULTO;
 
 		return estado;
 	}

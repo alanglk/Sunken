@@ -10,11 +10,11 @@ public class Tablero {
 	private ArrayList<Casilla> listaCasillas;
 	private final int size = 10; // Anchura y altura del tablero
 
-	public Tablero() {
+	public Tablero(boolean pOculto) {
 		listaCasillas = new ArrayList<>();
 
 		for(int i = 0; i < size * size; i++){
-			Casilla nuevaCasilla = new Casilla(EEstadoCasilla.AGUA);
+			Casilla nuevaCasilla = new Casilla(EEstadoCasilla.AGUA, pOculto);
 			listaCasillas.add(nuevaCasilla);
 		}
 	}

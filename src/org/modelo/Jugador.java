@@ -17,7 +17,7 @@ public class Jugador {
 	private ListaMisiles listaMisilesJ;
 
 	public Jugador() {
-		this.tableroJugador=new Tablero();
+		this.tableroJugador=new Tablero(false);
 		this.listaBarcosJ=new GeneradorDeBarcos().generarListaBarcos();
 		this.listaMisilesJ=new GeneradorDeMisiles().generarListaMisiles();
 	}

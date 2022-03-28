@@ -19,7 +19,7 @@ public class Enemigo {
 	private ListaMisiles listaMisilesE;
 
 	public Enemigo() {
-		this.tableroEnemigo=new Tablero();
+		this.tableroEnemigo=new Tablero(true);
 		this.listaBarcosE=new GeneradorDeBarcos().generarListaBarcos();
 		this.listaMisilesE=new GeneradorDeMisiles().generarListaMisiles();
 	}

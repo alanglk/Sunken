@@ -6,10 +6,10 @@ public class Casilla {
 	private int idBarco;
 	private boolean oculto;
 
-	public Casilla(EEstadoCasilla pEstado) {
+	public Casilla(EEstadoCasilla pEstado, boolean pOculto) {
 		estado = pEstado;
 		idBarco=-1;
-		oculto=true;
+		oculto=pOculto;
 	}
 
 	public boolean esAgua(){

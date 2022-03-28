@@ -69,7 +69,7 @@ public class GestorDelJuego extends Observable {
 						Jugador.getInstance().realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
 					}
 
-					if(!Enemigo.getInstance().hayBarcosSinHundir()){
+					if(!Enemigo.getInstance().hayBarcosSinHundir() && !juegoTerminado){
 						juegoTerminado = true;
 						System.out.println("GANA EL JUGADOR");
 					}else {

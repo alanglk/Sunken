@@ -59,13 +59,7 @@ public class Enemigo {
 		Random r=new Random();
 		return r.nextInt(100);
 	}
-	public static void main(String arg[]){
-		Random r = new Random();
-		for(int i=0;i<100;i++){
-			int random = r.nextInt(100);
-			System.out.println("Numero aleatorio: " + random);
-		}
-	}
+
 	private EOrientaconBarco obtOrientacion() {
 		//Si random es 0 la orientacion es horizontal y si es 1 vertical
 		Random r=new Random();

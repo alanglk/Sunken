@@ -1,7 +1,6 @@
 package org.modelo;
 
 import org.controlador.FormularioControlador;
-import org.modelo.misil.ETipoMisil;
 
 import java.util.Observable;
 import java.util.Random;

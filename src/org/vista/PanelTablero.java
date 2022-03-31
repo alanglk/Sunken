@@ -14,9 +14,8 @@ public class PanelTablero extends JPanel {
     public PanelTablero(boolean pPanelEnemigo) {
         super();
         panelEnemigo = pPanelEnemigo;
-
         setLayout(new BorderLayout());
-
+        setBackground(Color.MAGENTA);
         crearPanelCasillas();
         add(panelCasillas, BorderLayout.CENTER);
     }

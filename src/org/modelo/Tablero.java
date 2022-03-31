@@ -200,4 +200,12 @@ public class Tablero {
 
 		return null;
     }
+
+	public boolean esAgua(int pPos) {
+		if(pPos < listaCasillas.size()){
+			return listaCasillas.get(pPos).esAgua();
+		}
+
+		return false;
+	}
 }

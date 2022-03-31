@@ -96,6 +96,10 @@ public class Enemigo {
 		return tableroEnemigo.getEstadoCasilla(pPos);
 	}
 
+	public boolean esAgua(int pPos){
+		return tableroEnemigo.esAgua(pPos);
+	}
+
 	// TODO: Eliminar este metodo
 	public void imprimirBarcos(){
 		System.out.println("--------------------------- ENEMIGO ---------------------------");

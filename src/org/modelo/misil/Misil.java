@@ -23,6 +23,7 @@ public abstract class Misil {
 		if(ilimitado) sePuedeDisparar = true;
 		else if(numMisiles > 0) sePuedeDisparar = true;
 
+
 		return sePuedeDisparar;
 	}
 

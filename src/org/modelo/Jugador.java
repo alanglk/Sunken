@@ -8,6 +8,7 @@ import org.modelo.misil.Misil;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 
 public class Jugador {
 
@@ -61,12 +62,13 @@ public class Jugador {
 		}
 	}
 
-	public void realizarDisparo(ETipoMisil pTipo, int pPos){
+	public void realizarDisparo(ETipoMisil pTipo, int pPos) {
 		// Comprobamos si el misil esta disponible
-		if(listaMisilesJ.sePuedeDisparar(pTipo)){
-			ArrayList<Integer> posicionesDisparo = listaMisilesJ.obtAreaMisil(pTipo, pPos, 10);
-			System.out.println("JUGADOR -> disparando: " + posicionesDisparo.toString());
-			Enemigo.getInstance().recibirDisparo(posicionesDisparo);
+		if (listaMisilesJ.sePuedeDisparar(pTipo)) {
+				ArrayList<Integer> posicionesDisparo = listaMisilesJ.obtAreaMisil(pTipo, pPos, 10);
+				System.out.println("JUGADOR -> disparando: " + posicionesDisparo.toString());
+				Enemigo.getInstance().recibirDisparo(posicionesDisparo);
+
 		}
 	}
 

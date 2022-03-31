@@ -22,6 +22,9 @@ un buen diseño y la implementación de patrones donde sean necesarios.
 ## Instalación
 Para instalar la demo diríjase al apartado de [releases](https://github.com/Strawberryai/Sunken/releases) y descargue la versión deseada.
 Una vez descargado el archivo .jar ejecútelo.
+~~~
+java -jar /direccion_del_.jar
+~~~
 
 > Es necesario tener Java 8.1 o superior
 

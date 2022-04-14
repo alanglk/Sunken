@@ -2,6 +2,7 @@ package org.modelo;
 
 import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
+import org.modelo.misil.ETipoMisil;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -185,12 +186,19 @@ public class Tablero {
 
 	}
 
-	public void actualizarCasillasDisparo(ArrayList<Integer> posicionesDisparo){
+	public void actualizarCasillasDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
 		for (int pos: posicionesDisparo) {
 			if(posValida(pos)){
-				listaCasillas.get(pos).actualizarDisparo();
+				listaCasillas.get(pos).actualizarDisparo(pTipo);
 			}
 		}
+	}
+
+	public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){
+		if(posValida(pCasilla))
+			listaCasillas.get(pCasilla).actualizarEstadoCasilla(pEstado);
+		else
+			System.err.println("ERROR: problema en Tablero:actualizarEstadoCasilla");
 	}
 
     public EEstadoCasilla getEstadoCasilla(int pPos) {
@@ -208,4 +216,6 @@ public class Tablero {
 
 		return false;
 	}
+
+
 }

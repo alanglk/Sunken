@@ -48,7 +48,7 @@ public class Jugador {
 
 	}
 
-	public void eliminarCasillaBarco(int casillaPos, int pId){
+	public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo){
 		Barco aux=null;
 		int cont=0;
 		boolean enc=false;
@@ -56,7 +56,7 @@ public class Jugador {
 			if(this.listaBarcosJ.obtenerBarcoEnPos(cont).esBarcoId(pId)){
 				enc=true;
 				aux=this.listaBarcosJ.obtenerBarcoEnPos(cont);
-				aux.eliminarCasilla(casillaPos);
+				aux.recibirDisparoBarco(pTipo, casillaPos, pEnemigo);
 			}
 			cont++;
 		}
@@ -67,13 +67,17 @@ public class Jugador {
 		if (listaMisilesJ.sePuedeDisparar(pTipo)) {
 				ArrayList<Integer> posicionesDisparo = listaMisilesJ.obtAreaMisil(pTipo, pPos, 10);
 				System.out.println("JUGADOR -> disparando: " + posicionesDisparo.toString());
-				Enemigo.getInstance().recibirDisparo(posicionesDisparo);
+				Enemigo.getInstance().recibirDisparo(pTipo, posicionesDisparo);
 
 		}
 	}
 
-	public void recibirDisparo(ArrayList<Integer> posicionesDisparo){
-		tableroJugador.actualizarCasillasDisparo(posicionesDisparo);
+	public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
+		tableroJugador.actualizarCasillasDisparo(pTipo, posicionesDisparo);
+	}
+
+	public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){
+		tableroJugador.actualizarEstadoCasilla(pCasilla, pEstado);
 	}
 
 	public boolean estanTodosBarcosColocados() {

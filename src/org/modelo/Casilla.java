@@ -1,6 +1,7 @@
 package org.modelo;
 
 import org.modelo.barco.Barco;
+import org.modelo.misil.ETipoMisil;
 
 public class Casilla {
 
@@ -30,23 +31,28 @@ public class Casilla {
 		pBarco.anadirCasilla(pos);
 	}
 
-	public void actualizarDisparo(){
+	public void actualizarDisparo(ETipoMisil pTipo){
 		// TODO: Esto hau que cambiarlo en diseño!!!!!
 		if(!enemigo && idBarco != -1)
-			Jugador.getInstance().eliminarCasillaBarco(pos,this.idBarco);
+			Jugador.getInstance().dispararBarco(pTipo, pos,this.idBarco, enemigo);
 		else if(idBarco != -1)
-			Enemigo.getInstance().eliminarCasillaBarco(pos,this.idBarco);
+			Enemigo.getInstance().dispararBarco(pTipo, pos,this.idBarco, enemigo);
 
 		oculto = false;
-		if(estado == EEstadoCasilla.BARCO)
-			estado = EEstadoCasilla.HUNDIDO;
-		else if(estado == EEstadoCasilla.AGUA)
+		if(estado == EEstadoCasilla.AGUA)
 			estado = EEstadoCasilla.AGUADISPARO;
 	}
+
+	// Se llama desde barco
+	public void actualizarEstadoCasilla(EEstadoCasilla pEstado){
+		if(estado.equals(EEstadoCasilla.BARCO))
+			estado = pEstado;
+	}
+
 	public EEstadoCasilla getEstado() {
 		if(oculto)
 			return EEstadoCasilla.OCULTO;
-
 		return estado;
 	}
+
 }

@@ -28,8 +28,7 @@ public class Enemigo {
 		if(miEnemigo == null) miEnemigo = new Enemigo();
 		return miEnemigo;
 	}
-
-	public void eliminarCasillaBarco(int casillaPos, int pId){
+	public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo){
 		Barco aux=null;
 		int cont=0;
 		boolean enc=false;
@@ -37,7 +36,7 @@ public class Enemigo {
 			if(this.listaBarcosE.obtenerBarcoEnPos(cont).esBarcoId(pId)){
 				enc=true;
 				aux=this.listaBarcosE.obtenerBarcoEnPos(cont);
-				aux.eliminarCasilla(casillaPos);
+				aux.recibirDisparoBarco(pTipo, casillaPos, pEnemigo);
 			}
 			cont++;
 		}
@@ -81,15 +80,20 @@ public class Enemigo {
 
 	public void realizarDisparo(){
 		// Comprobamos si el misil esta disponible
-		if(listaMisilesE.sePuedeDisparar(ETipoMisil.BOMBA)){
+		ETipoMisil tipo = ETipoMisil.BOMBA;
+		if(listaMisilesE.sePuedeDisparar(tipo)){
 			ArrayList<Integer> posicionesDisparo = listaMisilesE.obtAreaMisil(ETipoMisil.BOMBA, obtPos(), 10);
 			System.out.println("ENEMIGO -> disparando: " + posicionesDisparo.toString());
-			Jugador.getInstance().recibirDisparo(posicionesDisparo);
+			Jugador.getInstance().recibirDisparo(tipo, posicionesDisparo);
 		}
 	}
 
-	public void recibirDisparo(ArrayList<Integer> posicionesDisparo){
-		tableroEnemigo.actualizarCasillasDisparo(posicionesDisparo);
+	public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
+		tableroEnemigo.actualizarCasillasDisparo(pTipo, posicionesDisparo);
+	}
+
+	public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){
+		tableroEnemigo.actualizarEstadoCasilla(pCasilla, pEstado);
 	}
 
 	public EEstadoCasilla getEstadoCasilla(int pPos){

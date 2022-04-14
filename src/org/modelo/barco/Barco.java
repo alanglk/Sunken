@@ -1,5 +1,10 @@
 package org.modelo.barco;
 
+import org.modelo.EEstadoCasilla;
+import org.modelo.Enemigo;
+import org.modelo.Jugador;
+import org.modelo.misil.ETipoMisil;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -47,7 +52,7 @@ public abstract class Barco {
 			System.out.println("ERROR: La longitud del barco no se corresponde con el numero de casillas.");
 	}
 
-	public void eliminarCasilla(int pCasilla){
+	private void eliminarCasilla(int pCasilla){
 		boolean enc = false;
 		int i = 0;
 
@@ -64,6 +69,17 @@ public abstract class Barco {
 		imprimirPosiciones();
 		if(estaHundido())
 			System.out.println("HUNDIDO");
+	}
+
+	public void recibirDisparoBarco(ETipoMisil pTipo, int pCasilla, boolean pEnemigo){
+		if(pTipo == ETipoMisil.BOMBA){
+			eliminarCasilla(pCasilla);
+			if(!pEnemigo)
+				Jugador.getInstance().actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+			else
+				Enemigo.getInstance().actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+		}
+
 	}
 
 	public void actualizarBarcoColocado(){

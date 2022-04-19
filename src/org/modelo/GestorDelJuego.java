@@ -13,9 +13,7 @@ public class GestorDelJuego extends Observable {
 
 	private GestorDelJuego() {
 		// Inicializar el jugador y el enemigo
-
-		Jugador.getInstance();
-		Enemigo.getInstance();
+		ListaJugadores.getInstance();
 	}
 
 	public static GestorDelJuego getInstance() {
@@ -26,11 +24,12 @@ public class GestorDelJuego extends Observable {
 	public void iniciarPartida() {
 		// Se han colocado todos los barcos del jugador.
 		// Marcamos el estado como partida iniciada y decidimos el orden de juego.
-		Enemigo.getInstance().colocarBarcoEnemigo();
+		Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
+		enemigo.colocarBarco();
 
 		colocandoBarcos = false;
-		Jugador.getInstance().imprimirBarcos();
-		Enemigo.getInstance().imprimirBarcos();
+		ListaJugadores.getInstance().getEntidad(0).imprimirBarcos();
+		enemigo.imprimirBarcos();
 		System.out.println("\n========== INICIANDO PARTIDA!! ==========");
 		System.out.println("/////////////////////////////////////////////");
 
@@ -38,7 +37,7 @@ public class GestorDelJuego extends Observable {
 		boolean turnoEnemigo = new Random().nextBoolean();
 
 		if(colocandoBarcos && turnoEnemigo)
-			Enemigo.getInstance().realizarDisparo();
+			enemigo.realizarDisparo();
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
@@ -46,10 +45,10 @@ public class GestorDelJuego extends Observable {
 			if(!pDatos.tableroEnemigo){
 				// Los datos son del tablero del Jugador.
 				if(pDatos.tipoBarco != null && pDatos.orientacion != null) {
-					Jugador.getInstance().colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
+					ListaJugadores.getInstance().getEntidad(0).colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
 
 					// Comprobamos si estan todos los barcos del Jugador colocados. Si lo estan iniciamos la partida
-					if (Jugador.getInstance().estanTodosBarcosColocados())
+					if (ListaJugadores.getInstance().getEntidad(0).estanTodosBarcosColocados())
 						iniciarPartida();
 
 				}
@@ -61,18 +60,19 @@ public class GestorDelJuego extends Observable {
 			if(pDatos.tableroEnemigo){
 				if(pDatos.tipoMisil!=null){
 
-					if (!Jugador.getInstance().hayBarcosSinHundir()){
+					if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
 						juegoTerminado = true;
 						System.out.println("GANA EL ENEMIGO");
 					}else{
-						Jugador.getInstance().realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
+						ListaJugadores.getInstance().getEntidad(0).realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
 					}
 
-					if(!Enemigo.getInstance().hayBarcosSinHundir() && !juegoTerminado){
+					if(!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado){
 						juegoTerminado = true;
 						System.out.println("GANA EL JUGADOR");
 					}else {
-						Enemigo.getInstance().realizarDisparo();
+						Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
+						enemigo.realizarDisparo();
 					}
 
 				}
@@ -93,10 +93,10 @@ public class GestorDelJuego extends Observable {
 	}
 
 	public EEstadoCasilla getEstadoCasillaJugador(int pPos){
-		return Jugador.getInstance().getEstadoCasilla(pPos);
+		return ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(pPos);
 	}
 
 	public EEstadoCasilla getEstadoCasillaEnemigo(int pPos){
-		return Enemigo.getInstance().getEstadoCasilla(pPos);
+		return ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pPos);
 	}
 }

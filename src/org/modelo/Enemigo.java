@@ -2,53 +2,23 @@ package org.modelo;
 
 import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
-import org.modelo.barco.GeneradorDeBarcos;
-import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ETipoMisil;
-import org.modelo.misil.GeneradorDeMisiles;
-import org.modelo.misil.ListaMisiles;
-
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Enemigo {
-
-	private static Enemigo miEnemigo;
-	private Tablero tableroEnemigo;
-	private ListaBarcos listaBarcosE;
-	private ListaMisiles listaMisilesE;
+public class Enemigo extends Entidad{
 
 	public Enemigo() {
-		this.tableroEnemigo=new Tablero(true);
-		this.listaBarcosE=new GeneradorDeBarcos().generarListaBarcos();
-		this.listaMisilesE=new GeneradorDeMisiles().generarListaMisiles();
-	}
-	
-	public static Enemigo getInstance() {
-		if(miEnemigo == null) miEnemigo = new Enemigo();
-		return miEnemigo;
-	}
-	public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo){
-		Barco aux=null;
-		int cont=0;
-		boolean enc=false;
-		while(cont<this.listaBarcosE.size() && !enc){
-			if(this.listaBarcosE.obtenerBarcoEnPos(cont).esBarcoId(pId)){
-				enc=true;
-				aux=this.listaBarcosE.obtenerBarcoEnPos(cont);
-				aux.recibirDisparoBarco(pTipo, casillaPos, pEnemigo);
-			}
-			cont++;
-		}
+		super(true);
 	}
 
-	public void colocarBarcoEnemigo() {
+	public void colocarBarco() {
 		int i = 0; Barco b1;
-		while((b1 = listaBarcosE.obtenerBarcoEnPos(i)) != null){
+		while((b1 = listaBarcos.obtenerBarcoEnPos(i)) != null){
 			int posicion=this.obtPos();
 			EOrientaconBarco orientacion=this.obtOrientacion();
-			if(this.tableroEnemigo.sePuedeColocar(posicion,orientacion,b1)){
-				this.tableroEnemigo.colocarBarco(posicion,orientacion,b1);
+			if(this.tablero.sePuedeColocar(posicion,orientacion,b1)){
+				this.tablero.colocarBarco(posicion,orientacion,b1);
 				i++;
 			}
 		}
@@ -75,38 +45,34 @@ public class Enemigo {
 	}
 
 	public boolean hayBarcosSinHundir() {
-		return listaBarcosE.hayBarcosSinHundir();
+		return listaBarcos.hayBarcosSinHundir();
 	}
 
 	public void realizarDisparo(){
 		// Comprobamos si el misil esta disponible
 		ETipoMisil tipo = ETipoMisil.BOMBA;
-		if(listaMisilesE.sePuedeDisparar(tipo)){
-			ArrayList<Integer> posicionesDisparo = listaMisilesE.obtAreaMisil(ETipoMisil.BOMBA, obtPos(), 10);
+		if(listaMisiles.sePuedeDisparar(tipo)){
+			ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBA, obtPos(), 10);
 			System.out.println("ENEMIGO -> disparando: " + posicionesDisparo.toString());
-			Jugador.getInstance().recibirDisparo(tipo, posicionesDisparo);
+			ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 		}
 	}
 
 	public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
-		tableroEnemigo.actualizarCasillasDisparo(pTipo, posicionesDisparo);
+		tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
 	}
 
 	public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){
-		tableroEnemigo.actualizarEstadoCasilla(pCasilla, pEstado);
+		tablero.actualizarEstadoCasilla(pCasilla, pEstado);
 	}
 
 	public EEstadoCasilla getEstadoCasilla(int pPos){
-		return tableroEnemigo.getEstadoCasilla(pPos);
-	}
-
-	public boolean esAgua(int pPos){
-		return tableroEnemigo.esAgua(pPos);
+		return tablero.getEstadoCasilla(pPos);
 	}
 
 	// TODO: Eliminar este metodo
 	public void imprimirBarcos(){
 		System.out.println("--------------------------- ENEMIGO ---------------------------");
-		listaBarcosE.imprimirBarcos();
+		listaBarcos.imprimirBarcos();
 	}
 }

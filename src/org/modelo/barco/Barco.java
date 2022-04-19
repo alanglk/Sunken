@@ -3,6 +3,7 @@ package org.modelo.barco;
 import org.modelo.EEstadoCasilla;
 import org.modelo.Enemigo;
 import org.modelo.Jugador;
+import org.modelo.ListaJugadores;
 import org.modelo.misil.ETipoMisil;
 
 import java.util.ArrayList;
@@ -75,9 +76,9 @@ public abstract class Barco {
 		if(pTipo == ETipoMisil.BOMBA){
 			eliminarCasilla(pCasilla);
 			if(!pEnemigo)
-				Jugador.getInstance().actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
 			else
-				Enemigo.getInstance().actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
 		}
 
 		if(pTipo == ETipoMisil.BOMBAONETAP){
@@ -85,9 +86,9 @@ public abstract class Barco {
 				int pos = posicionesBarco[i];
 				eliminarCasilla(pos);
 				if(!pEnemigo)
-					Jugador.getInstance().actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+					ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
 				else
-					Enemigo.getInstance().actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
 			}
 		}
 

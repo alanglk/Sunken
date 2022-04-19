@@ -2,6 +2,7 @@ package org.modelo;
 
 import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
+import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.misil.ETipoMisil;
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,6 +18,7 @@ public class Enemigo extends Entidad{
 		while((b1 = listaBarcos.obtenerBarcoEnPos(i)) != null){
 			int posicion=this.obtPos();
 			EOrientaconBarco orientacion=this.obtOrientacion();
+
 			if(this.tablero.sePuedeColocar(posicion,orientacion,b1)){
 				this.tablero.colocarBarco(posicion,orientacion,b1);
 				i++;
@@ -24,9 +26,23 @@ public class Enemigo extends Entidad{
 		}
 	}
 
+	private boolean posValida(int pos){
+		boolean valida = true;
+		if(pos < 0 || 100 <= pos) valida = false;
+		if(ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(pos).equals(EEstadoCasilla.HUNDIDO)) valida = false;
+		if(ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(pos).equals(EEstadoCasilla.AGUADISPARO)) valida = false;
+
+		return valida;
+	}
+
 	private int obtPos() {
 		Random r=new Random();
-		return r.nextInt(100);
+		int pos = r.nextInt(100);
+
+		while(!posValida(pos))
+			pos = r.nextInt(100);
+
+		return pos;
 	}
 
 	private EOrientaconBarco obtOrientacion() {

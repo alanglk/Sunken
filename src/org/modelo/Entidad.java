@@ -1,6 +1,7 @@
 package org.modelo;
 
 import org.modelo.barco.*;
+import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
@@ -52,12 +53,23 @@ public abstract class Entidad {
         }
     }
 
-    public void realizarDisparo(ETipoMisil pTipo, int pPos) {
+    private boolean posValida(int pos){
+        boolean valida = true;
+        if(pos < 0 || 100 <= pos) valida = false;
+        if(ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pos).equals(EEstadoCasilla.HUNDIDO)) valida = false;
+        if(ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pos).equals(EEstadoCasilla.AGUADISPARO)) valida = false;
+
+        return valida;
+    }
+
+    public void realizarDisparo(ETipoMisil pTipo, int pPos) throws ImposibleDispararException {
         // Comprobamos si el misil esta disponible
-        if (listaMisiles.sePuedeDisparar(pTipo)) {
+        if (posValida(pPos) && listaMisiles.sePuedeDisparar(pTipo)) {
             ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(pTipo, pPos, 10);
-            System.out.println("JUGADOR -> disparando: " + posicionesDisparo.toString());
+            System.out.println(" -> disparando: " + posicionesDisparo.toString());
             ListaJugadores.getInstance().getEntidad(1).recibirDisparo(pTipo, posicionesDisparo);
+        }else{
+            throw new ImposibleDispararException();
         }
     }
 

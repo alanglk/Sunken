@@ -1,6 +1,7 @@
 package org;
 
 import org.modelo.GestorDelJuego;
+import org.vista.VentanaMenu;
 import org.vista.VentanaPrincipal;
 
 import javax.swing.*;
@@ -23,8 +24,10 @@ public class ProgramaPrincipal {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new VentanaPrincipal();
+                VentanaMenu.getInstance();
             }
         });
     }
+
+
 }

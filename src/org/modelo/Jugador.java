@@ -4,14 +4,9 @@ import org.modelo.barco.*;
 import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
-import org.modelo.misil.Misil;
-
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
 
-public class Jugador {
-
+public class Jugador implements Entidad{
 	private static Jugador miJugador;
 	private Tablero tableroJugador;
 	private ListaBarcos listaBarcosJ;
@@ -68,7 +63,6 @@ public class Jugador {
 				ArrayList<Integer> posicionesDisparo = listaMisilesJ.obtAreaMisil(pTipo, pPos, 10);
 				System.out.println("JUGADOR -> disparando: " + posicionesDisparo.toString());
 				Enemigo.getInstance().recibirDisparo(pTipo, posicionesDisparo);
-
 		}
 	}
 
@@ -86,10 +80,6 @@ public class Jugador {
 
 	public boolean hayBarcosSinHundir(){
 		return listaBarcosJ.hayBarcosSinHundir();
-	}
-
-	public ListaBarcos obtListaBarcos() {
-		return this.listaBarcosJ;
 	}
 
 	public EEstadoCasilla getEstadoCasilla(int pPos){

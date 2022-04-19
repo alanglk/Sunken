@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Bomba extends Misil {
 
     public Bomba() {
-        super(-1, true, ETipoMisil.BOMBAONETAP);
+        super(-1, true, ETipoMisil.BOMBA);
     }
 
     // Obtener el area del disparo

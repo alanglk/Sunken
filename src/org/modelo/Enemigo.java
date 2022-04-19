@@ -7,12 +7,10 @@ import org.modelo.barco.ListaBarcos;
 import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class Enemigo {
-
 	private static Enemigo miEnemigo;
 	private Tablero tableroEnemigo;
 	private ListaBarcos listaBarcosE;
@@ -42,7 +40,7 @@ public class Enemigo {
 		}
 	}
 
-	public void colocarBarcoEnemigo() {
+	public void colocarBarco() {
 		int i = 0; Barco b1;
 		while((b1 = listaBarcosE.obtenerBarcoEnPos(i)) != null){
 			int posicion=this.obtPos();

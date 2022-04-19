@@ -72,6 +72,14 @@ public abstract class Entidad {
             throw new ImposibleDispararException();
         }
     }
+    
+    
+//  public void usarRadar(ETipoRadar pTipo) {
+//	Random ra = new Random();
+//	int num = ra.nextInt(100);
+//	ArrayList<Integer> lista = radar.obtAreaRadar(num);
+//}
+    
     public void actualizarContorno(ArrayList<Integer> pLista){
         this.tablero.actualizarContorno(pLista);
     }

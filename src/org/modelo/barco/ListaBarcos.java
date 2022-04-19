@@ -20,15 +20,13 @@ public class ListaBarcos {
 		boolean encontradoYDisp = false;
 		Barco barco = null;
 
-		while(itr.hasNext() && !encontradoYDisp){
+		while(itr.hasNext() && !encontradoYDisp) {
 			barco = itr.next();
-
-			if(barco.esTipo(tipoBarco)){
-				if(!barco.estaColocado())
+			if (barco.esTipo(tipoBarco)) {
+				if (!barco.estaColocado())
 					encontradoYDisp = true;
 			}
 		}
-
 		if(encontradoYDisp)
 			return barco;
 
@@ -72,10 +70,11 @@ public class ListaBarcos {
 	}
 
 	//TODO: Eliminar este metodo
-	public void imprimirBarcos(){
+	public void imprimirBarcos() {
 		System.out.println("/////////////////////////////////////////////");
-		for (Barco barco: lista) {
+		for (Barco barco : lista) {
 			barco.imprimirPosiciones();
 		}
 	}
 }
+

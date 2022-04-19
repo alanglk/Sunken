@@ -10,14 +10,18 @@ import java.net.URL;
 
 public class PanelMisiles extends JPanel {
     private JRadioButton botonBomba;
+    private JRadioButton botonBombaOneTap;
 
     private final ButtonGroup grupoBotonesMisiles=new ButtonGroup();
 
     public PanelMisiles(){
         setLayout(new GridLayout(1,4,0,0));
-        botonBomba=getBotonRadio("Bomba");
 
+        botonBomba=getBotonRadio("Bomba");
         add(botonBomba);
+
+        botonBombaOneTap=getBotonRadio("Bomba One Tap");
+        add(botonBombaOneTap);
     }
 
     private JRadioButton getBotonRadio(String text) {

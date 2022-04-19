@@ -80,6 +80,17 @@ public abstract class Barco {
 				Enemigo.getInstance().actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
 		}
 
+		if(pTipo == ETipoMisil.BOMBAONETAP){
+			for(int i = 0; i < posicionesBarco.length; i++){
+				int pos = posicionesBarco[i];
+				eliminarCasilla(pos);
+				if(!pEnemigo)
+					Jugador.getInstance().actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+				else
+					Enemigo.getInstance().actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+			}
+		}
+
 	}
 
 	public void actualizarBarcoColocado(){

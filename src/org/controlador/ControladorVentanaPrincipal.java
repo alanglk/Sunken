@@ -71,6 +71,9 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
 
             if(boton.getText().equals("Bomba"))
                 misilSel = ETipoMisil.BOMBA;
+
+            if(boton.getText().equals("Bomba One Tap"))
+                misilSel = ETipoMisil.BOMBAONETAP;
         }
     }
 

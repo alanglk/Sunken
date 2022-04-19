@@ -2,10 +2,10 @@ package org.modelo.misil;
 
 import java.util.ArrayList;
 
-public class Bomba extends Misil {
+public class BombaOneTap extends Misil{
 
-    public Bomba() {
-        super(-1, true, ETipoMisil.BOMBAONETAP);
+    public BombaOneTap() {
+        super(1, false, ETipoMisil.BOMBA);
     }
 
     // Obtener el area del disparo

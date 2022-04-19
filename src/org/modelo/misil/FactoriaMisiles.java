@@ -18,7 +18,10 @@ public class FactoriaMisiles {
 
         if(pTipo.equals(ETipoMisil.BOMBA))
             misil = new Bomba();
-
+        else if(pTipo.equals(ETipoMisil.BOMBAONETAP))
+            misil = new BombaOneTap();
+        else
+            System.err.println("ERROR: Ese tipo de misil no esta definido en la factoria. " + pTipo);
         return misil;
     }
 }

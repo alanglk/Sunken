@@ -14,6 +14,10 @@ public class GeneradorDeMisiles {
     public ListaMisiles generarListaMisiles(){
         ListaMisiles miListaMisiles=new ListaMisiles();
         miListaMisiles.anadirMisil(this.generarMisil(ETipoMisil.BOMBA));
+
+        // Testear el funcionamiento de la bomba one tap
+        miListaMisiles.anadirMisil(this.generarMisil(ETipoMisil.BOMBAONETAP));
+
         return miListaMisiles;
     }
 }

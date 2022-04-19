@@ -14,6 +14,7 @@ public abstract class Barco {
 	private ETipoBarco tipo = null;
 
 	private Integer[] posicionesBarco;
+	private ArrayList<Integer> posicionesBarcoDestr;
 	private int longitud;
 	private int id;
 
@@ -21,6 +22,7 @@ public abstract class Barco {
 
 	public Barco(int pLongitud, ETipoBarco pTipo,int pId) {
 		posicionesBarco = new Integer[]{-1, -1, -1, -1};
+		posicionesBarcoDestr = new ArrayList<Integer>();
 
 		this.tipo = pTipo;
 		this.longitud = pLongitud;
@@ -56,20 +58,23 @@ public abstract class Barco {
 	private void eliminarCasilla(int pCasilla){
 		boolean enc = false;
 		int i = 0;
-
-		while(i < longitud && !enc){
-			if(posicionesBarco[i] == pCasilla){
+		while(i < longitud && !enc ){
+			if (posicionesBarco[i] == pCasilla) {
 				posicionesBarco[i] = -1;
 				enc = true;
 			}
 			i++;
 		}
+		i=0;
+		enc=false;
+		if(this.posicionesBarcoDestr.contains(pCasilla)){
+			this.posicionesBarcoDestr.add(pCasilla);
+		}
 
 		System.out.println("----------");
 		System.out.println("Casilla " + pCasilla + " eliminada? -> encontrada: " + enc);
 		imprimirPosiciones();
-		if(estaHundido())
-			System.out.println("HUNDIDO");
+
 	}
 
 	public void recibirDisparoBarco(ETipoMisil pTipo, int pCasilla, boolean pEnemigo){
@@ -79,6 +84,7 @@ public abstract class Barco {
 				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
 			else
 				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+
 		}
 
 		if(pTipo == ETipoMisil.BOMBAONETAP){
@@ -90,6 +96,22 @@ public abstract class Barco {
 				else
 					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
 			}
+		}
+		//SE DESVELAN LAS CASILLAS DE ALREDEDOR
+
+		if(estaHundido()) {
+			System.out.println("HUNDIDO");
+			int i=0;
+			while (i<this.posicionesBarcoDestr.size()){
+				System.out.println(posicionesBarcoDestr.get(i));
+				i++;
+			}
+			if(!pEnemigo) {
+				ListaJugadores.getInstance().getEntidad(1).actualizarContorno(posicionesBarcoDestr);
+
+			}
+
+
 		}
 
 	}

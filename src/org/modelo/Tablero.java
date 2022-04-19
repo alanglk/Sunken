@@ -217,5 +217,59 @@ public class Tablero {
 		return false;
 	}
 
+	public void actualizarContorno(ArrayList<Integer> posicionesDisparo){
+		int i=0;
+		int pos;
+		while (i<posicionesDisparo.size()){
+			pos=posicionesDisparo.get(i);
+			System.out.println("a"+pos);
+			if(posValida(pos-10)){
+				if(posicionesDisparo.contains(pos-10)){
+					posicionesDisparo.add(pos-10);
+				}
+			}
+			if(posValida(pos+10)){
+				if(posicionesDisparo.contains(pos+10)){
+					posicionesDisparo.add(pos+10);
+				}
+			}if(posValida(pos-1)){
+				if(posicionesDisparo.contains(pos-1)){
+					posicionesDisparo.add(pos-1);
+				}
+			}
+			if(posValida(pos+1)){
+				if(posicionesDisparo.contains(pos+1)){
+					posicionesDisparo.add(pos+1);
+				}
+			}
+			if(posValida(pos+11)){
+				if(posicionesDisparo.contains(pos+11)){
+					posicionesDisparo.add(pos+11);
+				}
+			}
+			if(posValida(pos-11)){
+				if(posicionesDisparo.contains(pos-11)){
+					posicionesDisparo.add(pos-11);
+				}
+			}
+			if(posValida(pos-9)){
+				if(posicionesDisparo.contains(pos-9)){
+					posicionesDisparo.add(pos-9);
+				}
+			}
+			if(posValida(pos+9)){
+				if(posicionesDisparo.contains(pos+9)){
+					posicionesDisparo.add(pos+9);
+				}
+			}
+			i++;
+		}
+		for (int pos2: posicionesDisparo) {
+
+			System.out.println("desvelar"+pos2);
+			listaCasillas.get(pos2).revelar();
+		}
+	}
+
 
 }

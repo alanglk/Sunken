@@ -72,6 +72,9 @@ public abstract class Entidad {
             throw new ImposibleDispararException();
         }
     }
+    public void actualizarContorno(ArrayList<Integer> pLista){
+        this.tablero.actualizarContorno(pLista);
+    }
 
     public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
         tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);

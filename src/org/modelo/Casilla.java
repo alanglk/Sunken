@@ -34,9 +34,9 @@ public class Casilla {
 	public void actualizarDisparo(ETipoMisil pTipo){
 		// TODO: Esto hau que cambiarlo en diseño!!!!!
 		if(!enemigo && idBarco != -1)
-			Jugador.getInstance().dispararBarco(pTipo, pos,this.idBarco, enemigo);
+			ListaJugadores.getInstance().getEntidad(0).dispararBarco(pTipo, pos,this.idBarco, enemigo);
 		else if(idBarco != -1)
-			Enemigo.getInstance().dispararBarco(pTipo, pos,this.idBarco, enemigo);
+			ListaJugadores.getInstance().getEntidad(1).dispararBarco(pTipo, pos,this.idBarco, enemigo);
 
 		oculto = false;
 		if(estado == EEstadoCasilla.AGUA)

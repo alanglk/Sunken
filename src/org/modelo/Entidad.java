@@ -23,9 +23,9 @@ public abstract class Entidad {
     //protected ListaRadares listaRadares;
 
     public Entidad(boolean casillasOcultas) {
-        this.tablero=new Tablero(casillasOcultas);
-        this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
-        this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
+        this.tablero = new Tablero(casillasOcultas);
+        this.listaBarcos = new GeneradorDeBarcos().generarListaBarcos();
+        this.listaMisiles = new GeneradorDeMisiles().generarListaMisiles();
         //this.listaRadares=new GeneradorDeRadares().generarListaRadares();
     }
 
@@ -33,41 +33,43 @@ public abstract class Entidad {
         Barco barco = listaBarcos.obtenerBarcoNoColocado(pTipoBarco);
 
         // Si hay un barco disponible comprobamos si se puede colocar en la posicion
-        if(barco != null){
+        if (barco != null) {
             // Si se puede colocar, lo colocamos y actualizamos el estado del barco
-            if(tablero.sePuedeColocar(pPos,pOrientacion,barco)){
-                tablero.colocarBarco(pPos,pOrientacion,barco);
+            if (tablero.sePuedeColocar(pPos, pOrientacion, barco)) {
+                tablero.colocarBarco(pPos, pOrientacion, barco);
                 barco.actualizarBarcoColocado();
 
-            }else{
+            } else {
                 throw new Exception("ERROR: No se puede colocar en esa posición el barco");
             }
 
-        }else{
+        } else {
             throw new Exception("ERROR: No esta disponible el barco");
         }
 
     }
 
-    public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo){
-        Barco aux=null;
-        int cont=0;
-        boolean enc=false;
-        while(cont<this.listaBarcos.size() && !enc){
-            if(this.listaBarcos.obtenerBarcoEnPos(cont).esBarcoId(pId)){
-                enc=true;
-                aux=this.listaBarcos.obtenerBarcoEnPos(cont);
+    public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo) {
+        Barco aux = null;
+        int cont = 0;
+        boolean enc = false;
+        while (cont < this.listaBarcos.size() && !enc) {
+            if (this.listaBarcos.obtenerBarcoEnPos(cont).esBarcoId(pId)) {
+                enc = true;
+                aux = this.listaBarcos.obtenerBarcoEnPos(cont);
                 aux.recibirDisparoBarco(pTipo, casillaPos, pEnemigo);
             }
             cont++;
         }
     }
 
-    private boolean posValida(int pos){
+    private boolean posValida(int pos) {
         boolean valida = true;
-        if(pos < 0 || 100 <= pos) valida = false;
-        if(ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pos).equals(EEstadoCasilla.HUNDIDO)) valida = false;
-        if(ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pos).equals(EEstadoCasilla.AGUADISPARO)) valida = false;
+        if (pos < 0 || 100 <= pos) valida = false;
+        if (ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pos).equals(EEstadoCasilla.HUNDIDO))
+            valida = false;
+        if (ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pos).equals(EEstadoCasilla.AGUADISPARO))
+            valida = false;
 
         return valida;
     }
@@ -78,20 +80,20 @@ public abstract class Entidad {
             ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(pTipo, pPos, 10);
             System.out.println(" -> disparando: " + posicionesDisparo.toString());
             ListaJugadores.getInstance().getEntidad(1).recibirDisparo(pTipo, posicionesDisparo);
-        }else{
+        } else {
             throw new ImposibleDispararException();
         }
     }
 
-    public void actualizarContorno(ArrayList<Integer> pLista){
+    public void actualizarContorno(ArrayList<Integer> pLista) {
         this.tablero.actualizarContorno(pLista);
     }
 
-    public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
+    public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {
         tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
     }
 
-    public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){
+    public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado) {
         tablero.actualizarEstadoCasilla(pCasilla, pEstado);
     }
 
@@ -99,27 +101,27 @@ public abstract class Entidad {
         return listaBarcos.estanTodosBarcosColocados();
     }
 
-    public boolean hayBarcosSinHundir(){
+    public boolean hayBarcosSinHundir() {
         return listaBarcos.hayBarcosSinHundir();
     }
 
-    public EEstadoCasilla getEstadoCasilla(int pPos){
+    public EEstadoCasilla getEstadoCasilla(int pPos) {
         return tablero.getEstadoCasilla(pPos);
     }
 
     // TODO: Eliminar este metodo
-    public void imprimirBarcos(){
+    public void imprimirBarcos() {
         System.out.println("--------------------------- JUGADOR ---------------------------");
         listaBarcos.imprimirBarcos();
     }
 
-    public Integer obtenerNumBarcos(ETipoBarco tipoBarco){
+    public Integer obtenerNumBarcos(ETipoBarco tipoBarco) {
         return listaBarcos.obtenerNumBarcos(tipoBarco);
     }
 
     public abstract void usarRadar() throws ImposibleUsarRadarException;
 
-    public void revelarCasillasRadar(ArrayList<Integer> posciones){
+    public void revelarCasillasRadar(ArrayList<Integer> posciones) {
         tablero.revelarCasillasRadar(posciones);
     }
 
@@ -128,5 +130,9 @@ public abstract class Entidad {
     public void colocarRadarEnCasilla(int posRadarAnt, int posRadarAct) {
         tablero.quitarRadarEnCasilla(posRadarAnt);
         tablero.colocarRadarEnCasilla(posRadarAct);
+    }
+
+    public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado) {
+        tablero.actualizarEstadoCasillaOneTap(pCasilla, pEstado);
     }
 }

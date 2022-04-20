@@ -47,6 +47,12 @@ public class Casilla {
 	// Se llama desde barco
 	public void actualizarEstadoCasilla(EEstadoCasilla pEstado){
 		estado = pEstado;
+
+	}
+	public void actualizarEstadoCasillaOneTap(EEstadoCasilla pEstado){
+		estado = pEstado;
+		oculto=false;
+
 	}
 
 	public EEstadoCasilla getEstado() {

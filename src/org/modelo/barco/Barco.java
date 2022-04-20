@@ -39,6 +39,15 @@ public abstract class Barco {
 	}
 
 	public int getId(){return this.id;}
+	public EEstadoCasilla getEstadoCasillas(){
+		EEstadoCasilla estado = null;
+		if(escudo != null)
+			estado = escudo.obtenerEstadoEscudo();
+		else
+			estado = EEstadoCasilla.BARCO;
+
+		return estado;
+	}
 
 	public void anadirCasilla(int pPos){
 		boolean term = false;
@@ -109,9 +118,9 @@ public abstract class Barco {
 			assert escudo != null;
 
 			if (!pEnemigo)
-				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, escudo.obtenerEstadoEscudo());
+				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, getEstadoCasillas());
 			else
-				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, escudo.obtenerEstadoEscudo());
+				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, getEstadoCasillas());
 
 		}
 		//SE DESVELAN LAS CASILLAS DE ALREDEDOR

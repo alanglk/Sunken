@@ -26,7 +26,7 @@ public class Casilla {
 
 	public void ponerBarco(Barco pBarco){
 		this.idBarco= pBarco.getId();
-		this.estado=EEstadoCasilla.BARCO;
+		this.estado=pBarco.getEstadoCasillas();
 
 		pBarco.anadirCasilla(pos);
 	}

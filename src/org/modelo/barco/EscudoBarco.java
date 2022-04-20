@@ -27,7 +27,7 @@ public class EscudoBarco {
 
     public EEstadoCasilla obtenerEstadoEscudo(){
         EEstadoCasilla estado = null;
-        if(numUsos > 0)
+        if(numUsos >= 1)
             estado = EEstadoCasilla.ESCUDO;
         else
             estado = EEstadoCasilla.BARCO;

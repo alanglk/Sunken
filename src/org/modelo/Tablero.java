@@ -197,8 +197,6 @@ public class Tablero {
 	public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){
 		if(posValida(pCasilla))
 			listaCasillas.get(pCasilla).actualizarEstadoCasilla(pEstado);
-		else
-			System.err.println("ERROR: problema en Tablero:actualizarEstadoCasilla");
 	}
 
     public EEstadoCasilla getEstadoCasilla(int pPos) {

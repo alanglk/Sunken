@@ -46,9 +46,8 @@ public class Casilla {
 	// Se llama desde barco
 	public void actualizarEstadoCasilla(EEstadoCasilla pEstado){
 		oculto = false;
+		estado = pEstado;
 
-		if(estado.equals(EEstadoCasilla.BARCO))
-			estado = pEstado;
 	}
 
 	public EEstadoCasilla getEstado() {

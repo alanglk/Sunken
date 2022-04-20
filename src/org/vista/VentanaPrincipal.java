@@ -45,6 +45,7 @@ public class VentanaPrincipal extends JFrame {
         panelMisiles = new PanelMisiles();
         panelControladoresPrincipal.add(panelMisiles, BorderLayout.CENTER);
 
+
         setVisible(true);
     }
 

@@ -116,4 +116,8 @@ public abstract class Entidad {
         System.out.println("--------------------------- JUGADOR ---------------------------");
         listaBarcos.imprimirBarcos();
     }
+
+    public Integer obtenerNumBarcos(ETipoBarco tipoBarco){
+        return listaBarcos.obtenerNumBarcos(tipoBarco);
+    }
 }

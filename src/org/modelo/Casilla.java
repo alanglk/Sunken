@@ -60,6 +60,10 @@ public class Casilla {
 
     }
 
+	public void revelar(){
+		oculto=false;
+	}
+
 	public void actualizarBarcoHundido(){
 		estado = EEstadoCasilla.BARCOHUNDIDO;
 	}

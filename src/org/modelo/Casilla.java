@@ -59,5 +59,7 @@ public class Casilla {
 
     public void revelar() {
 		oculto=false;
+		estado = EEstadoCasilla.AGUADISPARO;
+
     }
 }

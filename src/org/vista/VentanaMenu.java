@@ -8,9 +8,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class VentanaMenu extends JFrame {
-    private JPanel panelMenu;
     private static VentanaMenu miMenu;
-    private ImagenFondo fondo;
+
+    private JPanel panelMenu;
+    private JPanelImagen panelFondo;
+
     private JButton empezar;
     private JButton salir;
 
@@ -18,26 +20,27 @@ public class VentanaMenu extends JFrame {
         super("SUNKEN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setBounds(0, 0, 500, 700);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        //setBounds(0, 0, 500, 700);
+        //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        //this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 
-        setLayout(new BorderLayout());
+        //setLayout(new BorderLayout());
 
-        //Incluir botones
+        setSize(new Dimension(700,700));
+
         panelMenu=new JPanel();
-        fondo= new ImagenFondo();
+        panelFondo=new JPanelImagen();
 
-        panelMenu.setLayout(new GridLayout(2, 0, 0, 0));
+        panelMenu.setLayout(new GridLayout(3, 0, 0, 0));
         add(panelMenu, BorderLayout.SOUTH);
 
+        setLocationRelativeTo(null);
+        add(panelFondo,BorderLayout.CENTER);
 
         empezar=getBoton("EMPEZAR PARTIDA");
         salir=getBoton("SALIR");
-
-        setContentPane(fondo);
-        add(empezar);
-        add(salir);
+        panelMenu.add(empezar,BorderLayout.CENTER);
+        panelMenu.add(salir,BorderLayout.CENTER);
         addMouseListener(ControladorVentanaMenu.getInstance());
 
         setVisible(true);
@@ -56,19 +59,5 @@ public class VentanaMenu extends JFrame {
         boton.setHorizontalAlignment(SwingConstants.CENTER);
 
         return boton;
-    }
-
-
-    class ImagenFondo extends JPanel{
-        private Image imagen;
-
-        public void paint(Graphics g){
-            imagen =new ImageIcon(getClass().getResource("/org/imagenes/juego.png")).getImage();
-            g.drawImage(imagen,0,0,getWidth(),getHeight(),this);
-
-            setOpaque(false);
-
-            super.paint(g);
-        }
     }
 }

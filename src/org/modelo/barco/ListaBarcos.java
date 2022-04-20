@@ -76,5 +76,19 @@ public class ListaBarcos {
 			barco.imprimirPosiciones();
 		}
 	}
+
+	public Integer obtenerNumBarcos(ETipoBarco tipoBarco) {
+		Iterator<Barco> itr = getIterator();
+		Barco barco = null;
+		int numBarcos=0;
+
+		while(itr.hasNext()) {
+			barco = itr.next();
+			if (barco.esTipo(tipoBarco)) {
+				numBarcos++;
+			}
+		}
+		return numBarcos;
+	}
 }
 

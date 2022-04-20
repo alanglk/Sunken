@@ -5,18 +5,24 @@ import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
+//import org.modelo.radar.ETipoRadar;
+//import org.modelo.radar.GeneradorDeRadares;
+//import org.modelo.radar.ListaRadares;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public abstract class Entidad {
     protected Tablero tablero;
     protected ListaBarcos listaBarcos;
     protected ListaMisiles listaMisiles;
+    //protected ListaRadares listaRadares;
 
     public Entidad(boolean casillasOcultas) {
         this.tablero=new Tablero(casillasOcultas);
         this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
         this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
+        //this.listaRadares=new GeneradorDeRadares().generarListaRadares();
     }
 
     public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {
@@ -72,6 +78,15 @@ public abstract class Entidad {
             throw new ImposibleDispararException();
         }
     }
+    
+    
+    /*public void usarRadar(ETipoRadar pTipo) {
+    	Random ra = new Random();
+    	int num = ra.nextInt(100);
+    	ArrayList<Integer> lista = this.listaRadares.obtAreaRadar(pTipo, num);
+    	this.tablero.actualizarContorno(lista);
+    }*/
+    
     public void actualizarContorno(ArrayList<Integer> pLista){
         this.tablero.actualizarContorno(pLista);
     }

@@ -67,7 +67,7 @@ public abstract class Barco {
 		}
 		i=0;
 		enc=false;
-		if(this.posicionesBarcoDestr.contains(pCasilla)){
+		if(!this.posicionesBarcoDestr.contains(pCasilla)){
 			this.posicionesBarcoDestr.add(pCasilla);
 		}
 
@@ -106,7 +106,7 @@ public abstract class Barco {
 				System.out.println(posicionesBarcoDestr.get(i));
 				i++;
 			}
-			if(!pEnemigo) {
+			if(pEnemigo) {
 				ListaJugadores.getInstance().getEntidad(1).actualizarContorno(posicionesBarcoDestr);
 
 			}

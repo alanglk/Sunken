@@ -82,15 +82,6 @@ public abstract class Entidad {
             throw new ImposibleDispararException();
         }
     }
-    
-    public abstract void usarRadar() throws ImposibleUsarRadarException;
-
-    public void revelarCasillasRadar(ArrayList<Integer> posciones) throws ImposibleUsarRadarException {
-        if(radar != null)
-            tablero.revelarCasillasRadar(posciones);
-        else
-            throw new ImposibleUsarRadarException();
-    }
 
     public void actualizarContorno(ArrayList<Integer> pLista){
         this.tablero.actualizarContorno(pLista);
@@ -124,6 +115,12 @@ public abstract class Entidad {
 
     public Integer obtenerNumBarcos(ETipoBarco tipoBarco){
         return listaBarcos.obtenerNumBarcos(tipoBarco);
+    }
+
+    public abstract void usarRadar() throws ImposibleUsarRadarException;
+
+    public void revelarCasillasRadar(ArrayList<Integer> posciones){
+        tablero.revelarCasillasRadar(posciones);
     }
 
     public abstract void recolocarRadar();

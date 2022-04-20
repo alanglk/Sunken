@@ -38,11 +38,6 @@ public class Enemigo extends Entidad{
 		return valida;
 	}
 
-	@Override
-	public void usarRadar() throws ImposibleUsarRadarException {
-
-	}
-
 	private int obtPos() {
 		Random r=new Random();
 		int pos = r.nextInt(100);
@@ -98,6 +93,11 @@ public class Enemigo extends Entidad{
 	public void imprimirBarcos(){
 		System.out.println("--------------------------- ENEMIGO ---------------------------");
 		listaBarcos.imprimirBarcos();
+	}
+
+	@Override
+	public void usarRadar() throws ImposibleUsarRadarException {
+		// TODO: Implement this
 	}
 
 	@Override

@@ -10,6 +10,12 @@ public class Jugador extends Entidad{
 		super(false);
 	}
 
+	// TODO: Eliminar este metodo
+	public void imprimirBarcos(){
+		System.out.println("--------------------------- JUGADOR ---------------------------");
+		super.listaBarcos.imprimirBarcos();
+	}
+
 	@Override
 	public void usarRadar() throws ImposibleUsarRadarException {
 		if(radar.sePuedeUtilizar()){
@@ -17,12 +23,6 @@ public class Jugador extends Entidad{
 		}else{
 			throw new ImposibleUsarRadarException();
 		}
-	}
-
-	// TODO: Eliminar este metodo
-	public void imprimirBarcos(){
-		System.out.println("--------------------------- JUGADOR ---------------------------");
-		super.listaBarcos.imprimirBarcos();
 	}
 
 	@Override

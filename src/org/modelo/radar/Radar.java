@@ -22,6 +22,8 @@ public abstract class Radar {
 
         if(!pEnemigo)
             ListaJugadores.getInstance().getEntidad(1).colocarRadarEnCasilla(posRadarAnt, posRadar);
+        else
+            ListaJugadores.getInstance().getEntidad(0).colocarRadarEnCasilla(posRadarAnt, posRadar);
     }
 
     public boolean sePuedeUtilizar() {

@@ -79,6 +79,9 @@ public class JCasilla extends JButton implements Observer {
         else if(estado.equals(EEstadoCasilla.ESCUDO))
             color = Color.MAGENTA;
 
+        else if(estado.equals(EEstadoCasilla.POSRADAR))
+            color = Color.GREEN;
+
         updateColor();
     }
 }

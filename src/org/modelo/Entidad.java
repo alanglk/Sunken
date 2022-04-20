@@ -2,9 +2,12 @@ package org.modelo;
 
 import org.modelo.barco.*;
 import org.modelo.excepciones.ImposibleDispararException;
+import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
 import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
+import org.modelo.radar.Radar;
+import org.modelo.radar.Radar3x3;
 //import org.modelo.radar.ETipoRadar;
 //import org.modelo.radar.GeneradorDeRadares;
 //import org.modelo.radar.ListaRadares;
@@ -16,6 +19,7 @@ public abstract class Entidad {
     protected Tablero tablero;
     protected ListaBarcos listaBarcos;
     protected ListaMisiles listaMisiles;
+    protected Radar radar;
     //protected ListaRadares listaRadares;
 
     public Entidad(boolean casillasOcultas) {
@@ -23,6 +27,8 @@ public abstract class Entidad {
         this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
         this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
         //this.listaRadares=new GeneradorDeRadares().generarListaRadares();
+
+        radar = new Radar3x3();
     }
 
     public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {
@@ -79,14 +85,12 @@ public abstract class Entidad {
         }
     }
     
-    
-    /*public void usarRadar(ETipoRadar pTipo) {
-    	Random ra = new Random();
-    	int num = ra.nextInt(100);
-    	ArrayList<Integer> lista = this.listaRadares.obtAreaRadar(pTipo, num);
-    	this.tablero.actualizarContorno(lista);
-    }*/
-    
+    public abstract void usarRadar() throws ImposibleUsarRadarException;
+
+    public void revelarCasillasRadar(ArrayList<Integer> posciones){
+        tablero.revelarCasillasRadar(posciones);
+    }
+
     public void actualizarContorno(ArrayList<Integer> pLista){
         this.tablero.actualizarContorno(pLista);
     }
@@ -121,4 +125,10 @@ public abstract class Entidad {
         return listaBarcos.obtenerNumBarcos(tipoBarco);
     }
 
+    public abstract void recolocarRadar();
+
+    public void colocarRadarEnCasilla(int posRadarAnt, int posRadarAct) {
+        tablero.quitarRadarEnCasilla(posRadarAnt);
+        tablero.colocarRadarEnCasilla(posRadarAct);
+    }
 }

@@ -10,6 +10,7 @@ public class Casilla {
 	private int idBarco;
 	private boolean enemigo = false;
 	private boolean oculto = false;
+	private boolean hayRadar = false;
 
 	public Casilla(int pPos, EEstadoCasilla pEstado, boolean pEnemigo) {
 		pos = pPos;
@@ -49,19 +50,29 @@ public class Casilla {
 	}
 
 	public EEstadoCasilla getEstado() {
-		if(oculto)
+		if(hayRadar)
+			return EEstadoCasilla.POSRADAR;
+		else if(oculto)
 			return EEstadoCasilla.OCULTO;
+
 		return estado;
 	}
 
     public void revelarContorno() {
 		oculto=false;
 		estado = EEstadoCasilla.AGUADISPARO;
-
     }
 
 	public void revelar(){
 		oculto=false;
+	}
+
+	public void colocarRadar(){
+		hayRadar = true;
+	}
+
+	public void quitarRadar(){
+		hayRadar = false;
 	}
 
 	public void actualizarBarcoHundido(){

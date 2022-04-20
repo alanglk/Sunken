@@ -3,6 +3,7 @@ package org.modelo;
 import org.modelo.barco.Barco;
 import org.modelo.barco.EOrientaconBarco;
 import org.modelo.excepciones.ImposibleDispararException;
+import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
 import java.util.ArrayList;
 import java.util.Random;
@@ -33,6 +34,11 @@ public class Enemigo extends Entidad{
 		if(ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(pos).equals(EEstadoCasilla.AGUADISPARO)) valida = false;
 
 		return valida;
+	}
+
+	@Override
+	public void usarRadar() throws ImposibleUsarRadarException {
+
 	}
 
 	private int obtPos() {
@@ -90,5 +96,10 @@ public class Enemigo extends Entidad{
 	public void imprimirBarcos(){
 		System.out.println("--------------------------- ENEMIGO ---------------------------");
 		listaBarcos.imprimirBarcos();
+	}
+
+	@Override
+	public void recolocarRadar() {
+		radar.cambiarPosicionRadar(true);
 	}
 }

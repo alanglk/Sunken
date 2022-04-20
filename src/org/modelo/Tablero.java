@@ -21,6 +21,10 @@ public class Tablero {
 		}
 	}
 
+	public int obtenerAnchuraTablero(){
+		return size;
+	}
+
 	private boolean posValida(int pPos){
 		if(pPos >= 0 && pPos < listaCasillas.size()) return true;
 		return false;

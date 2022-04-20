@@ -7,5 +7,6 @@ public enum EEstadoCasilla {
     BARCO,
     HUNDIDO,
     BARCOHUNDIDO,
-    ESCUDO
+    ESCUDO,
+    POSRADAR
 }

@@ -3,6 +3,7 @@ package org.modelo;
 import org.controlador.FormularioControlador;
 import org.modelo.barco.ETipoBarco;
 import org.modelo.excepciones.ImposibleDispararException;
+import org.modelo.excepciones.ImposibleUsarRadarException;
 
 import java.util.Observable;
 import java.util.Random;
@@ -91,6 +92,30 @@ public class GestorDelJuego extends Observable {
 			}else{
 				System.out.println("NO TE PUEDES DISPARAR A TI MISMO");
 			}
+		}
+
+		actualizarIntefaz();
+	}
+
+	public void notificarBotonRevelarRadarPresionado() {
+		if(!colocandoBarcos && !juegoTerminado){
+			try{
+				ListaJugadores.getInstance().getEntidad(0).usarRadar();
+				// Llamar a enemigo.realizarAcción
+
+			}catch (ImposibleUsarRadarException e){
+				System.out.println("IMPOSIBLE USAR EL RADAR");
+			}
+		}
+
+		actualizarIntefaz();
+	}
+
+	public void notificarBotonRecolocarRadarPresionado() {
+		if(!colocandoBarcos && !juegoTerminado){
+			ListaJugadores.getInstance().getEntidad(0).recolocarRadar();
+
+			// Llamar a enemigo.realizarAcción
 		}
 
 		actualizarIntefaz();

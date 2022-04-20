@@ -66,4 +66,5 @@ public class Casilla {
 	public void actualizarBarcoHundido(){
 		estado = EEstadoCasilla.BARCOHUNDIDO;
 	}
+
 }

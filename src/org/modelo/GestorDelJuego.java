@@ -1,6 +1,7 @@
 package org.modelo;
 
 import org.controlador.FormularioControlador;
+import org.modelo.barco.ETipoBarco;
 import org.modelo.excepciones.ImposibleDispararException;
 
 import java.util.Observable;
@@ -110,4 +111,5 @@ public class GestorDelJuego extends Observable {
 	public EEstadoCasilla getEstadoCasillaEnemigo(int pPos){
 		return ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pPos);
 	}
+
 }

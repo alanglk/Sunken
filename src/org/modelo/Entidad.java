@@ -120,4 +120,5 @@ public abstract class Entidad {
     public Integer obtenerNumBarcos(ETipoBarco tipoBarco){
         return listaBarcos.obtenerNumBarcos(tipoBarco);
     }
+
 }

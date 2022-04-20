@@ -19,8 +19,6 @@ public class ProgramaPrincipal {
 
         GestorDelJuego.getInstance();
 
-
-
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {

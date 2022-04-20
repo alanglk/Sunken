@@ -5,5 +5,6 @@ public enum EEstadoCasilla {
     AGUADISPARO,
     OCULTO,
     BARCO,
-    HUNDIDO
+    HUNDIDO,
+    BARCOHUNDIDO
 }

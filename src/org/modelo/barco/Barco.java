@@ -39,6 +39,7 @@ public abstract class Barco {
 	}
 
 	public int getId(){return this.id;}
+
 	public EEstadoCasilla getEstadoCasillas(){
 		EEstadoCasilla estado = null;
 		if(escudo != null)
@@ -90,8 +91,18 @@ public abstract class Barco {
 
 	public void recibirDisparoBarco(ETipoMisil pTipo, int pCasilla, boolean pEnemigo){
 		boolean seRecibeDano = false;
+		if(escudo != null){
+			for (int i = 0; i < posicionesBarco.length; i++){
+				System.out.print("/// CASILLA " + posicionesBarco[i] + " se actualiza con estado: " + getEstadoCasillas());
+				if (!pEnemigo)
+					ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(posicionesBarco[i], getEstadoCasillas());
+				else
+					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(posicionesBarco[i], getEstadoCasillas());
+			}
+		}
+
 		if(escudo == null) seRecibeDano = true;
-		else if(escudo.recibirDisparoYSerompeElEscudo(pTipo)) seRecibeDano = true;
+		else seRecibeDano = escudo.recibirDisparoYSerompeElEscudo(pTipo);
 
 		if(seRecibeDano) {
 			if (pTipo == ETipoMisil.BOMBA) {
@@ -114,15 +125,8 @@ public abstract class Barco {
 				}
 			}
 
-		}else{
-			assert escudo != null;
-
-			if (!pEnemigo)
-				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, getEstadoCasillas());
-			else
-				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, getEstadoCasillas());
-
 		}
+
 		//SE DESVELAN LAS CASILLAS DE ALREDEDOR
 
 		if(estaHundido()) {

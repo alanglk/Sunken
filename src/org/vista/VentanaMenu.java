@@ -28,7 +28,7 @@ public class VentanaMenu extends JFrame {
         panelMenu=new JPanel();
         fondo= new ImagenFondo();
 
-        panelMenu.setLayout(new GridLayout(2, 1, 0, 0));
+        panelMenu.setLayout(new GridLayout(2, 0, 0, 0));
         add(panelMenu, BorderLayout.SOUTH);
 
 
@@ -52,7 +52,7 @@ public class VentanaMenu extends JFrame {
 
     private JButton getBoton(String text){
         JButton boton = new JButton(text);
-        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
+        boton.addMouseListener(ControladorVentanaMenu.getInstance());
         boton.setHorizontalAlignment(SwingConstants.CENTER);
 
         return boton;

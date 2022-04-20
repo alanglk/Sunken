@@ -5,6 +5,8 @@ import org.modelo.barco.EOrientaconBarco;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
+import org.modelo.radar.Radar3x3;
+
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -100,6 +102,7 @@ public class Enemigo extends Entidad{
 
 	@Override
 	public void recolocarRadar() {
+		if(radar == null) radar = new Radar3x3();
 		radar.cambiarPosicionRadar(true);
 	}
 }

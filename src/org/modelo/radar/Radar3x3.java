@@ -47,6 +47,6 @@ public class Radar3x3 extends Radar{
             decrementarNumUsos();
         }
 
-        return null;
+        return area;
     }
 }

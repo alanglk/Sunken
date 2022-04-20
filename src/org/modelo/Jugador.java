@@ -1,6 +1,7 @@
 package org.modelo;
 
 import org.modelo.excepciones.ImposibleUsarRadarException;
+import org.modelo.radar.Radar3x3;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class Jugador extends Entidad{
 
 	@Override
 	public void recolocarRadar() {
+		if(radar == null) radar = new Radar3x3();
 		radar.cambiarPosicionRadar(false);
 	}
 

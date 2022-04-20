@@ -11,14 +11,14 @@ public abstract class Radar {
 
     public Radar(int pNumUsosInicial){
         numUsos = pNumUsosInicial;
-        posRadar = new Random(100).nextInt();
+        posRadar = new Random().nextInt(100);
     }
 
     public abstract ArrayList<Integer> obtenerPosicionesReveladas(int pAnchuraTablero);
 
     public void cambiarPosicionRadar(boolean pEnemigo){
         int posRadarAnt = posRadar;
-        posRadar = new Random(100).nextInt();
+        posRadar = new Random().nextInt(100);
 
         if(!pEnemigo)
             ListaJugadores.getInstance().getEntidad(1).colocarRadarEnCasilla(posRadarAnt, posRadar);

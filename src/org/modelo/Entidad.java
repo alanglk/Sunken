@@ -87,8 +87,11 @@ public abstract class Entidad {
     
     public abstract void usarRadar() throws ImposibleUsarRadarException;
 
-    public void revelarCasillasRadar(ArrayList<Integer> posciones){
-        tablero.revelarCasillasRadar(posciones);
+    public void revelarCasillasRadar(ArrayList<Integer> posciones) throws ImposibleUsarRadarException {
+        if(radar != null)
+            tablero.revelarCasillasRadar(posciones);
+        else
+            throw new ImposibleUsarRadarException();
     }
 
     public void actualizarContorno(ArrayList<Integer> pLista){

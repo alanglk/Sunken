@@ -24,7 +24,7 @@ public class ProgramaPrincipal {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                VentanaMenu.getInstance();
+                new VentanaPrincipal();
             }
         });
     }

@@ -17,7 +17,7 @@ public class VentanaPrincipal extends JFrame {
         super("SUNKEN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setBounds(0, 0, 500, 700);
+        setBounds(0, 0, 900, 700);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
 

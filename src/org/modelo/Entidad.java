@@ -27,8 +27,6 @@ public abstract class Entidad {
         this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
         this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
         //this.listaRadares=new GeneradorDeRadares().generarListaRadares();
-
-        radar = new Radar3x3();
     }
 
     public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {

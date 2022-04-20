@@ -264,7 +264,7 @@ public class Tablero {
 
 		}
 		for (int pos: posicionesRevelar) {
-			listaCasillas.get(pos).revelar();
+			listaCasillas.get(pos).revelarContorno();
 		}
 
 		for (int pos: posicionesDisparo) {

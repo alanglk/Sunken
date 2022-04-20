@@ -218,56 +218,56 @@ public class Tablero {
 	}
 
 	public void actualizarContorno(ArrayList<Integer> posicionesDisparo){
+		System.out.println("a");
 		int i=0;
-		int pos;
-		while (i<posicionesDisparo.size()){
-			pos=posicionesDisparo.get(i);
+		ArrayList<Integer> posicionesRevelar= new ArrayList<Integer>();
+		for (int pos: posicionesDisparo){
 			System.out.println("a"+pos);
-			if(posValida(pos-10)){
-				if(posicionesDisparo.contains(pos-10)){
-					posicionesDisparo.add(pos-10);
+			if(posValida(pos-10)&&(pos/10-(pos-10)/10)==1){
+				if(!posicionesDisparo.contains(pos-10)){
+					posicionesRevelar.add(pos-10);
 				}
 			}
-			if(posValida(pos+10)){
-				if(posicionesDisparo.contains(pos+10)){
-					posicionesDisparo.add(pos+10);
+			if((posValida(pos+10)&&(pos/10-(pos+10)/10)==-1)){
+				if(!posicionesDisparo.contains(pos+10)){
+					posicionesRevelar.add(pos+10);
 				}
-			}if(posValida(pos-1)){
-				if(posicionesDisparo.contains(pos-1)){
-					posicionesDisparo.add(pos-1);
-				}
-			}
-			if(posValida(pos+1)){
-				if(posicionesDisparo.contains(pos+1)){
-					posicionesDisparo.add(pos+1);
+			}if(posValida(pos-1)&&((pos-1)/10==pos/10)){
+				if(!posicionesDisparo.contains(pos-1)){
+					posicionesRevelar.add(pos-1);
 				}
 			}
-			if(posValida(pos+11)){
-				if(posicionesDisparo.contains(pos+11)){
-					posicionesDisparo.add(pos+11);
+			if(posValida(pos+1)&&((pos+1)/10==pos/10)){
+				if(!posicionesDisparo.contains(pos+1)){
+					posicionesRevelar.add(pos+1);
 				}
 			}
-			if(posValida(pos-11)){
-				if(posicionesDisparo.contains(pos-11)){
-					posicionesDisparo.add(pos-11);
+			if((posValida(pos+11)&&(pos/11-(pos+11)/11)==-1)&&pos%10!=9){
+				if(!posicionesDisparo.contains(pos+11)){
+					posicionesRevelar.add(pos+11);
 				}
 			}
-			if(posValida(pos-9)){
-				if(posicionesDisparo.contains(pos-9)){
-					posicionesDisparo.add(pos-9);
+			if((posValida(pos-11)&&(pos/11-(pos-11)/11)==1&&pos%10!=0)){
+				if(!posicionesDisparo.contains(pos-11)){
+					posicionesRevelar.add(pos-11);
 				}
 			}
-			if(posValida(pos+9)){
-				if(posicionesDisparo.contains(pos+9)){
-					posicionesDisparo.add(pos+9);
+			if((posValida(pos-9)&&(pos/9-(pos-9)/9)==1)&&pos%10!=9){
+				if(!posicionesDisparo.contains(pos-9)){
+					posicionesRevelar.add(pos-9);
 				}
 			}
-			i++;
-		}
-		for (int pos2: posicionesDisparo) {
+			if((posValida(pos+9)&&(pos/9-(pos+9)/9)==-1)&&pos%10!=0){
+				if(!posicionesDisparo.contains(pos+9)){
+					posicionesRevelar.add(pos+9);
+				}
+			}
 
-			System.out.println("desvelar"+pos2);
-			listaCasillas.get(pos2).revelar();
+		}
+		for (int pos: posicionesRevelar) {
+
+			System.out.println("desvelar"+pos);
+			listaCasillas.get(pos).revelar();
 		}
 	}
 	

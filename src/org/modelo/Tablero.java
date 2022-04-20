@@ -270,6 +270,41 @@ public class Tablero {
 			listaCasillas.get(pos2).revelar();
 		}
 	}
+	
+	public void desvelarRadar(ArrayList<Integer> pPosicionesArevelar) {
+		int i=0;
+		int pos;
+		ArrayList<Integer> listaFinal = null;
+		while (i<pPosicionesArevelar.size()){
+			pos=pPosicionesArevelar.get(i);
+			if(posValida(pos-10)){
+				if(pPosicionesArevelar.contains(pos-10)){
+					listaFinal.add(pos-10);
+				}
+			}
+			if(posValida(pos+10)){
+				if(pPosicionesArevelar.contains(pos-1)){
+					listaFinal.add(pos-1);
+				}
+			}
+			
+			if(posValida(pos+1)){
+				if(pPosicionesArevelar.contains(pos+1)){
+					listaFinal.add(pos+1);
+				}
+			}
+			if(posValida(pos-1)){
+				if(pPosicionesArevelar.contains(pos-1)){
+					listaFinal.add(pos-1);
+				}
+			}
+			i++;
+		}
+		for (int pos2: listaFinal) {
 
-
+			System.out.println("desvelar"+pos2);
+			listaCasillas.get(pos2).revelar();
+		}
+	}
+	
 }

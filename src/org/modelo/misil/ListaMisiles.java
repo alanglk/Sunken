@@ -41,9 +41,5 @@ public class ListaMisiles {
         this.lista.add(pMisil);
         pMisil.incrementarNumMisiles();
     }
-    
-//    public void actualizarMisil(ETipoMisil pTipoMisil) {
-//    	
-//    }
 
 }

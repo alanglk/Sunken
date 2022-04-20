@@ -75,6 +75,15 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
             if(boton.getText().equals("Bomba One Tap"))
                 misilSel = ETipoMisil.BOMBAONETAP;
         }
+        if(e.getSource() instanceof JButton){
+            JButton boton = (JButton) e.getSource();
+            if(boton.getText().equals("Usar Radar")){
+                GestorDelJuego.getInstance().notificarBotonRevelarRadarPresionado();
+            }
+            if(boton.getText().equals("Recolocar Radar")){
+                GestorDelJuego.getInstance().notificarBotonRecolocarRadarPresionado();
+            }
+        }
     }
 
     @Override

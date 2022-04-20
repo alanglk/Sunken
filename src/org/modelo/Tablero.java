@@ -278,4 +278,18 @@ public class Tablero {
 	}
 
 
+	public void revelarCasillasRadar(ArrayList<Integer> listaRevelar){
+		for (int pos: listaRevelar) {
+			listaCasillas.get(pos).revelar();
+		}
+	}
+
+	public void colocarRadarEnCasilla(int pCasilla){
+		listaCasillas.get(pCasilla).colocarRadar();
+	}
+
+	public void quitarRadarEnCasilla(int pCasilla){
+		listaCasillas.get(pCasilla).quitarRadar();
+	}
+
 }

@@ -11,6 +11,8 @@ import java.net.URL;
 public class PanelMisiles extends JPanel {
     private JRadioButton botonBomba;
     private JRadioButton botonBombaOneTap;
+    private JButton botonUsarRadar;
+    private JButton botonRecolocarRadar;
 
     private final ButtonGroup grupoBotonesMisiles=new ButtonGroup();
 
@@ -22,6 +24,13 @@ public class PanelMisiles extends JPanel {
 
         botonBombaOneTap=getBotonRadio("Bomba One Tap");
         add(botonBombaOneTap);
+
+        botonUsarRadar=getBotonRadar(("Usar Radar"));
+        add(botonUsarRadar);
+
+        botonRecolocarRadar=getBotonRadar(("Recolocar Radar"));
+        add(botonRecolocarRadar);
+
     }
 
     private JRadioButton getBotonRadio(String text) {
@@ -32,6 +41,13 @@ public class PanelMisiles extends JPanel {
         //boton.setIcon(loadImage());
 
         grupoBotonesMisiles.add(boton);
+        return boton;
+    }
+
+    private JButton getBotonRadar(String text){
+        JButton boton=new JButton(text);
+        boton.setHorizontalAlignment(SwingConstants.CENTER);
+        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
         return boton;
     }
 

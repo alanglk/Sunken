@@ -265,10 +265,13 @@ public class Tablero {
 
 		}
 		for (int pos: posicionesRevelar) {
-
-			System.out.println("desvelar"+pos);
 			listaCasillas.get(pos).revelar();
 		}
+
+		for (int pos: posicionesDisparo) {
+			listaCasillas.get(pos).actualizarBarcoHundido();
+		}
+
 	}
 
 

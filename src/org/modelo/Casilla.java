@@ -62,4 +62,8 @@ public class Casilla {
 		estado = EEstadoCasilla.AGUADISPARO;
 
     }
+
+	public void actualizarBarcoHundido(){
+		estado = EEstadoCasilla.BARCOHUNDIDO;
+	}
 }

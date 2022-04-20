@@ -218,93 +218,58 @@ public class Tablero {
 	}
 
 	public void actualizarContorno(ArrayList<Integer> posicionesDisparo){
-		System.out.println("a");
-		int i=0;
-		ArrayList<Integer> posicionesRevelar= new ArrayList<Integer>();
-		for (int pos: posicionesDisparo){
-			System.out.println("a"+pos);
-			if(posValida(pos-10)&&(pos/10-(pos-10)/10)==1){
-				if(!posicionesDisparo.contains(pos-10)){
-					posicionesRevelar.add(pos-10);
-				}
-			}
-			if((posValida(pos+10)&&(pos/10-(pos+10)/10)==-1)){
-				if(!posicionesDisparo.contains(pos+10)){
-					posicionesRevelar.add(pos+10);
-				}
-			}if(posValida(pos-1)&&((pos-1)/10==pos/10)){
-				if(!posicionesDisparo.contains(pos-1)){
-					posicionesRevelar.add(pos-1);
-				}
-			}
-			if(posValida(pos+1)&&((pos+1)/10==pos/10)){
-				if(!posicionesDisparo.contains(pos+1)){
-					posicionesRevelar.add(pos+1);
-				}
-			}
-			if((posValida(pos+11)&&(pos/11-(pos+11)/11)==-1)&&pos%10!=9){
-				if(!posicionesDisparo.contains(pos+11)){
-					posicionesRevelar.add(pos+11);
-				}
-			}
-			if((posValida(pos-11)&&(pos/11-(pos-11)/11)==1&&pos%10!=0)){
-				if(!posicionesDisparo.contains(pos-11)){
-					posicionesRevelar.add(pos-11);
-				}
-			}
-			if((posValida(pos-9)&&(pos/9-(pos-9)/9)==1)&&pos%10!=9){
-				if(!posicionesDisparo.contains(pos-9)){
-					posicionesRevelar.add(pos-9);
-				}
-			}
-			if((posValida(pos+9)&&(pos/9-(pos+9)/9)==-1)&&pos%10!=0){
-				if(!posicionesDisparo.contains(pos+9)){
-					posicionesRevelar.add(pos+9);
-				}
-			}
-
-		}
-		for (int pos: posicionesRevelar) {
-
-			System.out.println("desvelar"+pos);
-			listaCasillas.get(pos).revelar();
-		}
-	}
-	
-	public void desvelarRadar(ArrayList<Integer> pPosicionesArevelar) {
 		int i=0;
 		int pos;
-		ArrayList<Integer> listaFinal = null;
-		while (i<pPosicionesArevelar.size()){
-			pos=pPosicionesArevelar.get(i);
+		while (i<posicionesDisparo.size()){
+			pos=posicionesDisparo.get(i);
+			System.out.println("a"+pos);
 			if(posValida(pos-10)){
-				if(pPosicionesArevelar.contains(pos-10)){
-					listaFinal.add(pos-10);
+				if(posicionesDisparo.contains(pos-10)){
+					posicionesDisparo.add(pos-10);
 				}
 			}
 			if(posValida(pos+10)){
-				if(pPosicionesArevelar.contains(pos-1)){
-					listaFinal.add(pos-1);
+				if(posicionesDisparo.contains(pos+10)){
+					posicionesDisparo.add(pos+10);
+				}
+			}if(posValida(pos-1)){
+				if(posicionesDisparo.contains(pos-1)){
+					posicionesDisparo.add(pos-1);
 				}
 			}
-			
 			if(posValida(pos+1)){
-				if(pPosicionesArevelar.contains(pos+1)){
-					listaFinal.add(pos+1);
+				if(posicionesDisparo.contains(pos+1)){
+					posicionesDisparo.add(pos+1);
 				}
 			}
-			if(posValida(pos-1)){
-				if(pPosicionesArevelar.contains(pos-1)){
-					listaFinal.add(pos-1);
+			if(posValida(pos+11)){
+				if(posicionesDisparo.contains(pos+11)){
+					posicionesDisparo.add(pos+11);
+				}
+			}
+			if(posValida(pos-11)){
+				if(posicionesDisparo.contains(pos-11)){
+					posicionesDisparo.add(pos-11);
+				}
+			}
+			if(posValida(pos-9)){
+				if(posicionesDisparo.contains(pos-9)){
+					posicionesDisparo.add(pos-9);
+				}
+			}
+			if(posValida(pos+9)){
+				if(posicionesDisparo.contains(pos+9)){
+					posicionesDisparo.add(pos+9);
 				}
 			}
 			i++;
 		}
-		for (int pos2: listaFinal) {
+		for (int pos2: posicionesDisparo) {
 
 			System.out.println("desvelar"+pos2);
 			listaCasillas.get(pos2).revelar();
 		}
 	}
-	
+
+
 }

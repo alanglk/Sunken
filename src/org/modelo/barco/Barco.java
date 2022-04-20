@@ -18,6 +18,8 @@ public abstract class Barco {
 	private int longitud;
 	private int id;
 
+	private EscudoBarco escudo = null;
+
 	private boolean colocado;
 
 	public Barco(int pLongitud, ETipoBarco pTipo,int pId) {
@@ -37,6 +39,15 @@ public abstract class Barco {
 	}
 
 	public int getId(){return this.id;}
+	public EEstadoCasilla getEstadoCasillas(){
+		EEstadoCasilla estado = null;
+		if(escudo != null)
+			estado = escudo.obtenerEstadoEscudo();
+		else
+			estado = EEstadoCasilla.BARCO;
+
+		return estado;
+	}
 
 	public void anadirCasilla(int pPos){
 		boolean term = false;
@@ -78,24 +89,39 @@ public abstract class Barco {
 	}
 
 	public void recibirDisparoBarco(ETipoMisil pTipo, int pCasilla, boolean pEnemigo){
-		if(pTipo == ETipoMisil.BOMBA){
-			eliminarCasilla(pCasilla);
-			if(!pEnemigo)
-				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
-			else
-				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+		boolean seRecibeDano = false;
+		if(escudo == null) seRecibeDano = true;
+		else if(escudo.recibirDisparoYSerompeElEscudo(pTipo)) seRecibeDano = true;
 
-		}
-
-		if(pTipo == ETipoMisil.BOMBAONETAP){
-			for(int i = 0; i < posicionesBarco.length; i++){
-				int pos = posicionesBarco[i];
-				eliminarCasilla(pos);
-				if(!pEnemigo)
-					ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+		if(seRecibeDano) {
+			if (pTipo == ETipoMisil.BOMBA) {
+				eliminarCasilla(pCasilla);
+				if (!pEnemigo)
+					ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
 				else
-					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, EEstadoCasilla.HUNDIDO);
+
 			}
+
+			if (pTipo == ETipoMisil.BOMBAONETAP) {
+				for (int i = 0; i < posicionesBarco.length; i++) {
+					int pos = posicionesBarco[i];
+					eliminarCasilla(pos);
+					if (!pEnemigo)
+						ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+					else
+						ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+				}
+			}
+
+		}else{
+			assert escudo != null;
+
+			if (!pEnemigo)
+				ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pCasilla, getEstadoCasillas());
+			else
+				ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pCasilla, getEstadoCasillas());
+
 		}
 		//SE DESVELAN LAS CASILLAS DE ALREDEDOR
 
@@ -140,6 +166,10 @@ public abstract class Barco {
 		}
 
 		return hundido;
+	}
+
+	public void setEscudo(EscudoBarco pEscudo){
+		escudo = pEscudo;
 	}
 
 	// TODO: Eliminar este metodo

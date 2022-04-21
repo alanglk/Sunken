@@ -29,7 +29,7 @@ public class ControladorVentanaMenu implements MouseListener, ItemListener {
         if(e.getSource() instanceof JButton){
             JButton boton = (JButton) e.getSource();
             if (boton.getText().equals("EMPEZAR PARTIDA")){
-                new VentanaPrincipal();
+                VentanaPrincipal.getInstance();
                 VentanaMenu.getInstance().setVisible(false);
             }
             else{

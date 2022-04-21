@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaPrincipal extends JFrame {
+    private static VentanaPrincipal miVentanaPrincipal;
+
     private JPanel panelTableros;
     private JPanel panelControladoresPrincipal;
 
@@ -13,7 +15,7 @@ public class VentanaPrincipal extends JFrame {
     private PanelBarcos panelBarcos;
     private PanelOpciones panelMisiles;
 
-    public VentanaPrincipal(){
+    private VentanaPrincipal(){
         super("SUNKEN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -47,6 +49,18 @@ public class VentanaPrincipal extends JFrame {
 
 
         setVisible(true);
+    }
+
+    public static VentanaPrincipal getInstance(){
+        if(VentanaPrincipal.miVentanaPrincipal==null){
+            VentanaPrincipal.miVentanaPrincipal=new VentanaPrincipal();
+        }
+        return VentanaPrincipal.miVentanaPrincipal;
+    }
+
+    public void nuevaPartida(){
+        miVentanaPrincipal=new VentanaPrincipal();
+        miVentanaPrincipal.repaint();
     }
 
 }

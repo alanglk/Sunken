@@ -62,7 +62,6 @@ public class JPanelNumBarcos extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         numBarcosFragata.setText(String.valueOf(4- ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA)));
-        System.out.println(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA).toString());
         numBarcosDestructor.setText(String.valueOf(3- ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.DESTRUCTOR)));
         numBarcosPortaviones.setText(String.valueOf(1- ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.PORTAVIONES)));
         numBarcosSubmarino.setText(String.valueOf(2- ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.SUBMARINO)));

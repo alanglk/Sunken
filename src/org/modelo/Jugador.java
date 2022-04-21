@@ -156,4 +156,8 @@ public class Jugador implements Entidad{
 	public EEstadoCasilla getEstadoCasilla(int pPos) {
 		return tablero.getEstadoCasilla(pPos);
 	}
+
+	public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado) {
+		tablero.actualizarEstadoCasillaOneTap(pCasilla, pEstado);
+	}
 }

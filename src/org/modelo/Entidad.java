@@ -34,4 +34,7 @@ public interface Entidad {
     public void actualizarContorno(ArrayList<Integer> pLista);
     public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado);
     public EEstadoCasilla getEstadoCasilla(int pPos);
+    public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado);
+
+
 }

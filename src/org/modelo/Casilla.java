@@ -37,7 +37,7 @@ public class Casilla {
 	}
 
 	public void actualizarDisparo(ETipoMisil pTipo){
-		// TODO: Esto hau que cambiarlo en diseño!!!!!
+		// TODO: Esto hay que cambiarlo en diseño!!!!!
 		if(!enemigo && idBarco != null)
 			ListaJugadores.getInstance().getEntidad(0).dispararBarco(pTipo, pos,this.idBarco, enemigo);
 		else if(idBarco != null)
@@ -46,6 +46,10 @@ public class Casilla {
 		oculto = false;
 		if(estado == EEstadoCasilla.AGUA)
 			estado = EEstadoCasilla.AGUADISPARO;
+	}
+
+	public boolean tieneBarco(){
+		return(idBarco!=-1);
 	}
 
 	// Se llama desde barco
@@ -88,5 +92,6 @@ public class Casilla {
 	public void actualizarBarcoHundido(){
 		estado = EEstadoCasilla.BARCOHUNDIDO;
 	}
+
 
 }

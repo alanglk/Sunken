@@ -19,6 +19,7 @@ public class Enemigo implements Entidad{
 	private ListaBarcos listaBarcos;
 	private ListaMisiles listaMisiles;
 	private Radar radar;
+	private ArrayList<Integer> listaCasillasAReventar;
 
 	private int numEscudos = 1;
 
@@ -26,6 +27,7 @@ public class Enemigo implements Entidad{
 		this.tablero=new Tablero(true);
 		this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
 		this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
+		this.listaCasillasAReventar=new ArrayList<Integer>();
 	}
 
 	private int obtPosBarco() {
@@ -81,7 +83,8 @@ public class Enemigo implements Entidad{
 			if(this.tablero.sePuedeColocar(posicion,orientacion,b1)){
 				this.tablero.colocarBarco(posicion,orientacion,b1);
 				i++;
-			}
+			}*/
+			enemigo.realizarDisparo();
 		}
 	}
 
@@ -117,7 +120,7 @@ public class Enemigo implements Entidad{
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
 			enemigo.realizarDisparo();
 			/*
-			int r = new Random().nextInt(3);
+			/*int r = new Random().nextInt(2);
 			if(r == 1) {
 				enemigo.realizarDisparo();
 			}
@@ -154,16 +157,177 @@ public class Enemigo implements Entidad{
 	public void realizarDisparo() {
 		// Comprobamos si el misil esta disponible
 		ETipoMisil tipo = ETipoMisil.BOMBA;
-		if(listaMisiles.sePuedeDisparar(tipo)){
+		int pos;
+		if (this.listaCasillasAReventar.size() != 0) {//SI COLA DE MEMORIA NO VACIA HACER IA
+			System.out.println("IA");
+			ArrayList<Integer> posicionesDisparo = new ArrayList<Integer>();
+
+			// ########INTENTO ARRIBA##############
+			if (this.listaCasillasAReventar.get(0) != -1) {//PRIMERO MIRA SI PUEDE DISPARAR ARRIBA
+				posicionesDisparo.add(this.listaCasillasAReventar.get(0));
+				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				if (pos == -1) {//SI IMPACTA EN NO BARCO ELIMINAR CAMINO DE ARRIBA
+					this.listaCasillasAReventar.set(0, -1);
+				} else if(pos!=101) {//SI IMPACTA ARRIBA ELIMINAR EN HORIZONTAL YA QUE SOLO PUEDE SER VERTICAL
+					this.listaCasillasAReventar.set(2, -1);
+					this.listaCasillasAReventar.set(3, -1);
+					if (((this.listaCasillasAReventar.get(0) / 10 - (this.listaCasillasAReventar.get(0) - 10) / 10) == 1) && (this.listaCasillasAReventar.get(0) - 10) > -1) {//SI IMPACTO ARRIBA SEGUIR MIRANDO UNO MAS ARRIBA
+						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(0) - 10).equals(EEstadoCasilla.AGUADISPARO)) {
+							listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(0) - 10);
+						}
+						else {//SI NO ELIMINAR ARRIBA
+							this.listaCasillasAReventar.set(0, -1);
+						}
+					}
+					else {//SI NO ELIMINAR ESTA POSIBILIDAD
+						this.listaCasillasAReventar.set(0, -1);
+					}
+				}
+				else {
+					this.listaCasillasAReventar = new ArrayList<Integer>();
+				}
+			}
+			// ########INTENTO ABAJO##############
+			else if (this.listaCasillasAReventar.get(1) != -1) {
+				posicionesDisparo.add(this.listaCasillasAReventar.get(1));
+				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				if (pos == -1) {
+					this.listaCasillasAReventar.set(1, -1);
+				} else if(pos!=101){
+					this.listaCasillasAReventar.set(2, -1);
+					this.listaCasillasAReventar.set(3, -1);
+					if (((this.listaCasillasAReventar.get(1) / 10 - (this.listaCasillasAReventar.get(1) + 10) / 10) == -1) && (this.listaCasillasAReventar.get(1) + 10) < 100) {
+						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(1) + 10).equals(EEstadoCasilla.AGUADISPARO)) {
+							listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(1) + 10);
+						}
+						else {
+							this.listaCasillasAReventar.set(1, -1);
+						}
+					}
+					else {
+						this.listaCasillasAReventar.set(1, -1);
+					}
+				}
+				else {
+					this.listaCasillasAReventar = new ArrayList<Integer>();
+				}
+			}
+			// ########INTENTO IZQUIERDA##############
+			else if (this.listaCasillasAReventar.get(2) != -1) {
+				posicionesDisparo.add(this.listaCasillasAReventar.get(2));
+				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				if (pos == -1) {
+					this.listaCasillasAReventar.set(2, -1);
+				} else if(pos!=101){
+
+						this.listaCasillasAReventar.set(0, -1);
+						this.listaCasillasAReventar.set(1, -1);
+						if ((this.listaCasillasAReventar.get(2) - 1) / 10 == this.listaCasillasAReventar.get(2) / 10) {
+							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(2) - 1).equals(EEstadoCasilla.AGUADISPARO)) {
+								listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(2) - 1);
+							} else {
+								this.listaCasillasAReventar.set(2, -1);
+							}
+						} else {
+							this.listaCasillasAReventar.set(2, -1);
+						}
+
+				}
+				else {
+					this.listaCasillasAReventar = new ArrayList<Integer>();
+				}
+			}
+			// ########INTENTO DERECHA##############
+			else if (this.listaCasillasAReventar.get(3) != -1) {
+				posicionesDisparo.add(this.listaCasillasAReventar.get(3));
+				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				if (pos == -1) {
+					this.listaCasillasAReventar.set(3, -1);
+				} else if(pos!=101) {
+					this.listaCasillasAReventar.set(0, -1);
+					this.listaCasillasAReventar.set(1, -1);
+					if (((this.listaCasillasAReventar.get(3) + 1) / 10 == this.listaCasillasAReventar.get(3) / 10)) {
+						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(3) + 1).equals(EEstadoCasilla.AGUADISPARO)) {
+							listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(3) + 1);
+						}
+						else {
+							this.listaCasillasAReventar.set(3, -1);
+						}
+					} else {
+						this.listaCasillasAReventar.set(3, -1);
+					}
+				}
+				else {
+					this.listaCasillasAReventar = new ArrayList<Integer>();
+				}
+			}
+			else {
+				this.listaCasillasAReventar = new ArrayList<Integer>();
+			}
+
+		}
+		else if (listaMisiles.sePuedeDisparar(tipo)) {
 			ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBA, obtPosDisparo(), 10);
 			System.out.println("ENEMIGO -> disparando: " + posicionesDisparo.toString());
-			ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+			int posicion = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+			System.out.println(posicion);
+			if (posicion != -1&&posicion !=101) {
+				if (((posicion / 10 - (posicion - 10) / 10) == 1) && (posicion - 10) > -1) {
+
+					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 10).equals(EEstadoCasilla.AGUADISPARO)) {
+						listaCasillasAReventar.add(posicion - 10);
+					}
+					else {
+						listaCasillasAReventar.add(-1);
+					}
+
+				}
+				else {
+					listaCasillasAReventar.add(-1);
+				}
+				if (((posicion / 10 - (posicion + 10) / 10) == -1) && (posicion + 10) < 100) {
+
+					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion + 10).equals(EEstadoCasilla.AGUADISPARO)) {
+						listaCasillasAReventar.add(posicion + 10);
+					}
+					else {
+						listaCasillasAReventar.add(-1);
+					}
+				}
+				else {
+					listaCasillasAReventar.add(-1);
+				}
+				if ((posicion - 1) / 10 == posicion / 10 && (posicion-1>-1)) {
+					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 1).equals(EEstadoCasilla.AGUADISPARO)) {
+						listaCasillasAReventar.add(posicion - 1);
+					}
+					else {
+						listaCasillasAReventar.add(-1);
+					}
+
+				}
+				else {
+					listaCasillasAReventar.add(-1);
+				}
+				if (((posicion + 1) / 10 == posicion / 10)&&(posicion+1<100)) {
+
+					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion + 1).equals(EEstadoCasilla.AGUADISPARO)) {
+						listaCasillasAReventar.add(posicion + 1);
+					}
+					else {
+						listaCasillasAReventar.add(-1);
+					}
+				}
+				else {
+					listaCasillasAReventar.add(-1);
+				}
+				}
+			}
 		}
-	}
 
 	@Override
-	public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {
-		tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
+	public int recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {
+		return(tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo));
 	}
 
 	@Override

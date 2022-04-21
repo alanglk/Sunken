@@ -191,12 +191,27 @@ public class Tablero {
 
 	}
 
-	public void actualizarCasillasDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
+	public int actualizarCasillasDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo){
+		int barco=-1;
+		int aux=0;
+		System.out.println(posicionesDisparo.get(0));
+
 		for (int pos: posicionesDisparo) {
 			if(posValida(pos)){
 				listaCasillas.get(pos).actualizarDisparo(pTipo);
 			}
+
+
+			aux++;
 		}
+		if(listaCasillas.get(posicionesDisparo.get(0)).getEstado().equals(EEstadoCasilla.BARCOHUNDIDO)){
+			barco=101;
+		}
+		else if(listaCasillas.get(posicionesDisparo.get(0)).getEstado().equals(EEstadoCasilla.HUNDIDO)){
+			barco=posicionesDisparo.get(0);
+		}
+		System.out.println(barco);
+		return barco;
 	}
 
 	public void actualizarEstadoCasilla(int pCasilla, EEstadoCasilla pEstado){

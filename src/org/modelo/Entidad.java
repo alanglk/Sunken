@@ -23,7 +23,7 @@ public interface Entidad {
     public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo);
     public void realizarDisparo(ETipoMisil pTipo, int pPos) throws ImposibleDispararException;
     public void realizarDisparo();
-    public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo);
+    public int recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo);
 
     //REALIZAR ACCION --------
     //Esto s�lo lo utiliza el enemigo

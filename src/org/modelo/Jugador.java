@@ -104,7 +104,7 @@ public class Jugador implements Entidad{
 		if (posValidaDisparo(pPos) && listaMisiles.sePuedeDisparar(pTipo)) {
 			ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(pTipo, pPos, 10);
 			System.out.println(" -> disparando: " + posicionesDisparo.toString());
-			ListaJugadores.getInstance().getEntidad(1).recibirDisparo(pTipo, posicionesDisparo);
+			int i=ListaJugadores.getInstance().getEntidad(1).recibirDisparo(pTipo, posicionesDisparo);
 		}else{
 			throw new ImposibleDispararException();
 		}
@@ -114,8 +114,9 @@ public class Jugador implements Entidad{
 	public void realizarDisparo() {}
 
 	@Override
-	public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {
-		tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
+	public int recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {
+		return(tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo));
+
 	}
 	
 	//REALIZAR ACCION -------- 

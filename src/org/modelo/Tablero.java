@@ -292,4 +292,8 @@ public class Tablero {
 		listaCasillas.get(pCasilla).quitarRadar();
 	}
 
+	public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado){
+		if(posValida(pCasilla))
+			listaCasillas.get(pCasilla).actualizarEstadoCasillaOneTap(pEstado);
+	}
 }

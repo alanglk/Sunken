@@ -1,11 +1,14 @@
 package org.controlador;
 
+import org.ProgramaPrincipal;
 import org.modelo.GestorDelJuego;
 import org.modelo.barco.EOrientaconBarco;
 import org.modelo.barco.ETipoBarco;
 import org.modelo.misil.ETipoMisil;
 import org.vista.JCasilla;
 import org.vista.JDespOrien;
+import org.vista.VentanaMenu;
+import org.vista.VentanaPrincipal;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -82,6 +85,9 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
             }
             if(boton.getText().equals("Recolocar Radar")){
                 GestorDelJuego.getInstance().notificarBotonRecolocarRadarPresionado();
+            }
+            if (boton.getText().equals("REINICIAR PARTIDA")) {
+                //TODO Falta hacer el boton reiniciar
             }
         }
     }

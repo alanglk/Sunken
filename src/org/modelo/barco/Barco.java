@@ -115,13 +115,19 @@ public abstract class Barco {
 			}
 
 			if (pTipo == ETipoMisil.BOMBAONETAP) {
+				boolean enc=false;
 				for (int i = 0; i < posicionesBarco.length; i++) {
-					int pos = posicionesBarco[i];
-					eliminarCasilla(pos);
-					if (!pEnemigo)
-						ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
-					else
-						ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pos, EEstadoCasilla.HUNDIDO);
+					if (posicionesBarco[i] == -1) {
+						enc = true;
+					}
+					if (!enc) {
+						int pos = posicionesBarco[i];
+						eliminarCasilla(pos);
+						if (!pEnemigo)
+							ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasillaOneTap(pos, EEstadoCasilla.HUNDIDO);
+						else
+							ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasillaOneTap(pos, EEstadoCasilla.HUNDIDO);
+					}
 				}
 			}
 

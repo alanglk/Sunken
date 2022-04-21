@@ -101,6 +101,20 @@ public class Enemigo implements Entidad{
 	public Integer obtenerNumBarcos(ETipoBarco tipoBarco) {
 		return null;
 	}
+	
+	//REALIZAR ACCION -------
+	@Override
+	public boolean realizarAccion(boolean juegoTerminado) {
+		if(!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado){
+			juegoTerminado = true;
+			System.out.println("GANA EL JUGADOR");
+		}else {
+			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
+			//Aquí viene la miga
+			enemigo.realizarDisparo();
+		}
+		return juegoTerminado;
+	}
 
 	// DISPAROS --------
 	@Override

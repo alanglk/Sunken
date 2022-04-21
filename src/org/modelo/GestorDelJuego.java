@@ -78,16 +78,8 @@ public class GestorDelJuego extends Observable {
 					}
 					// Si el jugador ha hecho un disparo correcto. Puede ser que no haya presionado una casilla valida
 					if(disparoJugador){
-						if(!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado){
-							juegoTerminado = true;
-							System.out.println("GANA EL JUGADOR");
-						}else {
-							Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
-							enemigo.realizarDisparo();
-						}
+						juegoTerminado = ListaJugadores.getInstance().getEntidad(1).realizarAccion(juegoTerminado);
 					}
-
-
 				}
 			}else{
 				System.out.println("NO TE PUEDES DISPARAR A TI MISMO");

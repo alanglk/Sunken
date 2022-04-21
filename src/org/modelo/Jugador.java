@@ -113,6 +113,14 @@ public class Jugador implements Entidad{
 	public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {
 		tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
 	}
+	
+	//REALIZAR ACCION -------- 
+	//Esto sólo lo utiliza el enemigo
+	@Override
+	public boolean realizarAccion(boolean juegoTerminado) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	// RADAR --------
 	@Override

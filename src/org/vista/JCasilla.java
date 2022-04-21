@@ -6,6 +6,7 @@ import org.modelo.GestorDelJuego;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,7 +24,9 @@ public class JCasilla extends JButton implements Observer {
         casillaEnemigo = pCasillaEnemigo;
         setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
 
-        setBackground(Color.CYAN);
+        //setBackground(Color.CYAN);
+        //Para poner imagen en las casillas
+        this.setIcon(new ImageIcon(Objects.requireNonNull(JCasilla.class.getResource("/org/imagenes/sea.png"))));
         setOpaque(true);
 
         addMouseListener(ControladorVentanaPrincipal.getInstance());

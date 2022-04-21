@@ -9,15 +9,17 @@ public class FormularioControlador {
     public boolean tableroEnemigo;
 
     public ETipoBarco tipoBarco;
+    public boolean escudo;
     public EOrientaconBarco orientacion;
 
     public ETipoMisil tipoMisil;
 
-    public FormularioControlador(int pPosicion, boolean pTaableroEnemigo, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion, ETipoMisil pTipoMisil){
+    public FormularioControlador(int pPosicion, boolean pTaableroEnemigo, ETipoBarco pTipoBarco, boolean pEscudo, EOrientaconBarco pOrientacion, ETipoMisil pTipoMisil){
         posicion = pPosicion;
         tipoBarco = pTipoBarco;
         orientacion = pOrientacion;
         tipoMisil = pTipoMisil;
         tableroEnemigo = pTaableroEnemigo;
+        escudo = pEscudo;
     }
 }

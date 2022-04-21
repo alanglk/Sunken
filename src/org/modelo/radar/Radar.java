@@ -37,4 +37,8 @@ public abstract class Radar {
     protected void incrementarNumUsos() {
         this.numUsos++;
     }
+
+    public int obtenerNumUsos(){
+        return numUsos;
+    }
 }

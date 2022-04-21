@@ -24,13 +24,16 @@ public class JPanelBarcos extends JPanel implements Observer {
     private JLabel numBarcosDestructor;
 
     private JDespOrien despegableOrientacion;
+
+    private JRadioButton escudo;
+    private JLabel numEscudos;
     private final ButtonGroup grupoBotonesBarcos;
 
     public JPanelBarcos(){
         super();
         GestorDelJuego.getInstance().addObserver(this);
 
-        setLayout(new GridLayout(5,2,0,0));
+        setLayout(new GridLayout(6,2,0,0));
 
         grupoBotonesBarcos =new ButtonGroup();
 
@@ -54,11 +57,16 @@ public class JPanelBarcos extends JPanel implements Observer {
         add(botonDestuctor);
         add(numBarcosDestructor);
 
+        escudo = getBotonRadio("Poner escudo");
+        numEscudos = new JLabel();
+        add(escudo);
+        add(numEscudos);
 
         despegableOrientacion = new JDespOrien();
         add(despegableOrientacion);
 
         actualizarNumBarcos();
+        actualizarNumEscudos();
     }
 
 
@@ -83,8 +91,18 @@ public class JPanelBarcos extends JPanel implements Observer {
         numBarcosPortaviones.setText(getNumBarcos(ETipoBarco.PORTAVIONES));
     }
 
+    private String getNumEscudos(){
+        return ListaJugadores.getInstance().getEntidad(0).obtenerNumEscudos().toString();
+    }
+
+    private void actualizarNumEscudos(){
+        numEscudos.setText(getNumEscudos() + " escudos");
+        escudo.setSelected(false);
+    }
+
     @Override
     public void update(Observable o, Object arg) {
         actualizarNumBarcos();
+        actualizarNumEscudos();
     }
 }

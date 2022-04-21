@@ -17,6 +17,10 @@ public abstract class Misil {
 
 	public abstract ArrayList<Integer> obtArea(int pPosicionDisparo, int pAnchuraTablero);
 
+	public int obtNumDisparos(){
+		return numMisiles;
+	}
+
 	public boolean sePuedeDisparar() {
 		boolean sePuedeDisparar = false;
 

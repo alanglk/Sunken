@@ -42,4 +42,18 @@ public class ListaMisiles {
         pMisil.incrementarNumMisiles();
     }
 
+    public Integer obtenerNumMisilesDisponibles(ETipoMisil tipoMisil){
+        Iterator<Misil> itr = this.getIterador();
+        Misil misil = null;
+        boolean enc = false;
+
+        while (itr.hasNext() && !enc) {
+            misil = itr.next();
+            if(misil.esTipo(tipoMisil))
+                enc = true;
+        }
+
+        if (!enc) return 0;
+        return misil.obtNumDisparos();
+    }
 }

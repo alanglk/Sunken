@@ -11,6 +11,8 @@ import org.vista.VentanaMenu;
 import org.vista.VentanaPrincipal;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseEvent;
@@ -20,6 +22,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
 
     private static ControladorVentanaPrincipal controlador;
     private ETipoBarco barcoSel = null;
+    private boolean escudoBarco = false;
     private EOrientaconBarco orientacionSel = EOrientaconBarco.NORTE;
 
     private ETipoMisil misilSel = null;
@@ -43,7 +46,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
 
             int pos = casilla.getPos();
             boolean casillaEnemigo = casilla.esEnemigo();
-            FormularioControlador datos = new FormularioControlador(pos, casillaEnemigo, barcoSel, orientacionSel, misilSel);
+            FormularioControlador datos = new FormularioControlador(pos, casillaEnemigo, barcoSel, escudoBarco, orientacionSel, misilSel);
 
             // Llamamos al modelo con la informacion necesaria
             try {
@@ -56,6 +59,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
         // Botones de control
         if(e.getSource() instanceof JRadioButton){
             JRadioButton boton = (JRadioButton) e.getSource();
+            escudoBarco = false;
 
             // Botones de barcos
             if(boton.getText().equals("Fragata"))
@@ -70,12 +74,14 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
             if(boton.getText().equals("Destructor"))
                 barcoSel = ETipoBarco.DESTRUCTOR;
 
+            if(boton.getText().equals("Poner escudo"))
+                escudoBarco = true;
             // Botondes de misiles
 
             if(boton.getText().equals("Bomba"))
                 misilSel = ETipoMisil.BOMBA;
 
-            if(boton.getText().equals("Bomba One Tap"))
+            if(boton.getText().equals("BombaTap"))
                 misilSel = ETipoMisil.BOMBAONETAP;
         }
         if(e.getSource() instanceof JButton){

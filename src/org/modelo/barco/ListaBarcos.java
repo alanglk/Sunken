@@ -15,6 +15,10 @@ public class ListaBarcos {
 		return lista.iterator();
 	}
 
+	public Barco obtenerBarco(int pId){
+		return lista.stream().filter(p -> p.esBarcoId(pId)).findFirst().get();
+	}
+
 	public Barco obtenerBarcoNoColocado(ETipoBarco tipoBarco) {
 		Iterator<Barco> itr = getIterator();
 		boolean encontradoYDisp = false;

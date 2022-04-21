@@ -1,6 +1,8 @@
 package org.modelo;
 
 import org.modelo.barco.*;
+import org.modelo.excepciones.ImposibleColocarBarcoException;
+import org.modelo.excepciones.ImposibleColocarEscudoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 public interface Entidad {
 
     // BARCOS --------
-    public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception;
+    public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws ImposibleColocarBarcoException;
     public void colocarBarco();
     public boolean estanTodosBarcosColocados();
     public boolean hayBarcosSinHundir();
@@ -22,12 +24,14 @@ public interface Entidad {
     public void realizarDisparo(ETipoMisil pTipo, int pPos) throws ImposibleDispararException;
     public void realizarDisparo();
     public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo);
+    public Integer obtenerNumMisilesDisponibles(ETipoMisil tipoMisil);
 
     // RADAR --------
     public void usarRadar() throws ImposibleUsarRadarException;
     public void revelarCasillasRadar(ArrayList<Integer> posciones);
     public void recolocarRadar();
     public void colocarRadarEnCasilla(int posRadarAnt, int posRadarAct);
+    public Integer obtenerNumUsosRadar();
 
     // CASILLAS --------
     public void actualizarContorno(ArrayList<Integer> pLista);
@@ -36,4 +40,7 @@ public interface Entidad {
     public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado);
 
 
+    // ESCUDOS --------
+    public void colocarEscudoBarco(int pCasilla) throws ImposibleColocarEscudoException;
+    public Integer obtenerNumEscudos();
 }

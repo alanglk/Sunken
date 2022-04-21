@@ -296,4 +296,11 @@ public class Tablero {
 		if(posValida(pCasilla))
 			listaCasillas.get(pCasilla).actualizarEstadoCasillaOneTap(pEstado);
 	}
+
+	public Integer obtenerIdBarcoCasilla(int pCasilla){
+		if(posValida(pCasilla))
+			return listaCasillas.get(pCasilla).obtenerIdBarco();
+		else
+			return null;
+	}
 }

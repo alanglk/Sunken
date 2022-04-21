@@ -2,6 +2,8 @@ package org.modelo;
 
 import org.controlador.FormularioControlador;
 import org.modelo.barco.ETipoBarco;
+import org.modelo.excepciones.ImposibleColocarBarcoException;
+import org.modelo.excepciones.ImposibleColocarEscudoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 
@@ -47,14 +49,22 @@ public class GestorDelJuego extends Observable {
 		if(colocandoBarcos){
 			if(!pDatos.tableroEnemigo){
 				// Los datos son del tablero del Jugador.
-				if(pDatos.tipoBarco != null && pDatos.orientacion != null) {
-					ListaJugadores.getInstance().getEntidad(0).colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
+				if(pDatos.escudo){
+					ListaJugadores.getInstance().getEntidad(0).colocarEscudoBarco(pDatos.posicion);
+				}else if(pDatos.tipoBarco != null && pDatos.orientacion != null) {
+					try{
+						ListaJugadores.getInstance().getEntidad(0).colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
+					}catch(ImposibleColocarBarcoException e){
+						System.err.println("ERROR: No se pudo colocar el barco por una pos invalida o el barco de ese tipo no esta disponible");
+					}
 
 					// Comprobamos si estan todos los barcos del Jugador colocados. Si lo estan iniciamos la partida
 					if (ListaJugadores.getInstance().getEntidad(0).estanTodosBarcosColocados())
 						iniciarPartida();
 
 				}
+
+
 			}
 			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
 

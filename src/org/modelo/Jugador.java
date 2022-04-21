@@ -1,6 +1,8 @@
 package org.modelo;
 
 import org.modelo.barco.*;
+import org.modelo.excepciones.ImposibleColocarBarcoException;
+import org.modelo.excepciones.ImposibleColocarEscudoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
@@ -16,6 +18,8 @@ public class Jugador implements Entidad{
 	private ListaBarcos listaBarcos;
 	private ListaMisiles listaMisiles;
 	private Radar radar;
+
+	private int numEscudos = 3;
 
 	public Jugador() {
 		this.tablero=new Tablero(false);
@@ -35,7 +39,7 @@ public class Jugador implements Entidad{
 
 	// BARCOS --------
 	@Override
-	public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {
+	public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws ImposibleColocarBarcoException {
 		Barco barco = listaBarcos.obtenerBarcoNoColocado(pTipoBarco);
 
 		// Si hay un barco disponible comprobamos si se puede colocar en la posicion
@@ -46,11 +50,11 @@ public class Jugador implements Entidad{
 				barco.actualizarBarcoColocado();
 
 			}else{
-				throw new Exception("ERROR: No se puede colocar en esa posición el barco");
+				throw new ImposibleColocarBarcoException();
 			}
 
 		}else{
-			throw new Exception("ERROR: No esta disponible el barco");
+			throw new ImposibleColocarBarcoException();
 		}
 	}
 
@@ -114,6 +118,11 @@ public class Jugador implements Entidad{
 		tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
 	}
 
+	@Override
+	public Integer obtenerNumMisilesDisponibles(ETipoMisil tipoMisil) {
+		return listaMisiles.obtenerNumMisilesDisponibles(tipoMisil);
+	}
+
 	// RADAR --------
 	@Override
 	public void usarRadar() throws ImposibleUsarRadarException {
@@ -141,6 +150,13 @@ public class Jugador implements Entidad{
 		tablero.colocarRadarEnCasilla(posRadarAct);
 	}
 
+	@Override
+	public Integer obtenerNumUsosRadar() {
+		if(radar == null)
+			return -1;
+		return radar.obtenerNumUsos();
+	}
+
 	// CASILLAS --------
 	@Override
 	public void actualizarContorno(ArrayList<Integer> pLista) {
@@ -159,5 +175,34 @@ public class Jugador implements Entidad{
 
 	public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado) {
 		tablero.actualizarEstadoCasillaOneTap(pCasilla, pEstado);
+	}
+
+	// ESCUDOS --------
+	@Override
+	public void colocarEscudoBarco(int pCasilla) throws ImposibleColocarEscudoException {
+		if(numEscudos > 0){
+			Integer idBarco = tablero.obtenerIdBarcoCasilla(pCasilla);
+
+			if(idBarco == null){
+				throw new ImposibleColocarEscudoException();
+			} else{
+				Barco barco = listaBarcos.obtenerBarco(idBarco);
+				if(barco == null){
+					throw new ImposibleColocarEscudoException();
+				} else{
+					barco.setEscudo(new EscudoBarco());
+					barco.actualizarCasillasEscudo(false);
+					numEscudos--;
+				}
+			}
+
+		}
+		else
+			throw new ImposibleColocarEscudoException();
+	}
+
+	@Override
+	public Integer obtenerNumEscudos() {
+		return numEscudos;
 	}
 }

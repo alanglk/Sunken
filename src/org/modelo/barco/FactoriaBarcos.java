@@ -19,12 +19,8 @@ public class FactoriaBarcos {
         if (pTipo.equals(ETipoBarco.DESTRUCTOR))
             nuevoBarco = new Destructor(pId);
 
-        if(pTipo.equals(ETipoBarco.PORTAVIONES)){
+        if(pTipo.equals(ETipoBarco.PORTAVIONES))
             nuevoBarco = new Portaviones(pId);
-            //TODO: Testear el escudo
-            nuevoBarco.setEscudo(new EscudoBarco());
-        }
-
 
         if(pTipo.equals(ETipoBarco.SUBMARINO))
             nuevoBarco = new Submarino(pId);

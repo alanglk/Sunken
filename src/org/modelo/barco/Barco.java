@@ -142,8 +142,6 @@ public abstract class Barco {
 			else
 				ListaJugadores.getInstance().getEntidad(1).actualizarContorno(posicionesBarcoDestr);
 
-
-
 		}
 
 	}
@@ -185,5 +183,18 @@ public abstract class Barco {
 			System.out.print("" + posicionesBarco[i] + ", ");
 		}
 		System.out.println("");
+	}
+
+	// Se usa cuando se pulsa un barco del jugador para ponerle un escudo. El enemigo añade los escudos antes de colocar los barcos
+	public void actualizarCasillasEscudo(boolean pEnemigo){
+		if(escudo != null){
+			for (int i = 0; i < posicionesBarco.length; i++){
+				System.out.print("/// CASILLA " + posicionesBarco[i] + " se actualiza con estado: " + getEstadoCasillas());
+				if (!pEnemigo)
+					ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(posicionesBarco[i], getEstadoCasillas());
+				else
+					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(posicionesBarco[i], getEstadoCasillas());
+			}
+		}
 	}
 }

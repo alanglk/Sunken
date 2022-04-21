@@ -7,7 +7,7 @@ public class Casilla {
 
 	private int pos;
 	private EEstadoCasilla estado;
-	private int idBarco;
+	private Integer idBarco;
 	private boolean enemigo = false;
 	private boolean oculto = false;
 	private boolean hayRadar = false;
@@ -15,7 +15,7 @@ public class Casilla {
 	public Casilla(int pPos, EEstadoCasilla pEstado, boolean pEnemigo) {
 		pos = pPos;
 		estado = pEstado;
-		idBarco=-1;
+		idBarco = null;
 		enemigo = pEnemigo;
 
 		if(pEnemigo) oculto=true;
@@ -23,6 +23,10 @@ public class Casilla {
 
 	public boolean esAgua(){
 		return estado.equals(EEstadoCasilla.AGUA);
+	}
+
+	public Integer obtenerIdBarco(){
+		return idBarco;
 	}
 
 	public void ponerBarco(Barco pBarco){
@@ -34,9 +38,9 @@ public class Casilla {
 
 	public void actualizarDisparo(ETipoMisil pTipo){
 		// TODO: Esto hau que cambiarlo en diseño!!!!!
-		if(!enemigo && idBarco != -1)
+		if(!enemigo && idBarco != null)
 			ListaJugadores.getInstance().getEntidad(0).dispararBarco(pTipo, pos,this.idBarco, enemigo);
-		else if(idBarco != -1)
+		else if(idBarco != null)
 			ListaJugadores.getInstance().getEntidad(1).dispararBarco(pTipo, pos,this.idBarco, enemigo);
 
 		oculto = false;

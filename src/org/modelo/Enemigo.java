@@ -1,6 +1,8 @@
 package org.modelo;
 
 import org.modelo.barco.*;
+import org.modelo.excepciones.ImposibleColocarBarcoException;
+import org.modelo.excepciones.ImposibleColocarEscudoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
@@ -17,6 +19,8 @@ public class Enemigo implements Entidad{
 	private ListaBarcos listaBarcos;
 	private ListaMisiles listaMisiles;
 	private Radar radar;
+
+	private int numEscudos = 1;
 
 	public Enemigo(){
 		this.tablero=new Tablero(true);
@@ -65,7 +69,7 @@ public class Enemigo implements Entidad{
 
 	// BARCOS --------
 	@Override
-	public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws Exception {}
+	public void colocarBarco(int pPos, ETipoBarco pTipoBarco, EOrientaconBarco pOrientacion) throws ImposibleColocarBarcoException{}
 
 	@Override
 	public void colocarBarco() {
@@ -137,6 +141,11 @@ public class Enemigo implements Entidad{
 		tablero.actualizarCasillasDisparo(pTipo, posicionesDisparo);
 	}
 
+	@Override
+	public Integer obtenerNumMisilesDisponibles(ETipoMisil tipoMisil) {
+		return null;
+	}
+
 	// RADAR --------
 	@Override
 	public void usarRadar() throws ImposibleUsarRadarException {
@@ -160,6 +169,11 @@ public class Enemigo implements Entidad{
 		tablero.colocarRadarEnCasilla(posRadarAct);
 	}
 
+	@Override
+	public Integer obtenerNumUsosRadar() {
+		return null;
+	}
+
 	// CASILLAS --------
 	@Override
 	public void actualizarContorno(ArrayList<Integer> pLista) {
@@ -178,5 +192,14 @@ public class Enemigo implements Entidad{
 
 	public void actualizarEstadoCasillaOneTap(int pCasilla, EEstadoCasilla pEstado) {
 		tablero.actualizarEstadoCasillaOneTap(pCasilla, pEstado);
+	}
+
+	// ESCUDOS --------
+	@Override
+	public void colocarEscudoBarco(int pCasilla) throws ImposibleColocarEscudoException {}
+
+	@Override
+	public Integer obtenerNumEscudos() {
+		return numEscudos;
 	}
 }

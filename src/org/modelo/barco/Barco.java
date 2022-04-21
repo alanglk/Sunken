@@ -137,15 +137,11 @@ public abstract class Barco {
 
 		if(estaHundido()) {
 			System.out.println("HUNDIDO");
-			int i=0;
-			while (i<this.posicionesBarcoDestr.size()){
-				System.out.println(posicionesBarcoDestr.get(i));
-				i++;
-			}
-			if(pEnemigo) {
+			if(!pEnemigo)
+				ListaJugadores.getInstance().getEntidad(0).actualizarContorno(posicionesBarcoDestr);
+			else
 				ListaJugadores.getInstance().getEntidad(1).actualizarContorno(posicionesBarcoDestr);
 
-			}
 
 
 		}

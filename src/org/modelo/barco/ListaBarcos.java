@@ -77,7 +77,7 @@ public class ListaBarcos {
 		}
 	}
 
-	public Integer obtenerNumBarcos(ETipoBarco tipoBarco) {
+	public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco) {
 		Iterator<Barco> itr = getIterator();
 		Barco barco = null;
 		int numBarcos=0;
@@ -85,7 +85,8 @@ public class ListaBarcos {
 		while(itr.hasNext()) {
 			barco = itr.next();
 			if (barco.esTipo(tipoBarco)) {
-				numBarcos++;
+				if(!barco.estaColocado())
+					numBarcos++;
 			}
 		}
 		return numBarcos;

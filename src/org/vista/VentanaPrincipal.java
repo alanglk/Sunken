@@ -12,7 +12,7 @@ public class VentanaPrincipal extends JFrame {
     private PanelTablero tableroJugador;
     private PanelTablero tableroEnemigo;
 
-    private PanelBarcos panelBarcos;
+    private JPanelBarcos panelBarcos;
     private PanelOpciones panelMisiles;
 
     private VentanaPrincipal(){
@@ -41,7 +41,7 @@ public class VentanaPrincipal extends JFrame {
         tableroEnemigo = new PanelTablero(true);
         panelTableros.add(tableroEnemigo);
 
-        panelBarcos = new PanelBarcos();
+        panelBarcos = new JPanelBarcos();
         panelControladoresPrincipal.add(panelBarcos, BorderLayout.CENTER);
 
         panelMisiles = new PanelOpciones();

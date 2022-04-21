@@ -74,8 +74,8 @@ public class Jugador implements Entidad{
 	}
 
 	@Override
-	public Integer obtenerNumBarcos(ETipoBarco tipoBarco) {
-		return listaBarcos.obtenerNumBarcos(tipoBarco);
+	public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco) {
+		return listaBarcos.obtenerNumBarcosNoColocados(tipoBarco);
 	}
 
 	// DISPAROS --------

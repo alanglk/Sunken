@@ -98,7 +98,7 @@ public class Enemigo implements Entidad{
 	}
 
 	@Override
-	public Integer obtenerNumBarcos(ETipoBarco tipoBarco) {
+	public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco) {
 		return null;
 	}
 

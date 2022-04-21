@@ -1,5 +1,6 @@
 package org.vista;
 
+import org.ProgramaPrincipal;
 import org.modelo.ListaJugadores;
 import org.modelo.barco.ETipoBarco;
 import java.util.Observable;
@@ -13,6 +14,8 @@ public class JPanelNumBarcos extends JPanel implements Observer {
     private JPanel panelNumPortaviones;
     private JPanel panelNumSubmarino;
     private JPanel panelNumDestructor;
+
+    private JButton botonReiniciar;
 
 
     public JPanelNumBarcos(){
@@ -34,6 +37,8 @@ public class JPanelNumBarcos extends JPanel implements Observer {
         add(panelNumSubmarino);
         add(panelNumDestructor);
 
+        botonReiniciar=new JButton("REINICIAR PARTIDA");
+        add(botonReiniciar);
     }
 
     private JLabel getText(String text){

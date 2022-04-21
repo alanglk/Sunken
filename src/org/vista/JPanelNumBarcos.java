@@ -1,6 +1,8 @@
 package org.vista;
 
 import org.ProgramaPrincipal;
+import org.controlador.ControladorVentanaMenu;
+import org.controlador.ControladorVentanaPrincipal;
 import org.modelo.ListaJugadores;
 import org.modelo.barco.ETipoBarco;
 import java.util.Observable;
@@ -15,6 +17,12 @@ public class JPanelNumBarcos extends JPanel implements Observer {
     private JPanel panelNumSubmarino;
     private JPanel panelNumDestructor;
 
+    private JLabel numBarcosFragata;
+    private JLabel numBarcosPortaviones;
+    private JLabel numBarcosSubmarino;
+    private JLabel numBarcosDestructor;
+
+
     private JButton botonReiniciar;
 
 
@@ -26,10 +34,15 @@ public class JPanelNumBarcos extends JPanel implements Observer {
         panelNumSubmarino=new JPanel();
         panelNumDestructor=new JPanel();
 
-        panelNumFragata.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA).toString()));
-        panelNumPortaviones.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.PORTAVIONES).toString()));
-        panelNumSubmarino.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.SUBMARINO).toString()));
-        panelNumDestructor.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.DESTRUCTOR).toString()));
+        numBarcosFragata=new JLabel(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA).toString());
+        numBarcosDestructor=new JLabel(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.DESTRUCTOR).toString());
+        numBarcosPortaviones=new JLabel(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.PORTAVIONES).toString());
+        numBarcosSubmarino=new JLabel(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.SUBMARINO).toString());
+
+        panelNumFragata.add(numBarcosFragata);
+        panelNumPortaviones.add(numBarcosPortaviones);
+        panelNumSubmarino.add(numBarcosSubmarino);
+        panelNumDestructor.add(numBarcosDestructor);
 
 
         add(panelNumFragata);
@@ -39,32 +52,18 @@ public class JPanelNumBarcos extends JPanel implements Observer {
 
         botonReiniciar=new JButton("REINICIAR PARTIDA");
         add(botonReiniciar);
+        addMouseListener(ControladorVentanaPrincipal.getInstance());
     }
 
-    private JLabel getText(String text){
-        JLabel texto = new JLabel(text);
-        texto.setHorizontalAlignment(SwingConstants.CENTER);
-        return texto;
-    }
 
     @Override
     public void update(Observable o, Object arg) {
-        panelNumFragata=new JPanel();
-        panelNumPortaviones=new JPanel();
-        panelNumSubmarino=new JPanel();
-        panelNumDestructor=new JPanel();
-
-        panelNumFragata.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA).toString()));
-        panelNumPortaviones.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.PORTAVIONES).toString()));
-        panelNumSubmarino.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.SUBMARINO).toString()));
-        panelNumDestructor.add(getText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.DESTRUCTOR).toString()));
-
-        add(panelNumFragata);
-        add(panelNumPortaviones);
-        add(panelNumSubmarino);
-        add(panelNumDestructor);
-
-
+        numBarcosFragata.setText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA).toString());
+        System.out.println(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.FRAGATA).toString());
+        numBarcosDestructor.setText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.DESTRUCTOR).toString());
+        numBarcosPortaviones.setText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.PORTAVIONES).toString());
+        numBarcosSubmarino.setText(ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcos(ETipoBarco.SUBMARINO).toString());
+        repaint();
     }
 
 }

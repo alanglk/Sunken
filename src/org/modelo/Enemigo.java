@@ -156,7 +156,8 @@ public class Enemigo implements Entidad{
 
 	@Override
 	public void colocarRadarEnCasilla(int posRadarAnt, int posRadarAct) {
-
+		tablero.quitarRadarEnCasilla(posRadarAnt);
+		tablero.colocarRadarEnCasilla(posRadarAct);
 	}
 
 	// CASILLAS --------

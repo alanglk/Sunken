@@ -18,7 +18,7 @@ public interface Entidad {
     public Integer obtenerNumBarcos(ETipoBarco tipoBarco);
     
     //REALIZAR ACCION --------
-    public boolean realizarAccion(boolean juegoTerminado);
+    public boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException;
 
     // DISPAROS --------
     public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo);

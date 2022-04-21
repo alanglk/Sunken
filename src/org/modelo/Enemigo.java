@@ -104,14 +104,23 @@ public class Enemigo implements Entidad{
 	
 	//REALIZAR ACCION -------
 	@Override
-	public boolean realizarAccion(boolean juegoTerminado) {
+	public boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException {
 		if(!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado){
 			juegoTerminado = true;
 			System.out.println("GANA EL JUGADOR");
 		}else {
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
-			//Aquí viene la miga
-			enemigo.realizarDisparo();
+			//Creamos un booleano que dictamine qué va a hacer el enemigo
+			int r = new Random().nextInt(3);
+			if(r == 1) {
+				enemigo.realizarDisparo();
+			}
+			else if(r == 2) {
+				enemigo.recolocarRadar();
+			}
+			else {
+				enemigo.usarRadar();
+			}
 		}
 		return juegoTerminado;
 	}

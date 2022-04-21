@@ -85,7 +85,9 @@ public class ListaBarcos {
 		while(itr.hasNext()) {
 			barco = itr.next();
 			if (barco.esTipo(tipoBarco)) {
-				numBarcos++;
+				if(barco.estaColocado()){
+					numBarcos++;
+				}
 			}
 		}
 		return numBarcos;

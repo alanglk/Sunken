@@ -119,9 +119,9 @@ public class Jugador implements Entidad{
 	}
 	
 	//REALIZAR ACCION -------- 
-	//Esto sólo lo utiliza el enemigo
+	//Esto sï¿½lo lo utiliza el enemigo
 	@Override
-	public boolean realizarAccion(boolean juegoTerminado) {
+	public boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException{
 		// TODO Auto-generated method stub
 		return false;
 	}

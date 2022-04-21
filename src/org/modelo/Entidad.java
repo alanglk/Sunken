@@ -24,6 +24,11 @@ public interface Entidad {
     public void realizarDisparo(ETipoMisil pTipo, int pPos) throws ImposibleDispararException;
     public void realizarDisparo();
     public void recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo);
+
+    //REALIZAR ACCION --------
+    //Esto s�lo lo utiliza el enemigo
+    boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException;
+
     public Integer obtenerNumMisilesDisponibles(ETipoMisil tipoMisil);
 
     // RADAR --------

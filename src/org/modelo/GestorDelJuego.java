@@ -1,9 +1,7 @@
 package org.modelo;
 
 import org.controlador.FormularioControlador;
-import org.modelo.barco.ETipoBarco;
 import org.modelo.excepciones.ImposibleColocarBarcoException;
-import org.modelo.excepciones.ImposibleColocarEscudoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 
@@ -104,6 +102,7 @@ public class GestorDelJuego extends Observable {
 			try{
 				ListaJugadores.getInstance().getEntidad(0).usarRadar();
 				// Llamar a enemigo.realizarAcción
+				juegoTerminado = ListaJugadores.getInstance().getEntidad(1).realizarAccion(juegoTerminado);
 
 			}catch (ImposibleUsarRadarException e){
 				System.out.println("IMPOSIBLE USAR EL RADAR");
@@ -118,6 +117,11 @@ public class GestorDelJuego extends Observable {
 			ListaJugadores.getInstance().getEntidad(0).recolocarRadar();
 
 			// Llamar a enemigo.realizarAcción
+			try {
+				juegoTerminado = ListaJugadores.getInstance().getEntidad(1).realizarAccion(juegoTerminado);
+			} catch (ImposibleUsarRadarException e) {
+				System.out.println("IMPOSIBLE USAR EL RADAR");
+			}
 		}
 
 		actualizarIntefaz();

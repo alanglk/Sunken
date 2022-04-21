@@ -114,7 +114,9 @@ public class Enemigo implements Entidad{
 			System.out.println("GANA EL JUGADOR");
 		}else {
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
-			//Creamos un booleano que dictamine qué va a hacer el enemigo
+			//Creamos un booleano que dictamine quï¿½ va a hacer el enemigo
+			enemigo.realizarDisparo();
+			/*
 			int r = new Random().nextInt(3);
 			if(r == 1) {
 				enemigo.realizarDisparo();
@@ -124,7 +126,7 @@ public class Enemigo implements Entidad{
 			}
 			else {
 				enemigo.usarRadar();
-			}
+			}*/
 		}
 		return juegoTerminado;
 	}

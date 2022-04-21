@@ -2,13 +2,10 @@ package org.vista;
 
 import org.controlador.ControladorVentanaPrincipal;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URL;
 
-public class PanelMisiles extends JPanel {
+public class PanelOpciones extends JPanel {
     private JRadioButton botonBomba;
     private JRadioButton botonBombaOneTap;
     private JButton botonUsarRadar;
@@ -16,21 +13,30 @@ public class PanelMisiles extends JPanel {
 
     private final ButtonGroup grupoBotonesMisiles=new ButtonGroup();
 
-    public PanelMisiles(){
-        setLayout(new GridLayout(1,4,0,0));
+    public PanelOpciones(){
+        super();
+        setLayout(new GridLayout(2, 1, 0, 0));
+
+        JPanel panelMisiles = new JPanel(new GridLayout(1, 2, 0, 0));
 
         botonBomba=getBotonRadio("Bomba");
-        add(botonBomba);
+        panelMisiles.add(botonBomba);
 
         botonBombaOneTap=getBotonRadio("Bomba One Tap");
-        add(botonBombaOneTap);
+        panelMisiles.add(botonBombaOneTap);
+
+        add(panelMisiles, BorderLayout.CENTER);
+
+        JPanel panelRadar = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
 
         botonUsarRadar=getBotonRadar(("Usar Radar"));
-        add(botonUsarRadar);
+        panelRadar.add(botonUsarRadar, c);
 
         botonRecolocarRadar=getBotonRadar(("Recolocar Radar"));
-        add(botonRecolocarRadar);
+        panelRadar.add(botonRecolocarRadar, c);
 
+        add(panelRadar, BorderLayout.CENTER);
     }
 
     private JRadioButton getBotonRadio(String text) {

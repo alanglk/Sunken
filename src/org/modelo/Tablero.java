@@ -210,6 +210,9 @@ public class Tablero {
 		else if(listaCasillas.get(posicionesDisparo.get(0)).getEstado().equals(EEstadoCasilla.HUNDIDO)){
 			barco=posicionesDisparo.get(0);
 		}
+		/*else if(listaCasillas.get(posicionesDisparo.get(0)).getEstado().equals(EEstadoCasilla.ESCUDO)){
+			barco=posicionesDisparo.get(0)+101;
+		}*/
 		System.out.println(barco);
 		return barco;
 	}

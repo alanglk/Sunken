@@ -83,8 +83,8 @@ public class Enemigo implements Entidad{
 			if(this.tablero.sePuedeColocar(posicion,orientacion,b1)){
 				this.tablero.colocarBarco(posicion,orientacion,b1);
 				i++;
-			}*/
-			enemigo.realizarDisparo();
+			}
+
 		}
 	}
 
@@ -198,7 +198,7 @@ public class Enemigo implements Entidad{
 					this.listaCasillasAReventar.set(3, -1);
 					if (((this.listaCasillasAReventar.get(1) / 10 - (this.listaCasillasAReventar.get(1) + 10) / 10) == -1) && (this.listaCasillasAReventar.get(1) + 10) < 100) {
 						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(1) + 10).equals(EEstadoCasilla.AGUADISPARO)) {
-							listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(1) + 10);
+							listaCasillasAReventar.set(1, this.listaCasillasAReventar.get(1) + 10);
 						}
 						else {
 							this.listaCasillasAReventar.set(1, -1);
@@ -208,6 +208,8 @@ public class Enemigo implements Entidad{
 						this.listaCasillasAReventar.set(1, -1);
 					}
 				}
+
+
 				else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}
@@ -218,13 +220,14 @@ public class Enemigo implements Entidad{
 				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 				if (pos == -1) {
 					this.listaCasillasAReventar.set(2, -1);
-				} else if(pos!=101){
+				}
+				else if(pos!=101){
 
 						this.listaCasillasAReventar.set(0, -1);
 						this.listaCasillasAReventar.set(1, -1);
-						if ((this.listaCasillasAReventar.get(2) - 1) / 10 == this.listaCasillasAReventar.get(2) / 10) {
+						if (((this.listaCasillasAReventar.get(2) - 1) / 10 == this.listaCasillasAReventar.get(2) / 10)&&(this.listaCasillasAReventar.get(2) - 1)>-1) {
 							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(2) - 1).equals(EEstadoCasilla.AGUADISPARO)) {
-								listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(2) - 1);
+								listaCasillasAReventar.set(2, this.listaCasillasAReventar.get(2) - 1);
 							} else {
 								this.listaCasillasAReventar.set(2, -1);
 							}
@@ -233,6 +236,7 @@ public class Enemigo implements Entidad{
 						}
 
 				}
+
 				else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}
@@ -248,8 +252,9 @@ public class Enemigo implements Entidad{
 					this.listaCasillasAReventar.set(1, -1);
 					if (((this.listaCasillasAReventar.get(3) + 1) / 10 == this.listaCasillasAReventar.get(3) / 10)) {
 						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(3) + 1).equals(EEstadoCasilla.AGUADISPARO)) {
-							listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(3) + 1);
+							listaCasillasAReventar.set(3, this.listaCasillasAReventar.get(3) + 1);
 						}
+
 						else {
 							this.listaCasillasAReventar.set(3, -1);
 						}
@@ -257,6 +262,7 @@ public class Enemigo implements Entidad{
 						this.listaCasillasAReventar.set(3, -1);
 					}
 				}
+
 				else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}

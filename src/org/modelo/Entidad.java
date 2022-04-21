@@ -14,7 +14,6 @@ public interface Entidad {
     public void colocarBarco();
     public boolean estanTodosBarcosColocados();
     public boolean hayBarcosSinHundir();
-    // TODO: Eliminar este metodo
     public void imprimirBarcos();
     public Integer obtenerNumBarcos(ETipoBarco tipoBarco);
 

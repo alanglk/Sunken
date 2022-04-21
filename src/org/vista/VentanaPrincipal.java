@@ -11,7 +11,7 @@ public class VentanaPrincipal extends JFrame {
     private PanelTablero tableroEnemigo;
 
     private PanelBarcos panelBarcos;
-    private PanelMisiles panelMisiles;
+    private PanelOpciones panelMisiles;
 
     public VentanaPrincipal(){
         super("SUNKEN");
@@ -42,7 +42,7 @@ public class VentanaPrincipal extends JFrame {
         panelBarcos = new PanelBarcos();
         panelControladoresPrincipal.add(panelBarcos, BorderLayout.CENTER);
 
-        panelMisiles = new PanelMisiles();
+        panelMisiles = new PanelOpciones();
         panelControladoresPrincipal.add(panelMisiles, BorderLayout.CENTER);
 
 

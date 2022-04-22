@@ -122,23 +122,31 @@ public class Enemigo implements Entidad{
 	//REALIZAR ACCION -------
 	@Override
 	public boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException {
+
 		if(!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado){
 			juegoTerminado = true;
 			System.out.println("GANA EL JUGADOR");
 		}else {
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
-			enemigo.realizarDisparo();
-			/*int r = new Random().nextInt(2);
-			if(r == 1) {
-				enemigo.realizarDisparo();
+			boolean accionRealizada=false;
+			while(!accionRealizada) {
+				int r = new Random().nextInt(2);
+				if (r == 1) {
+					enemigo.realizarDisparo();
+					accionRealizada=true;
+				} else if (r == 2) {
+					enemigo.recolocarRadar();
+					accionRealizada=true;
+				} else {
+					try {
+						enemigo.usarRadar();
+						accionRealizada=true;
+					}
+					catch(ImposibleUsarRadarException e){
+					}
+				}
 			}
-			else if(r == 2) {
-				enemigo.recolocarRadar();
-			}
-			else {
-				enemigo.usarRadar();
-			}*/
 		}
 		return juegoTerminado;
 	}
@@ -382,8 +390,28 @@ public class Enemigo implements Entidad{
 	// RADAR --------
 	@Override
 	public void usarRadar() throws ImposibleUsarRadarException {
-		// TODO: Implement this
+		if(radar!=null) {
+			if (radar.sePuedeUtilizar()) {
+				System.out.println("Enemigo usa radar");
+				ArrayList<Integer> listaRadar = radar.obtenerPosicionesReveladas(10);
+				for (Integer x : listaRadar) {
+					if (ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.BARCO)) {
+						this.listaCasillasImportantes.add(x);
+						System.out.println(x);
+					}
+				}
+
+			} else {
+				throw new ImposibleUsarRadarException();
+			}
+		}
+		else{
+			throw new ImposibleUsarRadarException();
+		}
 	}
+
+
+
 
 	@Override
 	public void revelarCasillasRadar(ArrayList<Integer> posciones) {

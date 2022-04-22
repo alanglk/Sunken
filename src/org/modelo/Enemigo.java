@@ -12,6 +12,8 @@ import org.modelo.radar.Radar;
 import org.modelo.radar.Radar3x3;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 public class Enemigo implements Entidad{
@@ -20,6 +22,10 @@ public class Enemigo implements Entidad{
 	private ListaMisiles listaMisiles;
 	private Radar radar;
 	private ArrayList<Integer> listaCasillasAReventar;
+	private Queue<Integer> listaCasillasImportantes;
+
+	private int onetap;
+	private int IA;
 
 	private int numEscudos = 1;
 
@@ -28,6 +34,9 @@ public class Enemigo implements Entidad{
 		this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
 		this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
 		this.listaCasillasAReventar=new ArrayList<Integer>();
+		this.listaCasillasImportantes=(Queue)new LinkedList<Integer>();
+		this.onetap=-1;
+		this.IA=-1;
 	}
 
 	private int obtPosBarco() {
@@ -158,6 +167,26 @@ public class Enemigo implements Entidad{
 		// Comprobamos si el misil esta disponible
 		ETipoMisil tipo = ETipoMisil.BOMBA;
 		int pos;
+		boolean disparado;
+		disparado=false;
+		if (this.onetap != -1) {
+			System.out.println("ONETAP INCOMING");
+			ArrayList<Integer> posicionesDisparo = new ArrayList<Integer>();
+			posicionesDisparo.add(this.onetap-102);
+			System.out.println(listaMisiles.sePuedeDisparar(ETipoMisil.BOMBAONETAP));
+			if (listaMisiles.sePuedeDisparar(ETipoMisil.BOMBAONETAP)) {
+				posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBAONETAP, onetap-102, 10);
+				ListaJugadores.getInstance().getEntidad(0).recibirDisparo(ETipoMisil.BOMBAONETAP, posicionesDisparo);
+				this.IA = -1;
+				disparado=true;
+			} else {
+				this.listaCasillasImportantes.add(onetap-102);
+				this.IA = -1;
+			}
+			this.onetap = -1;
+
+		}
+
 		if (this.listaCasillasAReventar.size() != 0) {//SI COLA DE MEMORIA NO VACIA HACER IA
 			System.out.println("IA");
 			ArrayList<Integer> posicionesDisparo = new ArrayList<Integer>();
@@ -165,171 +194,180 @@ public class Enemigo implements Entidad{
 			// ########INTENTO ARRIBA##############
 			if (this.listaCasillasAReventar.get(0) != -1) {//PRIMERO MIRA SI PUEDE DISPARAR ARRIBA
 				posicionesDisparo.add(this.listaCasillasAReventar.get(0));
-				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				pos = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 				if (pos == -1) {//SI IMPACTA EN NO BARCO ELIMINAR CAMINO DE ARRIBA
 					this.listaCasillasAReventar.set(0, -1);
-				} else if(pos!=101) {//SI IMPACTA ARRIBA ELIMINAR EN HORIZONTAL YA QUE SOLO PUEDE SER VERTICAL
+				} else if (pos != 101 && pos < 101) {//SI IMPACTA ARRIBA ELIMINAR EN HORIZONTAL YA QUE SOLO PUEDE SER VERTICAL
 					this.listaCasillasAReventar.set(2, -1);
 					this.listaCasillasAReventar.set(3, -1);
 					if (((this.listaCasillasAReventar.get(0) / 10 - (this.listaCasillasAReventar.get(0) - 10) / 10) == 1) && (this.listaCasillasAReventar.get(0) - 10) > -1) {//SI IMPACTO ARRIBA SEGUIR MIRANDO UNO MAS ARRIBA
 						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(0) - 10).equals(EEstadoCasilla.AGUADISPARO)) {
 							listaCasillasAReventar.set(0, this.listaCasillasAReventar.get(0) - 10);
-						}
-						else {//SI NO ELIMINAR ARRIBA
+						} else {//SI NO ELIMINAR ARRIBA
 							this.listaCasillasAReventar.set(0, -1);
 						}
-					}
-					else {//SI NO ELIMINAR ESTA POSIBILIDAD
+					} else {//SI NO ELIMINAR ESTA POSIBILIDAD
 						this.listaCasillasAReventar.set(0, -1);
 					}
-				}
-				else {
+				} else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}
 			}
 			// ########INTENTO ABAJO##############
 			else if (this.listaCasillasAReventar.get(1) != -1) {
 				posicionesDisparo.add(this.listaCasillasAReventar.get(1));
-				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				pos = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 				if (pos == -1) {
 					this.listaCasillasAReventar.set(1, -1);
-				} else if(pos!=101){
+				} else if (pos != 101 || pos > 101) {
 					this.listaCasillasAReventar.set(2, -1);
 					this.listaCasillasAReventar.set(3, -1);
 					if (((this.listaCasillasAReventar.get(1) / 10 - (this.listaCasillasAReventar.get(1) + 10) / 10) == -1) && (this.listaCasillasAReventar.get(1) + 10) < 100) {
 						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(1) + 10).equals(EEstadoCasilla.AGUADISPARO)) {
 							listaCasillasAReventar.set(1, this.listaCasillasAReventar.get(1) + 10);
-						}
-						else {
+						} else {
 							this.listaCasillasAReventar.set(1, -1);
 						}
-					}
-					else {
+					} else {
 						this.listaCasillasAReventar.set(1, -1);
 					}
-				}
-
-
-				else {
+				} else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}
 			}
 			// ########INTENTO IZQUIERDA##############
 			else if (this.listaCasillasAReventar.get(2) != -1) {
 				posicionesDisparo.add(this.listaCasillasAReventar.get(2));
-				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				pos = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 				if (pos == -1) {
 					this.listaCasillasAReventar.set(2, -1);
-				}
-				else if(pos!=101){
+				} else if (pos != 101 || pos > 101) {
 
-						this.listaCasillasAReventar.set(0, -1);
-						this.listaCasillasAReventar.set(1, -1);
-						if (((this.listaCasillasAReventar.get(2) - 1) / 10 == this.listaCasillasAReventar.get(2) / 10)&&(this.listaCasillasAReventar.get(2) - 1)>-1) {
-							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(2) - 1).equals(EEstadoCasilla.AGUADISPARO)) {
-								listaCasillasAReventar.set(2, this.listaCasillasAReventar.get(2) - 1);
-							} else {
-								this.listaCasillasAReventar.set(2, -1);
-							}
+					this.listaCasillasAReventar.set(0, -1);
+					this.listaCasillasAReventar.set(1, -1);
+					if (((this.listaCasillasAReventar.get(2) - 1) / 10 == this.listaCasillasAReventar.get(2) / 10) && (this.listaCasillasAReventar.get(2) - 1) > -1) {
+						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(2) - 1).equals(EEstadoCasilla.AGUADISPARO)) {
+							listaCasillasAReventar.set(2, this.listaCasillasAReventar.get(2) - 1);
 						} else {
 							this.listaCasillasAReventar.set(2, -1);
 						}
+					} else {
+						this.listaCasillasAReventar.set(2, -1);
+					}
 
-				}
-
-				else {
+				} else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}
 			}
 			// ########INTENTO DERECHA##############
 			else if (this.listaCasillasAReventar.get(3) != -1) {
 				posicionesDisparo.add(this.listaCasillasAReventar.get(3));
-				pos=ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				pos = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 				if (pos == -1) {
 					this.listaCasillasAReventar.set(3, -1);
-				} else if(pos!=101) {
+				} else if (pos != 101 || pos > 101) {
 					this.listaCasillasAReventar.set(0, -1);
 					this.listaCasillasAReventar.set(1, -1);
 					if (((this.listaCasillasAReventar.get(3) + 1) / 10 == this.listaCasillasAReventar.get(3) / 10)) {
 						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(listaCasillasAReventar.get(3) + 1).equals(EEstadoCasilla.AGUADISPARO)) {
 							listaCasillasAReventar.set(3, this.listaCasillasAReventar.get(3) + 1);
-						}
-
-						else {
+						} else {
 							this.listaCasillasAReventar.set(3, -1);
 						}
 					} else {
 						this.listaCasillasAReventar.set(3, -1);
 					}
-				}
-
-				else {
+				} else {
 					this.listaCasillasAReventar = new ArrayList<Integer>();
 				}
-			}
-			else {
+			} else {
 				this.listaCasillasAReventar = new ArrayList<Integer>();
 			}
 
-		}
-		else if (listaMisiles.sePuedeDisparar(tipo)) {
-			ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBA, obtPosDisparo(), 10);
-			System.out.println("ENEMIGO -> disparando: " + posicionesDisparo.toString());
-			int posicion = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
-			System.out.println(posicion);
-			if (posicion != -1&&posicion !=101) {
-				if (((posicion / 10 - (posicion - 10) / 10) == 1) && (posicion - 10) > -1) {
+		} else if (listaMisiles.sePuedeDisparar(tipo)&&!disparado) {
+			boolean enc = false;
+			if (IA > -1 && IA < 202) {
+				System.out.println("IA one tap" + (IA - 102));
+				ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBA, IA - 102, 10);
+				int posicion = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+				posicion = posicion;
+				onetap = posicion - 102;
+				enc = true;
+				this.onetap = this.IA;
 
-					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 10).equals(EEstadoCasilla.AGUADISPARO)) {
-						listaCasillasAReventar.add(posicion - 10);
-					}
-					else {
-						listaCasillasAReventar.add(-1);
-					}
+			} else if (this.onetap == -1) {
+				int posicion=0;
+				ArrayList<Integer> posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBA, obtPosDisparo(), 10);
+				System.out.println("ENEMIGO -> disparando: " + posicionesDisparo.toString());
+				boolean posDisponible=false;
+				while((this.listaCasillasImportantes.size()!=0)&&!posDisponible) {
+					if (this.getEstadoCasilla(this.listaCasillasImportantes.peek()).equals(EEstadoCasilla.BARCOHUNDIDO)) {
+						this.listaCasillasImportantes.remove();
+					} else {
 
+						posicionesDisparo = listaMisiles.obtAreaMisil(ETipoMisil.BOMBA, this.listaCasillasImportantes.remove(), 10);
+						posDisponible=true;
+						posicion = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
+					}
 				}
-				else {
-					listaCasillasAReventar.add(-1);
+				if(!posDisponible){
+					posicion = ListaJugadores.getInstance().getEntidad(0).recibirDisparo(tipo, posicionesDisparo);
 				}
-				if (((posicion / 10 - (posicion + 10) / 10) == -1) && (posicion + 10) < 100) {
 
-					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion + 10).equals(EEstadoCasilla.AGUADISPARO)) {
-						listaCasillasAReventar.add(posicion + 10);
+				System.out.println(posicion);
+				if (posicion != -1 && posicion > 102) {
+					System.out.println("onetap" + posicion);
+					if (posicion > 100) {
+						IA = posicion;
+						enc = true;
+						System.out.println(enc);
 					}
-					else {
-						listaCasillasAReventar.add(-1);
-					}
-				}
-				else {
-					listaCasillasAReventar.add(-1);
-				}
-				if ((posicion - 1) / 10 == posicion / 10 && (posicion-1>-1)) {
-					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 1).equals(EEstadoCasilla.AGUADISPARO)) {
-						listaCasillasAReventar.add(posicion - 1);
-					}
-					else {
-						listaCasillasAReventar.add(-1);
-					}
+				}else if (posicion>-1&&posicion<101) {
+						if ((((posicion / 10 - (posicion - 10) / 10) == 1) && (posicion - 10) > -1) && !enc) {
+							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 10).equals(EEstadoCasilla.AGUADISPARO)) {
+								listaCasillasAReventar.add(posicion - 10);
+							} else {
+								listaCasillasAReventar.add(-1);
+							}
+						} else {
+							listaCasillasAReventar.add(-1);
+						}
 
-				}
-				else {
-					listaCasillasAReventar.add(-1);
-				}
-				if (((posicion + 1) / 10 == posicion / 10)&&(posicion+1<100)) {
+						if ((((posicion / 10 - (posicion + 10) / 10) == -1) && (posicion + 10) < 100) && !enc) {
 
-					if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion + 1).equals(EEstadoCasilla.AGUADISPARO)) {
-						listaCasillasAReventar.add(posicion + 1);
+							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion + 10).equals(EEstadoCasilla.AGUADISPARO)) {
+								listaCasillasAReventar.add(posicion + 10);
+							} else {
+								listaCasillasAReventar.add(-1);
+							}
+						} else {
+							listaCasillasAReventar.add(-1);
+						}
+						if ((posicion - 1) / 10 == posicion / 10 && (posicion - 1 > -1) && !enc) {
+							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 1).equals(EEstadoCasilla.AGUADISPARO)) {
+								listaCasillasAReventar.add(posicion - 1);
+							} else {
+								listaCasillasAReventar.add(-1);
+							}
+
+						} else {
+							listaCasillasAReventar.add(-1);
+						}
+						if (((posicion + 1) / 10 == posicion / 10) && (posicion + 1 < 100)&& !enc) {
+
+							if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion + 1).equals(EEstadoCasilla.AGUADISPARO)) {
+								listaCasillasAReventar.add(posicion + 1);
+							} else {
+								listaCasillasAReventar.add(-1);
+							}
+						} else {
+							listaCasillasAReventar.add(-1);
+						}
 					}
-					else {
-						listaCasillasAReventar.add(-1);
-					}
-				}
-				else {
-					listaCasillasAReventar.add(-1);
-				}
 				}
 			}
 		}
+
 
 	@Override
 	public int recibirDisparo(ETipoMisil pTipo, ArrayList<Integer> posicionesDisparo) {

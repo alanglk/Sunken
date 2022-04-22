@@ -29,6 +29,7 @@ public class GestorDelJuego extends Observable {
 		// Marcamos el estado como partida iniciada y decidimos el orden de juego.
 		Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
 		enemigo.colocarBarco();
+		enemigo.colocarEscudoBarco();
 
 		colocandoBarcos = false;
 		ListaJugadores.getInstance().getEntidad(0).imprimirBarcos();

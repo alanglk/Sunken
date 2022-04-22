@@ -27,7 +27,7 @@ public class Enemigo implements Entidad{
 	private int onetap;
 	private int IA;
 
-	private int numEscudos = 1;
+	private int numEscudos = 3;
 
 	public Enemigo(){
 		this.tablero=new Tablero(true);
@@ -117,7 +117,8 @@ public class Enemigo implements Entidad{
 	public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco) {
 		return null;
 	}
-	
+
+
 	//REALIZAR ACCION -------
 	@Override
 	public boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException {
@@ -128,7 +129,6 @@ public class Enemigo implements Entidad{
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
 			enemigo.realizarDisparo();
-			/*
 			/*int r = new Random().nextInt(2);
 			if(r == 1) {
 				enemigo.realizarDisparo();
@@ -430,6 +430,20 @@ public class Enemigo implements Entidad{
 	// ESCUDOS --------
 	@Override
 	public void colocarEscudoBarco(int pCasilla) throws ImposibleColocarEscudoException {}
+
+	@Override
+	public void colocarEscudoBarco(){
+		while(numEscudos > 0 && !listaBarcos.todosTienenEscudo()){
+			Barco barco = null;
+			while(barco == null || barco.tieneEscudo()){
+				barco = listaBarcos.obtenerAleatorioParaEscudo();
+			}
+
+			barco.setEscudo(new EscudoBarco());
+			numEscudos--;
+		}
+
+	}
 
 	@Override
 	public Integer obtenerNumEscudos() {

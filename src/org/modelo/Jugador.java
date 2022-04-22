@@ -211,7 +211,11 @@ public class Jugador implements Entidad{
 	}
 
 	@Override
+	public void colocarEscudoBarco(){}
+
+	@Override
 	public Integer obtenerNumEscudos() {
 		return numEscudos;
 	}
+
 }

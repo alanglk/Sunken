@@ -2,6 +2,7 @@ package org.modelo.barco;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 public class ListaBarcos {
 
@@ -94,6 +95,22 @@ public class ListaBarcos {
 			}
 		}
 		return numBarcos;
+	}
+
+	public Barco obtenerAleatorioParaEscudo(){
+		int random = new Random().nextInt(lista.size());
+		return lista.get(random);
+	}
+
+	public boolean todosTienenEscudo(){
+		Iterator<Barco> itr =getIterator();
+		boolean todosEscudo = true;
+
+		while(itr.hasNext() && todosEscudo){
+			todosEscudo = itr.next().tieneEscudo();
+		}
+
+		return todosEscudo;
 	}
 }
 

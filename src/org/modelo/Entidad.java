@@ -47,5 +47,6 @@ public interface Entidad {
 
     // ESCUDOS --------
     public void colocarEscudoBarco(int pCasilla) throws ImposibleColocarEscudoException;
+    public void colocarEscudoBarco();
     public Integer obtenerNumEscudos();
 }

@@ -27,21 +27,23 @@ public class GestorDelJuego extends Observable {
 	public void iniciarPartida() {
 		// Se han colocado todos los barcos del jugador.
 		// Marcamos el estado como partida iniciada y decidimos el orden de juego.
-		Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
-		enemigo.colocarBarco();
-		enemigo.colocarEscudoBarco();
+		if (ListaJugadores.getInstance().getEntidad(0).estanTodosBarcosColocados()) {
+			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
+			enemigo.colocarBarco();
+			enemigo.colocarEscudoBarco();
 
-		colocandoBarcos = false;
-		ListaJugadores.getInstance().getEntidad(0).imprimirBarcos();
-		enemigo.imprimirBarcos();
-		System.out.println("\n========== INICIANDO PARTIDA!! ==========");
-		System.out.println("/////////////////////////////////////////////");
+			colocandoBarcos = false;
+			ListaJugadores.getInstance().getEntidad(0).imprimirBarcos();
+			enemigo.imprimirBarcos();
+			System.out.println("\n========== INICIANDO PARTIDA!! ==========");
+			System.out.println("/////////////////////////////////////////////");
 
-		// boolean random que indicará si empieza el enemigo o el jugador
-		boolean turnoEnemigo = new Random().nextBoolean();
+			// boolean random que indicará si empieza el enemigo o el jugador
+			boolean turnoEnemigo = new Random().nextBoolean();
 
-		if(colocandoBarcos && turnoEnemigo)
-			enemigo.realizarDisparo();
+			if (colocandoBarcos && turnoEnemigo)
+				enemigo.realizarDisparo();
+		}
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
@@ -56,14 +58,7 @@ public class GestorDelJuego extends Observable {
 					}catch(ImposibleColocarBarcoException e){
 						System.err.println("ERROR: No se pudo colocar el barco por una pos invalida o el barco de ese tipo no esta disponible");
 					}
-
-					// Comprobamos si estan todos los barcos del Jugador colocados. Si lo estan iniciamos la partida
-					if (ListaJugadores.getInstance().getEntidad(0).estanTodosBarcosColocados())
-						iniciarPartida();
-
 				}
-
-
 			}
 			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
 

@@ -24,6 +24,7 @@ public class JPanelBarcos extends JPanel implements Observer {
     private JLabel numBarcosDestructor;
 
     private JDespOrien despegableOrientacion;
+    private JButton botonIniciarPartida;
 
     private JRadioButton escudo;
     private JLabel numEscudos;
@@ -63,7 +64,13 @@ public class JPanelBarcos extends JPanel implements Observer {
         add(numEscudos);
 
         despegableOrientacion = new JDespOrien();
+        JPanel panelBotonInicio = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        botonIniciarPartida=getBotonIniciarPartida();
+        panelBotonInicio.add(botonIniciarPartida, c);
+
         add(despegableOrientacion);
+        add(panelBotonInicio);
 
         actualizarNumBarcos();
         actualizarNumEscudos();
@@ -77,6 +84,12 @@ public class JPanelBarcos extends JPanel implements Observer {
         boton.setHorizontalAlignment(SwingConstants.CENTER);
 
         grupoBotonesBarcos.add(boton);
+        return boton;
+    }
+
+    private JButton getBotonIniciarPartida(){
+        JButton boton = new JButton("Iniciar Partida");
+        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
         return boton;
     }
 

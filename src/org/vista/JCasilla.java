@@ -26,7 +26,7 @@ public class JCasilla extends JButton implements Observer {
 
         //setBackground(Color.CYAN);
         //Para poner imagen en las casillas
-        this.setIcon(new ImageIcon(Objects.requireNonNull(JCasilla.class.getResource("/org/imagenes/sea.png"))));
+        //this.setIcon(new ImageIcon(Objects.requireNonNull(JCasilla.class.getResource("/org/imagenes/sea.png"))));
         setOpaque(true);
 
         addMouseListener(ControladorVentanaPrincipal.getInstance());

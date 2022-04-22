@@ -394,7 +394,8 @@ public class Enemigo implements Entidad{
 				System.out.println("Enemigo usa radar");
 				ArrayList<Integer> listaRadar = radar.obtenerPosicionesReveladas(10);
 				for (Integer x : listaRadar) {
-					if (ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.BARCO)) {
+					System.out.println("pos test"+x);
+					if ((ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.BARCO))||(ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.ESCUDO))) {
 						this.listaCasillasImportantes.add(x);
 						System.out.println(x);
 					}

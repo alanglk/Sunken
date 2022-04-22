@@ -133,16 +133,16 @@ public class Enemigo implements Entidad{
 			boolean accionRealizada=false;
 			while(!accionRealizada) {
 				float r = new Random().nextFloat();
-				if (r < 0.5) {
+				System.out.println(r);
+				if ((r < 0.5f)||(this.radar!=null&&!this.radar.sePuedeUtilizar())) {
 					enemigo.realizarDisparo();
 					accionRealizada=true;
-				} else if (r <= 0.5 && r < 0.7) {
+				} else if (r >= 0.5f && r < 0.7f) {
 					enemigo.recolocarRadar();
 					accionRealizada=true;
 				} else if(radarRecolocado) {
 					try {
 						enemigo.usarRadar();
-						radarRecolocado = false;
 						accionRealizada=true;
 					}
 					catch(ImposibleUsarRadarException e){}
@@ -400,6 +400,7 @@ public class Enemigo implements Entidad{
 					if ((ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.BARCO))||(ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.ESCUDO))) {
 						this.listaCasillasImportantes.add(x);
 						System.out.println(x);
+						this.radarRecolocado=false;
 					}
 				}
 

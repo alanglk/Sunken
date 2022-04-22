@@ -108,7 +108,8 @@ public class Enemigo implements Entidad{
 	public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco) {
 		return null;
 	}
-	
+
+
 	//REALIZAR ACCION -------
 	@Override
 	public boolean realizarAccion(boolean juegoTerminado) throws ImposibleUsarRadarException {

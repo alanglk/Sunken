@@ -26,7 +26,7 @@ public class JCasilla extends JButton implements Observer {
 
         //setBackground(Color.CYAN);
         //Para poner imagen en las casillas
-        //this.setIcon(new ImageIcon(Objects.requireNonNull(JCasilla.class.getResource("/org/imagenes/sea.png"))));
+        this.setIcon(new ImageIcon(Objects.requireNonNull(JCasilla.class.getResource("/org/imagenes/sea.png"))));
         setOpaque(true);
 
         addMouseListener(ControladorVentanaPrincipal.getInstance());
@@ -61,30 +61,37 @@ public class JCasilla extends JButton implements Observer {
         if(estado == null)
             color = Color.MAGENTA;
 
-        else if(estado.equals(EEstadoCasilla.AGUA))
+        else if(estado.equals(EEstadoCasilla.AGUA)) {
             color = Color.BLUE;
-
-        else if(estado.equals(EEstadoCasilla.AGUADISPARO))
+        }
+        else if(estado.equals(EEstadoCasilla.AGUADISPARO)) {
+            this.setIcon(null);
             color = Color.CYAN;
-
-        else if(estado.equals(EEstadoCasilla.OCULTO))
+        }
+        else if(estado.equals(EEstadoCasilla.OCULTO)) {
+            this.setIcon(null);
             color = Color.LIGHT_GRAY;
-
-        else if(estado.equals(EEstadoCasilla.BARCO))
+        }
+        else if(estado.equals(EEstadoCasilla.BARCO)) {
+            this.setIcon(null);
             color = Color.BLACK;
-
-        else if(estado.equals(EEstadoCasilla.HUNDIDO))
+        }
+        else if(estado.equals(EEstadoCasilla.HUNDIDO)) {
+            this.setIcon(null);
             color = Color.RED;
-
-        else if(estado.equals(EEstadoCasilla.BARCOHUNDIDO))
+        }
+        else if(estado.equals(EEstadoCasilla.BARCOHUNDIDO)) {
+            this.setIcon(null);
             color = Color.orange;
-
-        else if(estado.equals(EEstadoCasilla.ESCUDO))
+        }
+        else if(estado.equals(EEstadoCasilla.ESCUDO)) {
+            this.setIcon(null);
             color = Color.MAGENTA;
-
-        else if(estado.equals(EEstadoCasilla.POSRADAR))
+        }
+        else if(estado.equals(EEstadoCasilla.POSRADAR)) {
+            this.setIcon(null);
             color = Color.GREEN;
-
+        }
         updateColor();
     }
 }

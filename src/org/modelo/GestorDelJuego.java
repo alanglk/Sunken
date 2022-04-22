@@ -103,6 +103,11 @@ public class GestorDelJuego extends Observable {
 			}catch (ImposibleUsarRadarException e){
 				System.out.println("IMPOSIBLE USAR EL RADAR");
 			}
+
+			if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
+				juegoTerminado = true;
+				System.out.println("GANA EL ENEMIGO");
+			}
 		}
 
 		actualizarIntefaz();
@@ -117,6 +122,11 @@ public class GestorDelJuego extends Observable {
 				juegoTerminado = ListaJugadores.getInstance().getEntidad(1).realizarAccion(juegoTerminado);
 			} catch (ImposibleUsarRadarException e) {
 				System.out.println("IMPOSIBLE USAR EL RADAR");
+			}
+
+			if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
+				juegoTerminado = true;
+				System.out.println("GANA EL ENEMIGO");
 			}
 		}
 

@@ -131,11 +131,11 @@ public class Enemigo implements Entidad{
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
 			boolean accionRealizada=false;
 			while(!accionRealizada) {
-				int r = new Random().nextInt(2);
-				if (r == 1) {
+				int r = new Random().nextInt(3);
+				if (r == 0) {
 					enemigo.realizarDisparo();
 					accionRealizada=true;
-				} else if (r == 2) {
+				} else if (r == 1) {
 					enemigo.recolocarRadar();
 					accionRealizada=true;
 				} else {
@@ -143,8 +143,7 @@ public class Enemigo implements Entidad{
 						enemigo.usarRadar();
 						accionRealizada=true;
 					}
-					catch(ImposibleUsarRadarException e){
-					}
+					catch(ImposibleUsarRadarException e){}
 				}
 			}
 		}

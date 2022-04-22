@@ -50,6 +50,10 @@ public abstract class Barco {
 		return estado;
 	}
 
+	public boolean tieneEscudo(){
+		return escudo != null;
+	}
+
 	public void anadirCasilla(int pPos){
 		boolean term = false;
 		int i = 0;

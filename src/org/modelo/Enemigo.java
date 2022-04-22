@@ -136,7 +136,7 @@ public class Enemigo implements Entidad{
 				if (r < 0.5) {
 					enemigo.realizarDisparo();
 					accionRealizada=true;
-				} else if (r <= 0.5 && r < 0.8) {
+				} else if (r <= 0.5 && r < 0.7) {
 					enemigo.recolocarRadar();
 					accionRealizada=true;
 				} else if(radarRecolocado) {

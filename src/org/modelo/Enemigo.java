@@ -26,6 +26,7 @@ public class Enemigo implements Entidad{
 
 	private int onetap;
 	private int IA;
+	private boolean radarRecolocado = false;
 
 	private int numEscudos = 3;
 
@@ -131,16 +132,17 @@ public class Enemigo implements Entidad{
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
 			boolean accionRealizada=false;
 			while(!accionRealizada) {
-				int r = new Random().nextInt(3);
-				if (r == 0) {
+				float r = new Random().nextFloat();
+				if (r < 0.5) {
 					enemigo.realizarDisparo();
 					accionRealizada=true;
-				} else if (r == 1) {
+				} else if (r <= 0.5 && r < 0.8 && radarRecolocado) {
 					enemigo.recolocarRadar();
 					accionRealizada=true;
 				} else {
 					try {
 						enemigo.usarRadar();
+						radarRecolocado = false;
 						accionRealizada=true;
 					}
 					catch(ImposibleUsarRadarException e){}
@@ -421,6 +423,7 @@ public class Enemigo implements Entidad{
 	public void recolocarRadar() {
 		if(radar == null) radar = new Radar3x3();
 		radar.cambiarPosicionRadar(true);
+		radarRecolocado = true;
 	}
 
 	@Override

@@ -98,8 +98,59 @@ public class ListaBarcos {
 	}
 
 	public Barco obtenerAleatorioParaEscudo(){
-		int random = new Random().nextInt(lista.size());
-		return lista.get(random);
+		int i=0;
+		boolean enc=false;
+		float r = new Random().nextFloat();
+		if(r<=0.6){
+			while(!enc) {
+				int random = new Random().nextInt(lista.size());
+				i=random;
+				if((lista.get(random) instanceof  Fragata)&&!lista.get(random).estaColocado()){
+					enc=true;
+				}
+				System.out.println(i);
+			}
+
+		}
+		else if(r>0.6&&r<=0.85){
+			while(!enc) {
+				int random = new Random().nextInt(lista.size());
+				i=random;
+				if((lista.get(random) instanceof  Destructor)&&!lista.get(random).estaColocado()){
+					enc=true;
+				}
+				System.out.println(i);
+			}
+
+
+		}
+		else if(r>0.85&&r<0.95){
+			while(!enc) {
+				int random = new Random().nextInt(lista.size());
+				i=random;
+				if((lista.get(random) instanceof  Submarino)&&!lista.get(random).estaColocado()){
+					enc=true;
+				}
+				System.out.println(i);
+			}
+
+
+		}
+		else{
+			while(!enc) {
+				int random = new Random().nextInt(lista.size());
+				i=random;
+				if((lista.get(random) instanceof  Portaviones)&&!lista.get(random).estaColocado()){
+					enc=true;
+				}
+				System.out.println(i);
+			}
+
+
+		}
+		System.out.println(i);
+		return lista.get(i);
+
 	}
 
 	public boolean todosTienenEscudo(){

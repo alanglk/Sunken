@@ -121,6 +121,7 @@ public abstract class Barco {
 			if (pTipo == ETipoMisil.BOMBAONETAP) {
 				boolean enc=false;
 				for (int i = 0; i < posicionesBarco.length; i++) {
+					enc=false;
 					if (posicionesBarco[i] == -1) {
 						enc = true;
 					}

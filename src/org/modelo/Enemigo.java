@@ -314,7 +314,7 @@ public class Enemigo implements Entidad {
 						enc = true;
 						System.out.println(enc);
 					}
-				} else if (posicion > -1 && posicion < 101) {//SI ES POSIBLE SE MIRA LAS POSICIONES ARRIBA ABAJO IZQUIERDA DERECHA SI ESTAN DENTRO DE LOS BORDES O SI NO HAN SIDO IMPACTADAS, SI ES ASI SE AÑADEN A MEMORIA LISTAARREVENTAR
+				} else if (posicion > -1 && posicion < 101) {//SI ES POSIBLE SE MIRA LAS POSICIONES ARRIBA ABAJO IZQUIERDA DERECHA SI ESTAN DENTRO DE LOS BORDES O SI NO HAN SIDO IMPACTADAS, SI ES ASI SE AÑADEN A MEMORIA LISTAARREVENTAR, SI NO SE AÑADE -1 EN ESA POSICION
 					if ((((posicion / 10 - (posicion - 10) / 10) == 1) && (posicion - 10) > -1) && !enc) {
 						if (!ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(posicion - 10).equals(EEstadoCasilla.AGUADISPARO)) {
 							listaCasillasAReventar.add(posicion - 10);

@@ -99,11 +99,6 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
             if(boton.getText().equals("Recolocar Radar")){
                 GestorDelJuego.getInstance().notificarBotonRecolocarRadarPresionado();
             }
-
-            if (boton.getText().equals("REINICIAR PARTIDA")) {
-                //TODO Falta hacer el boton reiniciar
-                VentanaPrincipal.getInstance().nuevaPartida();
-            }
         }
     }
 

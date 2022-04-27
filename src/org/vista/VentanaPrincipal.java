@@ -58,9 +58,5 @@ public class VentanaPrincipal extends JFrame {
         return VentanaPrincipal.miVentanaPrincipal;
     }
 
-    public void nuevaPartida(){
-        miVentanaPrincipal=new VentanaPrincipal();
-        miVentanaPrincipal.repaint();
-    }
 
 }

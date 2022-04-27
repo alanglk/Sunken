@@ -4,6 +4,8 @@ import org.controlador.FormularioControlador;
 import org.modelo.excepciones.ImposibleColocarBarcoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
+import org.vista.VentanaInformacion;
+import org.vista.VentanaPrincipal;
 
 import java.util.Observable;
 import java.util.Random;
@@ -71,6 +73,7 @@ public class GestorDelJuego extends Observable {
 					if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
 						juegoTerminado = true;
 						System.out.println("GANA EL ENEMIGO");
+						new VentanaInformacion("GANA ENEMIGO");
 					}else{
 						try {
 							ListaJugadores.getInstance().getEntidad(0).realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
@@ -83,6 +86,7 @@ public class GestorDelJuego extends Observable {
 					// Si el jugador ha hecho un disparo correcto. Puede ser que no haya presionado una casilla valida
 					if(disparoJugador){
 						juegoTerminado = ListaJugadores.getInstance().getEntidad(1).realizarAccion(juegoTerminado);
+						System.out.println("GANA EL JUGADOR");
 					}
 				}
 			}else{

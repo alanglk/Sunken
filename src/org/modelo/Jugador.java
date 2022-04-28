@@ -82,6 +82,11 @@ public class Jugador implements Entidad{
 		return listaBarcos.obtenerNumBarcosNoColocados(tipoBarco);
 	}
 
+	@Override
+	public Integer obtenerNumBarcosPorHundir(ETipoBarco tipoBarco){
+		return listaBarcos.obtenerNumBarcosPorHundir(tipoBarco);
+	}
+
 	// DISPAROS --------
 	@Override
 	public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo) {

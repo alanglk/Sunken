@@ -127,6 +127,11 @@ public class Enemigo implements Entidad {
 		return null;
 	}
 
+	@Override
+	public Integer obtenerNumBarcosPorHundir(ETipoBarco tipoBarco){
+		return listaBarcos.obtenerNumBarcosPorHundir(tipoBarco);
+	}
+
 
 	//REALIZAR ACCION -------
 	@Override

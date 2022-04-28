@@ -97,6 +97,21 @@ public class ListaBarcos {
 		return numBarcos;
 	}
 
+	public Integer obtenerNumBarcosPorHundir(ETipoBarco tipoBarco){
+		Iterator<Barco> itr = getIterator();
+		Barco barco = null;
+		int numBarcos=0;
+
+		while(itr.hasNext()) {
+			barco = itr.next();
+			if (barco.esTipo(tipoBarco)) {
+				if(!barco.estaHundido())
+					numBarcos++;
+			}
+		}
+		return numBarcos;
+	}
+
 	public Barco obtenerAleatorioParaEscudo(){
 		int i=0;
 		boolean enc=false;

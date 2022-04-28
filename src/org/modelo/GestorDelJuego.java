@@ -153,4 +153,7 @@ public class GestorDelJuego extends Observable {
 		return ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pPos);
 	}
 
+	public boolean getColocandoBarcos() {
+		return colocandoBarcos;
+	}
 }

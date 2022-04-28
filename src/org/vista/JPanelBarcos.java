@@ -97,11 +97,23 @@ public class JPanelBarcos extends JPanel implements Observer {
         return ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcosNoColocados(tipo).toString() + " por colocar";
     }
 
+    private String getNumBarcosNoHundidos(ETipoBarco tipo){
+        return ListaJugadores.getInstance().getEntidad(1).obtenerNumBarcosPorHundir(tipo).toString() + " por hundir";
+    }
+
     private void actualizarNumBarcos(){
-        numBarcosFragata.setText(getNumBarcos(ETipoBarco.FRAGATA));
-        numBarcosDestructor.setText(getNumBarcos(ETipoBarco.DESTRUCTOR));
-        numBarcosSubmarino.setText(getNumBarcos(ETipoBarco.SUBMARINO));
-        numBarcosPortaviones.setText(getNumBarcos(ETipoBarco.PORTAVIONES));
+        if(ListaJugadores.getInstance().getEntidad(0).estanTodosBarcosColocados() && !GestorDelJuego.getInstance().getColocandoBarcos()){
+            numBarcosFragata.setText(getNumBarcosNoHundidos(ETipoBarco.FRAGATA));
+            numBarcosDestructor.setText(getNumBarcosNoHundidos(ETipoBarco.DESTRUCTOR));
+            numBarcosSubmarino.setText(getNumBarcosNoHundidos(ETipoBarco.SUBMARINO));
+            numBarcosPortaviones.setText(getNumBarcosNoHundidos(ETipoBarco.PORTAVIONES));
+        }
+        else{
+            numBarcosFragata.setText(getNumBarcos(ETipoBarco.FRAGATA));
+            numBarcosDestructor.setText(getNumBarcos(ETipoBarco.DESTRUCTOR));
+            numBarcosSubmarino.setText(getNumBarcos(ETipoBarco.SUBMARINO));
+            numBarcosPortaviones.setText(getNumBarcos(ETipoBarco.PORTAVIONES));
+        }
     }
 
     private String getNumEscudos(){

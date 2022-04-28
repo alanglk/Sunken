@@ -18,6 +18,7 @@ public interface Entidad {
     public boolean hayBarcosSinHundir();
     public void imprimirBarcos();
     public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco);
+    public Integer obtenerNumBarcosPorHundir(ETipoBarco tipoBarco);
 
     // DISPAROS --------
     public void dispararBarco(ETipoMisil pTipo, int casillaPos, int pId, boolean pEnemigo);

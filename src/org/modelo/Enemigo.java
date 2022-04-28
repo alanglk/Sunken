@@ -126,6 +126,11 @@ public class Enemigo implements Entidad {
 		return null;
 	}
 
+	@Override
+	public Integer obtenerNumBarcosNoHundidos(ETipoBarco tipoBarco) {
+		return listaBarcos.obtenerNumBarcosNoHundidos(tipoBarco);
+	}
+
 
 	//REALIZAR ACCION -------
 	@Override
@@ -376,7 +381,7 @@ public class Enemigo implements Entidad {
 		if (radar != null) {
 			if (radar.sePuedeUtilizar()) {
 				System.out.println("Enemigo usa radar");
-				ArrayList<Integer> listaRadar = radar.obtenerPosicionesReveladas(10);
+				ArrayList<Integer> listaRadar = radar.obtenerPosicionesReveladas(10, true);
 				for (Integer x : listaRadar) {
 					System.out.println("pos test" + x);
 					if ((ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.BARCO)) || (ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.ESCUDO))) {

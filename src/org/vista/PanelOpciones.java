@@ -1,6 +1,7 @@
 package org.vista;
 
 import org.controlador.ControladorVentanaPrincipal;
+import org.modelo.FormularioModelo;
 import org.modelo.GestorDelJuego;
 import org.modelo.ListaJugadores;
 import org.modelo.misil.ETipoMisil;
@@ -41,7 +42,6 @@ public class PanelOpciones extends JPanel implements Observer {
         panelMisiles.add(botonBombaOneTap);
         panelMisiles.add(numBombasOneTap);
 
-        actualizarNumMisiles();
         add(panelMisiles);
 
         JPanel panelRadar = new JPanel(new GridBagLayout());
@@ -56,7 +56,6 @@ public class PanelOpciones extends JPanel implements Observer {
         add(panelRadar);
 
         numUsosRadar = new JLabel();
-        actualizarNumRadar();
         add(numUsosRadar);
     }
 
@@ -79,19 +78,19 @@ public class PanelOpciones extends JPanel implements Observer {
     }
 
     // Num bombas
-    private String getNumBarcos(ETipoMisil tipo){
-        return ListaJugadores.getInstance().getEntidad(0).obtenerNumMisilesDisponibles(tipo).toString() + " disponibles";
+    private String getNumMisilesDisponibles(ETipoMisil tipo, FormularioModelo form){
+        return form.numMisilesJugador.get(tipo).toString();
     }
 
-    private void actualizarNumMisiles(){
-        numBombas.setText(getNumBarcos(ETipoMisil.BOMBA));
-        numBombasOneTap.setText(getNumBarcos(ETipoMisil.BOMBAONETAP));
+    private void actualizarNumMisiles(FormularioModelo form){
+        numBombas.setText(getNumMisilesDisponibles(ETipoMisil.BOMBA, form));
+        numBombasOneTap.setText(getNumMisilesDisponibles(ETipoMisil.BOMBAONETAP, form));
     }
 
     // Num radar
-    private String getNumUsosRadar(){
+    private String getNumUsosRadar(FormularioModelo form){
         String strUsos = "";
-        Integer num = ListaJugadores.getInstance().getEntidad(0).obtenerNumUsosRadar();
+        Integer num = form.numUsosRadarJugador;
 
         if(num < 0)
             strUsos = "Recoloca el radar para ver su número de usos.";
@@ -101,14 +100,17 @@ public class PanelOpciones extends JPanel implements Observer {
         return strUsos;
     }
 
-    private void actualizarNumRadar(){
-        numUsosRadar.setText(getNumUsosRadar());
+    private void actualizarNumRadar(FormularioModelo form){
+        numUsosRadar.setText(getNumUsosRadar(form));
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        actualizarNumMisiles();
-        actualizarNumRadar();
+        FormularioModelo form = (FormularioModelo) arg;
+        if(form != null) {
+            actualizarNumMisiles(form);
+            actualizarNumRadar(form);
+        }
     }
 
     /*private ImageIcon loadImage(){

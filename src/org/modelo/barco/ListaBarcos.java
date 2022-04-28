@@ -3,6 +3,7 @@ package org.modelo.barco;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class ListaBarcos {
 
@@ -83,18 +84,11 @@ public class ListaBarcos {
 	}
 
 	public Integer obtenerNumBarcosNoColocados(ETipoBarco tipoBarco) {
-		Iterator<Barco> itr = getIterator();
-		Barco barco = null;
-		int numBarcos=0;
+		return (int) lista.stream().filter(b -> b.esTipo(tipoBarco) && !b.estaColocado()).count();
+	}
 
-		while(itr.hasNext()) {
-			barco = itr.next();
-			if (barco.esTipo(tipoBarco)) {
-				if(!barco.estaColocado())
-					numBarcos++;
-			}
-		}
-		return numBarcos;
+	public Integer obtenerNumBarcosNoHundidos(ETipoBarco tipoBarco) {
+		return (int) lista.stream().filter(b -> b.esTipo(tipoBarco) && !b.estaHundido()).count();
 	}
 
 	public Barco obtenerAleatorioParaEscudo(){

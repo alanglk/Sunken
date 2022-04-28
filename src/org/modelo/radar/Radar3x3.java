@@ -13,7 +13,7 @@ public class Radar3x3 extends Radar{
     }
 
     @Override
-    public ArrayList<Integer> obtenerPosicionesReveladas(int pAnchuraTablero) {
+    public ArrayList<Integer> obtenerPosicionesReveladas(int pAnchuraTablero, boolean pEnemigo) {
         ArrayList<Integer> area = new ArrayList<Integer>();
         area.add(posRadar);
 
@@ -47,6 +47,8 @@ public class Radar3x3 extends Radar{
             decrementarNumUsos();
         }
 
+        posicionesUsos.addAll(area);
+        cambiarPosicionRadar(pEnemigo);
         return area;
     }
 }

@@ -1,11 +1,10 @@
 package org.vista;
 
 import org.controlador.ControladorVentanaMenu;
-import org.controlador.ControladorVentanaPrincipal;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
+
 
 public class VentanaMenu extends JFrame {
     private static VentanaMenu miMenu;
@@ -20,7 +19,7 @@ public class VentanaMenu extends JFrame {
         super("SUNKEN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setSize(new Dimension(700,700));
+        setMinimumSize(new Dimension(700,700));
 
         panelMenu=new JPanel();
         panelFondo=new JPanelImagen("EMPEZAR PARTIDA");

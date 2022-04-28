@@ -17,7 +17,7 @@ public class JPanelImagen extends JPanel {
         Dimension dimension=getSize();
         imagen = GaleriaIconos.getInstance().obtenerImagen(tipoVentana);
         g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
-
+        this.setSize(getWidth(),getHeight());
         setOpaque(false);
 
        super.paintComponent(g);

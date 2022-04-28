@@ -11,7 +11,7 @@ public class GaleriaIconos {
     private String path="/org/imagenes/";
     private final String[] listaImagenesBarcos={"fragata.png","destructor.png","submarino.png","portaviones.png"};
     private final String[] listaImagenesHundidos={"explosion.gif"};
-    private final String[] listaImagenesInformacion={"juego.jpg","win.png","gameover.jpg"};
+    private final String[] listaImagenesInformacion={"juego.jpg","win.png","gameover.png"};
 
     private GaleriaIconos(){
     }

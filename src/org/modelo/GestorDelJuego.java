@@ -50,13 +50,13 @@ public class GestorDelJuego extends Observable {
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
 		if(colocandoBarcos){
-			if(!pDatos.tableroEnemigo){
+			if(!pDatos.isTableroEnemigo()){
 				// Los datos son del tablero del Jugador.
-				if(pDatos.escudo){
-					ListaJugadores.getInstance().getEntidad(0).colocarEscudoBarco(pDatos.posicion);
-				}else if(pDatos.tipoBarco != null && pDatos.orientacion != null) {
+				if(pDatos.isEscudo()){
+					ListaJugadores.getInstance().getEntidad(0).colocarEscudoBarco(pDatos.getPosicion());
+				}else if(pDatos.getTipoBarco() != null && pDatos.getOrientacion() != null) {
 					try{
-						ListaJugadores.getInstance().getEntidad(0).colocarBarco(pDatos.posicion, pDatos.tipoBarco, pDatos.orientacion);
+						ListaJugadores.getInstance().getEntidad(0).colocarBarco(pDatos.getPosicion(), pDatos.getTipoBarco(), pDatos.getOrientacion());
 					}catch(ImposibleColocarBarcoException e){
 						System.err.println("ERROR: No se pudo colocar el barco por una pos invalida o el barco de ese tipo no esta disponible");
 					}
@@ -66,8 +66,8 @@ public class GestorDelJuego extends Observable {
 
 		}else if(!colocandoBarcos && !juegoTerminado){
 			// Presionamos una casilla para realizar un disparo
-			if(pDatos.tableroEnemigo){
-				if(pDatos.tipoMisil!=null){
+			if(pDatos.isTableroEnemigo()){
+				if(pDatos.getTipoMisil()!=null){
 					boolean disparoJugador = false;
 
 					if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
@@ -76,7 +76,7 @@ public class GestorDelJuego extends Observable {
 						new VentanaInformacion("GANA ENEMIGO");
 					}else{
 						try {
-							ListaJugadores.getInstance().getEntidad(0).realizarDisparo(pDatos.tipoMisil, pDatos.posicion);
+							ListaJugadores.getInstance().getEntidad(0).realizarDisparo(pDatos.getTipoMisil(), pDatos.getPosicion());
 							disparoJugador = true;
 						}catch (ImposibleDispararException e){
 							System.out.println("IMPOSIBLE DISPARAR EL MISIL");

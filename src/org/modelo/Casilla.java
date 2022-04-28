@@ -75,6 +75,8 @@ public class Casilla {
 
 	public void revelar(){
 		oculto=false;
+		if(estado == EEstadoCasilla.AGUA)
+			estado = EEstadoCasilla.AGUADISPARO;
 	}
 
 	public void colocarRadar(){
@@ -88,5 +90,5 @@ public class Casilla {
 	public void actualizarBarcoHundido(){
 		estado = EEstadoCasilla.BARCOHUNDIDO;
 	}
-	
+
 }

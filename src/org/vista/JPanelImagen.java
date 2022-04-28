@@ -1,22 +1,25 @@
 package org.vista;
 
+import org.modelo.GaleriaIconos;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class JPanelImagen extends JPanel {
-    private Image fondo;
-
-    public JPanelImagen(){
-
+    private Image imagen;
+    private String tipoVentana;
+    public JPanelImagen(String pTipoVentana){
+        tipoVentana = pTipoVentana;
     }
-
+    @Override
     public void paint(Graphics g){
         Dimension dimension=getSize();
-        fondo =new ImageIcon(getClass().getResource("/org/imagenes/juego.jpg")).getImage();
-        g.drawImage(fondo,0,0,getWidth(),getHeight(),null);
+        imagen = GaleriaIconos.getInstance().obtenerImagen(tipoVentana);
+        g.drawImage(imagen,0,0,getWidth(),getHeight(),null);
 
         setOpaque(false);
 
-        super.paintChildren(g);
+       super.paintComponent(g);
     }
 }

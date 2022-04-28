@@ -20,16 +20,10 @@ public class VentanaMenu extends JFrame {
         super("SUNKEN");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //setBounds(0, 0, 500, 700);
-        //Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        //this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-
-        //setLayout(new BorderLayout());
-
         setSize(new Dimension(700,700));
 
         panelMenu=new JPanel();
-        panelFondo=new JPanelImagen();
+        panelFondo=new JPanelImagen("EMPEZAR PARTIDA");
 
         panelMenu.setLayout(new GridLayout(3, 0, 0, 0));
         add(panelMenu, BorderLayout.SOUTH);

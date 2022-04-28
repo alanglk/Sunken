@@ -1,5 +1,7 @@
 package org.vista;
 
+import org.modelo.GestorDelJuego;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -49,6 +51,8 @@ public class VentanaPrincipal extends JFrame {
 
 
         setVisible(true);
+
+        GestorDelJuego.getInstance().actualizarIntefaz();
     }
 
     public static VentanaPrincipal getInstance(){

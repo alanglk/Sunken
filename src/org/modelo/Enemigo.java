@@ -10,7 +10,6 @@ import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.radar.Radar;
 import org.modelo.radar.Radar3x3;
-import org.vista.VentanaInformacion;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -128,8 +127,8 @@ public class Enemigo implements Entidad {
 	}
 
 	@Override
-	public Integer obtenerNumBarcosPorHundir(ETipoBarco tipoBarco){
-		return listaBarcos.obtenerNumBarcosPorHundir(tipoBarco);
+	public Integer obtenerNumBarcosNoHundidos(ETipoBarco tipoBarco) {
+		return listaBarcos.obtenerNumBarcosNoHundidos(tipoBarco);
 	}
 
 
@@ -139,7 +138,7 @@ public class Enemigo implements Entidad {
 
 		if (!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado) {
 			juegoTerminado = true;
-			new VentanaInformacion("GANA JUGADOR");
+			System.out.println("GANA EL JUGADOR");
 		} else {
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
@@ -382,7 +381,7 @@ public class Enemigo implements Entidad {
 		if (radar != null) {
 			if (radar.sePuedeUtilizar()) {
 				System.out.println("Enemigo usa radar");
-				ArrayList<Integer> listaRadar = radar.obtenerPosicionesReveladas(10);
+				ArrayList<Integer> listaRadar = radar.obtenerPosicionesReveladas(10, true);
 				for (Integer x : listaRadar) {
 					System.out.println("pos test" + x);
 					if ((ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.BARCO)) || (ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(x).equals(EEstadoCasilla.ESCUDO))) {

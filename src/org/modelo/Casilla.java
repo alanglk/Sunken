@@ -48,10 +48,6 @@ public class Casilla {
 			estado = EEstadoCasilla.AGUADISPARO;
 	}
 
-	public boolean tieneBarco(){
-		return(idBarco!=-1);
-	}
-
 	// Se llama desde barco
 	public void actualizarEstadoCasilla(EEstadoCasilla pEstado){
 		estado = pEstado;
@@ -79,6 +75,8 @@ public class Casilla {
 
 	public void revelar(){
 		oculto=false;
+		if(estado == EEstadoCasilla.AGUA)
+			estado = EEstadoCasilla.AGUADISPARO;
 	}
 
 	public void colocarRadar(){
@@ -92,6 +90,5 @@ public class Casilla {
 	public void actualizarBarcoHundido(){
 		estado = EEstadoCasilla.BARCOHUNDIDO;
 	}
-
 
 }

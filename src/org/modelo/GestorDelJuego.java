@@ -1,12 +1,14 @@
 package org.modelo;
 
 import org.controlador.FormularioControlador;
+import org.modelo.barco.ETipoBarco;
 import org.modelo.excepciones.ImposibleColocarBarcoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
-import org.vista.VentanaInformacion;
-import org.vista.VentanaPrincipal;
+import org.modelo.misil.ETipoMisil;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Observable;
 import java.util.Random;
 
@@ -46,6 +48,8 @@ public class GestorDelJuego extends Observable {
 			if (colocandoBarcos && turnoEnemigo)
 				enemigo.realizarDisparo();
 		}
+
+		actualizarIntefaz();
 	}
 
 	public void notificarCasillaPresionada(FormularioControlador pDatos) throws Exception {
@@ -73,7 +77,6 @@ public class GestorDelJuego extends Observable {
 					if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
 						juegoTerminado = true;
 						System.out.println("GANA EL ENEMIGO");
-						new VentanaInformacion("GANA ENEMIGO");
 					}else{
 						try {
 							ListaJugadores.getInstance().getEntidad(0).realizarDisparo(pDatos.getTipoMisil(), pDatos.getPosicion());
@@ -86,7 +89,6 @@ public class GestorDelJuego extends Observable {
 					// Si el jugador ha hecho un disparo correcto. Puede ser que no haya presionado una casilla valida
 					if(disparoJugador){
 						juegoTerminado = ListaJugadores.getInstance().getEntidad(1).realizarAccion(juegoTerminado);
-						System.out.println("GANA EL JUGADOR");
 					}
 				}
 			}else{
@@ -139,21 +141,44 @@ public class GestorDelJuego extends Observable {
 
 	// --------- Metodos para enviar datos a la interfaz ---------
 
-	private void actualizarIntefaz(){
+	public void actualizarIntefaz(){
 		// Avisar a los observers de que se ha producido un cambio
+
 		setChanged();
-		notifyObservers();
+		notifyObservers(getFormulario());
 	}
 
-	public EEstadoCasilla getEstadoCasillaJugador(int pPos){
-		return ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(pPos);
+	private FormularioModelo getFormulario(){
+		ArrayList<EEstadoCasilla> casillasJugador = new ArrayList<EEstadoCasilla>();
+		ArrayList<EEstadoCasilla> casillasEnemigo = new ArrayList<EEstadoCasilla>();
+		HashMap<ETipoBarco, Integer> numBarcosNoColocados = new HashMap<ETipoBarco, Integer>();
+		HashMap<ETipoBarco, Integer> numBarcosNoHundidos = new HashMap<ETipoBarco, Integer>();
+		HashMap<ETipoMisil, Integer> numMisilesJugador = new HashMap<ETipoMisil, Integer>();
+
+		for(int i = 0; i < 100; i++){
+			casillasJugador.add(i, ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(i));
+		}
+
+		for(int i = 0; i < 100; i++){
+			casillasEnemigo.add(i, ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(i));
+		}
+
+		for (ETipoBarco tipo : ETipoBarco.values()) {
+			numBarcosNoColocados.put(tipo, ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcosNoColocados(tipo));
+		}
+
+		for (ETipoBarco tipo : ETipoBarco.values()) {
+			numBarcosNoHundidos.put(tipo, ListaJugadores.getInstance().getEntidad(1).obtenerNumBarcosNoHundidos(tipo));
+		}
+
+		for (ETipoMisil tipo : ETipoMisil.values()) {
+			numMisilesJugador.put(tipo, ListaJugadores.getInstance().getEntidad(0).obtenerNumMisilesDisponibles(tipo));
+		}
+
+		Integer numUsosRadarJugador = ListaJugadores.getInstance().getEntidad(0).obtenerNumUsosRadar();
+		Integer numEscudosJugador = ListaJugadores.getInstance().getEntidad(0).obtenerNumEscudos();
+
+		return new FormularioModelo(colocandoBarcos, juegoTerminado, casillasJugador, casillasEnemigo, numBarcosNoColocados, numBarcosNoHundidos, numMisilesJugador, numUsosRadarJugador, numEscudosJugador);
 	}
 
-	public EEstadoCasilla getEstadoCasillaEnemigo(int pPos){
-		return ListaJugadores.getInstance().getEntidad(1).getEstadoCasilla(pPos);
-	}
-
-	public boolean getColocandoBarcos() {
-		return colocandoBarcos;
-	}
 }

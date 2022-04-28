@@ -1,12 +1,14 @@
 package org.vista;
 
 import org.controlador.ControladorVentanaPrincipal;
+import org.modelo.FormularioModelo;
 import org.modelo.GestorDelJuego;
 import org.modelo.ListaJugadores;
 import org.modelo.barco.ETipoBarco;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.Normalizer;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -71,9 +73,6 @@ public class JPanelBarcos extends JPanel implements Observer {
 
         add(despegableOrientacion);
         add(panelBotonInicio);
-
-        actualizarNumBarcos();
-        actualizarNumEscudos();
     }
 
 
@@ -93,41 +92,43 @@ public class JPanelBarcos extends JPanel implements Observer {
         return boton;
     }
 
-    private String getNumBarcos(ETipoBarco tipo){
-        return ListaJugadores.getInstance().getEntidad(0).obtenerNumBarcosNoColocados(tipo).toString() + " por colocar";
+    private String getNumBarcosPorColocar(ETipoBarco tipo, FormularioModelo form){
+        return form.numBarcosNoColocados.get(tipo).toString() + " por colocar";
     }
 
-    private String getNumBarcosNoHundidos(ETipoBarco tipo){
-        return ListaJugadores.getInstance().getEntidad(1).obtenerNumBarcosPorHundir(tipo).toString() + " por hundir";
+    private String getNumBarcosPorHundir(ETipoBarco tipo, FormularioModelo form){
+        return form.numBarcosNoHundidos.get(tipo).toString() + " por hundir";
     }
 
-    private void actualizarNumBarcos(){
-        if(ListaJugadores.getInstance().getEntidad(0).estanTodosBarcosColocados() && !GestorDelJuego.getInstance().getColocandoBarcos()){
-            numBarcosFragata.setText(getNumBarcosNoHundidos(ETipoBarco.FRAGATA));
-            numBarcosDestructor.setText(getNumBarcosNoHundidos(ETipoBarco.DESTRUCTOR));
-            numBarcosSubmarino.setText(getNumBarcosNoHundidos(ETipoBarco.SUBMARINO));
-            numBarcosPortaviones.setText(getNumBarcosNoHundidos(ETipoBarco.PORTAVIONES));
+    private void actualizarNumBarcos(FormularioModelo form){
+        if(form.colocandoBarcos) {
+            numBarcosFragata.setText(getNumBarcosPorColocar(ETipoBarco.FRAGATA, form));
+            numBarcosDestructor.setText(getNumBarcosPorColocar(ETipoBarco.DESTRUCTOR, form));
+            numBarcosSubmarino.setText(getNumBarcosPorColocar(ETipoBarco.SUBMARINO, form));
+            numBarcosPortaviones.setText(getNumBarcosPorColocar(ETipoBarco.PORTAVIONES, form));
+        }else{
+            numBarcosFragata.setText(getNumBarcosPorHundir(ETipoBarco.FRAGATA, form));
+            numBarcosDestructor.setText(getNumBarcosPorHundir(ETipoBarco.DESTRUCTOR, form));
+            numBarcosSubmarino.setText(getNumBarcosPorHundir(ETipoBarco.SUBMARINO, form));
+            numBarcosPortaviones.setText(getNumBarcosPorHundir(ETipoBarco.PORTAVIONES, form));
         }
-        else{
-            numBarcosFragata.setText(getNumBarcos(ETipoBarco.FRAGATA));
-            numBarcosDestructor.setText(getNumBarcos(ETipoBarco.DESTRUCTOR));
-            numBarcosSubmarino.setText(getNumBarcos(ETipoBarco.SUBMARINO));
-            numBarcosPortaviones.setText(getNumBarcos(ETipoBarco.PORTAVIONES));
-        }
     }
 
-    private String getNumEscudos(){
-        return ListaJugadores.getInstance().getEntidad(0).obtenerNumEscudos().toString();
+    private String getNumEscudos(FormularioModelo form){
+        return form.numEscudosJugador.toString();
     }
 
-    private void actualizarNumEscudos(){
-        numEscudos.setText(getNumEscudos() + " escudos");
+    private void actualizarNumEscudos(FormularioModelo form){
+        numEscudos.setText(getNumEscudos(form) + " escudos");
         escudo.setSelected(false);
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        actualizarNumBarcos();
-        actualizarNumEscudos();
+        FormularioModelo form = (FormularioModelo) arg;
+        if(form != null) {
+            actualizarNumBarcos(form);
+            actualizarNumEscudos(form);
+        }
     }
 }

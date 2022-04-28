@@ -83,8 +83,8 @@ public class Jugador implements Entidad{
 	}
 
 	@Override
-	public Integer obtenerNumBarcosPorHundir(ETipoBarco tipoBarco){
-		return listaBarcos.obtenerNumBarcosPorHundir(tipoBarco);
+	public Integer obtenerNumBarcosNoHundidos(ETipoBarco tipoBarco) {
+		return listaBarcos.obtenerNumBarcosNoHundidos(tipoBarco);
 	}
 
 	// DISPAROS --------
@@ -141,7 +141,7 @@ public class Jugador implements Entidad{
 	@Override
 	public void usarRadar() throws ImposibleUsarRadarException {
 		if(radar.sePuedeUtilizar()){
-			ListaJugadores.getInstance().getEntidad(1).revelarCasillasRadar(radar.obtenerPosicionesReveladas(10));
+			ListaJugadores.getInstance().getEntidad(1).revelarCasillasRadar(radar.obtenerPosicionesReveladas(10, false));
 		}else{
 			throw new ImposibleUsarRadarException();
 		}

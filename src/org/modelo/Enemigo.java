@@ -10,6 +10,7 @@ import org.modelo.misil.GeneradorDeMisiles;
 import org.modelo.misil.ListaMisiles;
 import org.modelo.radar.Radar;
 import org.modelo.radar.Radar3x3;
+import org.vista.VentanaInformacion;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -139,6 +140,7 @@ public class Enemigo implements Entidad {
 		if (!ListaJugadores.getInstance().getEntidad(1).hayBarcosSinHundir() && !juegoTerminado) {
 			juegoTerminado = true;
 			System.out.println("GANA EL JUGADOR");
+			new VentanaInformacion("GANA JUGADOR");
 		} else {
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo

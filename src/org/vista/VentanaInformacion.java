@@ -13,7 +13,7 @@ public class VentanaInformacion extends JFrame {
         JPanelImagen imagen=null;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setSize(new Dimension(500,500));
+        setSize(new Dimension(600,500));
         if(pInformacion.equals("GANA JUGADOR")){
             imagen=new JPanelImagen("GANA JUGADOR");
         }
@@ -24,7 +24,6 @@ public class VentanaInformacion extends JFrame {
         setLocationRelativeTo(null);
         add(imagen,BorderLayout.CENTER);
 
-        this.pack();
         setVisible(true);
     }
 }

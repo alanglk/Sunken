@@ -6,6 +6,7 @@ import org.modelo.excepciones.ImposibleColocarBarcoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
 import org.modelo.misil.ETipoMisil;
+import org.vista.VentanaInformacion;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,6 +78,7 @@ public class GestorDelJuego extends Observable {
 					if (!ListaJugadores.getInstance().getEntidad(0).hayBarcosSinHundir()){
 						juegoTerminado = true;
 						System.out.println("GANA EL ENEMIGO");
+						new VentanaInformacion("GANA ENEMIGO");
 					}else{
 						try {
 							ListaJugadores.getInstance().getEntidad(0).realizarDisparo(pDatos.getTipoMisil(), pDatos.getPosicion());

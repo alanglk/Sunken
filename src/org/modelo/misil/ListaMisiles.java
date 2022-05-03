@@ -22,7 +22,7 @@ public class ListaMisiles {
         return (this.lista.iterator());
     }
 
-    private Misil obtMisil(ETipoMisil pTipo) {
+    public Misil obtMisil(ETipoMisil pTipo) {
         Iterator<Misil> itr = this.getIterador();
         Misil misil = null;
         boolean enc = false;

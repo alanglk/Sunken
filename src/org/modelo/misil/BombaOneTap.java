@@ -1,8 +1,10 @@
 package org.modelo.misil;
 
+import org.modelo.Comprable;
+
 import java.util.ArrayList;
 
-public class BombaOneTap extends Misil{
+public class BombaOneTap extends Misil implements Comprable {
 
     public BombaOneTap() {
         super(0, false, ETipoMisil.BOMBAONETAP);
@@ -19,5 +21,10 @@ public class BombaOneTap extends Misil{
         }
 
         return listaInt;
+    }
+
+    @Override
+    public void comprar() {
+        incrementarNumMisiles();
     }
 }

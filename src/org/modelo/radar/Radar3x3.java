@@ -1,8 +1,12 @@
 package org.modelo.radar;
 
+import org.modelo.Comprable;
+
 import java.util.ArrayList;
 
-public class Radar3x3 extends Radar{
+public class Radar3x3 extends Radar implements Comprable{
+    private final int precio = 10;
+
     public Radar3x3() {
         super(1);
     }
@@ -50,5 +54,13 @@ public class Radar3x3 extends Radar{
         posicionesUsos.addAll(area);
         cambiarPosicionRadar(pEnemigo);
         return area;
+    }
+
+
+    // ------- Tienda -------
+    // Los objetos del jugador y del enemigo incrementan su numero de usos al comprar
+    @Override
+    public void comprar(){
+        incrementarNumUsos();
     }
 }

@@ -1,13 +1,12 @@
 package org.modelo;
 
+import org.Tienda;
 import org.modelo.barco.*;
 import org.modelo.excepciones.ImposibleColocarBarcoException;
 import org.modelo.excepciones.ImposibleColocarEscudoException;
 import org.modelo.excepciones.ImposibleDispararException;
 import org.modelo.excepciones.ImposibleUsarRadarException;
-import org.modelo.misil.ETipoMisil;
-import org.modelo.misil.GeneradorDeMisiles;
-import org.modelo.misil.ListaMisiles;
+import org.modelo.misil.*;
 import org.modelo.radar.Radar;
 import org.modelo.radar.Radar3x3;
 
@@ -20,6 +19,7 @@ public class Jugador implements Entidad{
 	private Radar radar;
 
 	private int numEscudos = 3;
+	private int dineroJugador = 10;
 
 	public Jugador() {
 		this.tablero=new Tablero(false);
@@ -221,6 +221,40 @@ public class Jugador implements Entidad{
 	@Override
 	public Integer obtenerNumEscudos() {
 		return numEscudos;
+	}
+
+	// TIENDA --------
+	public void comprarObjeto(EObjetoComprable pObj){
+		if(Tienda.getInstance().sePuedeComprar(pObj, dineroJugador)){
+			boolean error = false;
+
+			// Incrementamos los usos del objeto comprado
+			if(pObj.equals(EObjetoComprable.BOMBAONETAP)) {
+				Comprable misil = (Comprable) listaMisiles.obtMisil(ETipoMisil.BOMBAONETAP);
+				if(misil != null)
+					misil.comprar();
+				else
+					error = true;
+			}
+
+			if(pObj.equals(EObjetoComprable.RADAR3x3)){
+				Comprable radar3x3 = (Comprable) radar;
+				if(radar3x3 != null)
+					radar3x3.comprar();
+				else
+					error = true;
+			}
+
+			// Actualizamos el dinero y la tienda
+			if(!error)
+				dineroJugador = Tienda.getInstance().comprar(pObj, dineroJugador);
+
+		}
+	}
+
+	// Para visualizar el dinero en la interfaz
+	public int obtenerDineroDisponible(){
+		return dineroJugador;
 	}
 
 }

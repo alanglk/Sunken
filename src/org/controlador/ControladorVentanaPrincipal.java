@@ -98,10 +98,14 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
                 GestorDelJuego.getInstance().notificarBotonRecolocarRadarPresionado();
             }
             if(boton.getText().equals("TIENDA")){
-                VentanaTienda.getInstance();
+                VentanaTienda.getInstance().setVisible(true);
             }
             if(boton.getText().equals("Reparar barco")){
                  ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
+            }
+            if(boton.getText().equals("Colocar Barcos")){
+                ListaJugadores.getInstance().getEntidad(0).colocarBarco();
+                GestorDelJuego.getInstance().actualizarIntefaz();
             }
         }
     }

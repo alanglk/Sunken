@@ -31,6 +31,7 @@ public class Enemigo implements Entidad {
 	private boolean radarRecolocado = false;
 
 	private int numEscudos = 3;
+	private int dineroEnemigo=10;
 
 	public Enemigo() {
 		this.tablero = new Tablero(true);
@@ -612,6 +613,17 @@ public class Enemigo implements Entidad {
 
 	public void notificarCasReparada(int pCas){
 		this.listaCasillasImportantes.add(pCas);
+	}
+
+	//---------- TIENDA
+	@Override
+	public void comprarObjeto(EObjetoComprable pObj) {
+
+	}
+
+	@Override
+	public int obtenerDineroDisponible() {
+		return dineroEnemigo;
 	}
 
 }

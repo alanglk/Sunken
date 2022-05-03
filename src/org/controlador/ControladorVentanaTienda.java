@@ -1,8 +1,6 @@
 package org.controlador;
 
-import org.modelo.EEstadoCasilla;
-import org.modelo.misil.ETipoMisil;
-import org.modelo.tienda.ETipoArmamento;
+import org.modelo.EObjetoComprable;
 import org.vista.VentanaTienda;
 
 import javax.swing.*;
@@ -14,7 +12,7 @@ import java.awt.event.MouseListener;
 public class ControladorVentanaTienda implements MouseListener, ItemListener {
     private static ControladorVentanaTienda controlador;
 
-    private ETipoArmamento armamentoSel=null;
+    private EObjetoComprable armamentoSel=null;
 
     private ControladorVentanaTienda(){}
 
@@ -37,11 +35,11 @@ public class ControladorVentanaTienda implements MouseListener, ItemListener {
     public void mousePressed(MouseEvent e) {
         if(e.getSource() instanceof JRadioButton){
             JRadioButton boton = (JRadioButton) e.getSource();
-            if(boton.getText().equals(ETipoArmamento.BOMBATAP.getTipo())){
-                armamentoSel=ETipoArmamento.BOMBATAP;
+            if(boton.getText().equals("BOMBAONETAP")){
+                armamentoSel=EObjetoComprable.BOMBAONETAP;
             }
-            if(boton.getText().equals(ETipoArmamento.RADAR3X3.getTipo())){
-                armamentoSel=ETipoArmamento.RADAR3X3;
+            if(boton.getText().equals("RADAR3X3")){
+                armamentoSel=EObjetoComprable.RADAR3x3;
             }
         }
         if(e.getSource() instanceof JButton){
@@ -50,7 +48,7 @@ public class ControladorVentanaTienda implements MouseListener, ItemListener {
                 //TODO HACER ESTO
 
             }
-            if(boton.getText().equals("SALIR TIENDA")){
+            if(boton.getText().equals("SALIR TIENDA")) {
                 VentanaTienda.getInstance().setVisible(false);
             }
         }

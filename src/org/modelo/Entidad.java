@@ -54,4 +54,8 @@ public interface Entidad {
     //RepararPos
     public void repararPos(int pCasilla);
     public void notificarCasReparada(int pCasilla);
+
+    // TIENDA --------
+    public void comprarObjeto(EObjetoComprable pObj);
+    public int obtenerDineroDisponible();
 }

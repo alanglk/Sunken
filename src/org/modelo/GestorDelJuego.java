@@ -156,6 +156,8 @@ public class GestorDelJuego extends Observable {
 		HashMap<ETipoBarco, Integer> numBarcosNoColocados = new HashMap<ETipoBarco, Integer>();
 		HashMap<ETipoBarco, Integer> numBarcosNoHundidos = new HashMap<ETipoBarco, Integer>();
 		HashMap<ETipoMisil, Integer> numMisilesJugador = new HashMap<ETipoMisil, Integer>();
+		int dineroJugador = ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible();
+		int dineroEnemigo = ListaJugadores.getInstance().getEntidad(1).obtenerDineroDisponible();
 
 		for(int i = 0; i < 100; i++){
 			casillasJugador.add(i, ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(i));
@@ -180,7 +182,7 @@ public class GestorDelJuego extends Observable {
 		Integer numUsosRadarJugador = ListaJugadores.getInstance().getEntidad(0).obtenerNumUsosRadar();
 		Integer numEscudosJugador = ListaJugadores.getInstance().getEntidad(0).obtenerNumEscudos();
 
-		return new FormularioModelo(colocandoBarcos, juegoTerminado, casillasJugador, casillasEnemigo, numBarcosNoColocados, numBarcosNoHundidos, numMisilesJugador, numUsosRadarJugador, numEscudosJugador);
+		return new FormularioModelo(colocandoBarcos, juegoTerminado, casillasJugador, casillasEnemigo, numBarcosNoColocados, numBarcosNoHundidos, numMisilesJugador, numUsosRadarJugador, numEscudosJugador,dineroJugador,dineroEnemigo);
 	}
 
 }

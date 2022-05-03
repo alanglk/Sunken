@@ -1,6 +1,5 @@
 package org.modelo;
 
-import org.Tienda;
 import org.modelo.barco.*;
 import org.modelo.excepciones.ImposibleColocarBarcoException;
 import org.modelo.excepciones.ImposibleColocarEscudoException;
@@ -11,6 +10,7 @@ import org.modelo.radar.Radar;
 import org.modelo.radar.Radar3x3;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Jugador implements Entidad{
 	private Tablero tablero;
@@ -59,7 +59,40 @@ public class Jugador implements Entidad{
 	}
 
 	@Override
-	public void colocarBarco() {}
+	public void colocarBarco() {
+		int i = 0;
+		Barco b1;
+		while ((b1 = listaBarcos.obtenerBarcoEnPos(i)) != null) {
+			int posicion = this.obtPosBarco();
+			EOrientaconBarco orientacion = this.obtOrientacionBarco();
+
+			if (this.tablero.sePuedeColocar(posicion, orientacion, b1)) {
+				this.tablero.colocarBarco(posicion, orientacion, b1);
+				i++;
+				b1.actualizarBarcoColocado();
+			}
+
+		}
+	}
+
+	private int obtPosBarco() {
+		return new Random().nextInt(100);
+	}
+
+	private EOrientaconBarco obtOrientacionBarco() {
+		//Si random es 0 la orientacion es horizontal y si es 1 vertical
+		Random r = new Random();
+		int queOrientacion = r.nextInt(2);
+
+		EOrientaconBarco orientacion;
+		if (queOrientacion == 0) {
+			orientacion = EOrientaconBarco.ESTE;
+		} else {
+			orientacion = EOrientaconBarco.SUR;
+		}
+
+		return orientacion;
+	}
 
 	@Override
 	public boolean estanTodosBarcosColocados() {
@@ -223,7 +256,18 @@ public class Jugador implements Entidad{
 		return numEscudos;
 	}
 
+	@Override
+	public void repararPos(int pCasilla) {
+
+	}
+
+	@Override
+	public void notificarCasReparada(int pCasilla) {
+
+	}
+
 	// TIENDA --------
+	@Override
 	public void comprarObjeto(EObjetoComprable pObj){
 		if(Tienda.getInstance().sePuedeComprar(pObj, dineroJugador)){
 			boolean error = false;
@@ -253,6 +297,7 @@ public class Jugador implements Entidad{
 	}
 
 	// Para visualizar el dinero en la interfaz
+	@Override
 	public int obtenerDineroDisponible(){
 		return dineroJugador;
 	}

@@ -16,8 +16,10 @@ public class FormularioModelo {
     public HashMap<ETipoMisil, Integer> numMisilesJugador;
     public Integer numUsosRadarJugador;
     public Integer numEscudosJugador;
+    public int dineroJugador;
+    public int dineroEnemigo;
 
-    public FormularioModelo(boolean pColocandoBarcos, boolean pJuegoTerminado,ArrayList<EEstadoCasilla> pCasillasJugador, ArrayList<EEstadoCasilla> pCasillasEnemigo, HashMap<ETipoBarco, Integer> pNumBarcosNoColocados, HashMap<ETipoBarco, Integer> pNumBarcosNoHundidos, HashMap<ETipoMisil, Integer> pNumMisilesJugador,Integer pNumUsosRadarJugador, Integer pNumEscudosJugador){
+    public FormularioModelo(boolean pColocandoBarcos, boolean pJuegoTerminado,ArrayList<EEstadoCasilla> pCasillasJugador, ArrayList<EEstadoCasilla> pCasillasEnemigo, HashMap<ETipoBarco, Integer> pNumBarcosNoColocados, HashMap<ETipoBarco, Integer> pNumBarcosNoHundidos, HashMap<ETipoMisil, Integer> pNumMisilesJugador,Integer pNumUsosRadarJugador, Integer pNumEscudosJugador,int pDineroJugador,int pDineroEnemigo){
         colocandoBarcos = pColocandoBarcos;
         juegoTerminado = pJuegoTerminado;
         casillasJugador = pCasillasJugador;
@@ -27,5 +29,7 @@ public class FormularioModelo {
         numMisilesJugador = pNumMisilesJugador;
         numUsosRadarJugador = pNumUsosRadarJugador;
         numEscudosJugador = pNumEscudosJugador;
+        dineroJugador=pDineroJugador;
+        dineroEnemigo=pDineroEnemigo;
     }
 }

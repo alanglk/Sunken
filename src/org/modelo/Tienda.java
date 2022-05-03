@@ -1,6 +1,4 @@
-package org;
-
-import org.modelo.EObjetoComprable;
+package org.modelo;
 
 import java.util.ArrayList;
 import java.util.HashMap;

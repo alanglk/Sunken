@@ -19,7 +19,7 @@ public class VentanaTienda extends JFrame{
 
     private VentanaTienda(){
         super("TIENDA");
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
         setMinimumSize(new Dimension(300,200));
         setLayout(new GridLayout(2,1,0,0));
@@ -50,7 +50,7 @@ public class VentanaTienda extends JFrame{
 
     private JButton getBoton(String text){
         JButton boton = new JButton(text);
-        boton.addMouseListener(ControladorVentanaMenu.getInstance());
+        boton.addMouseListener(ControladorVentanaTienda.getInstance());
         boton.setHorizontalAlignment(SwingConstants.CENTER);
 
         return boton;

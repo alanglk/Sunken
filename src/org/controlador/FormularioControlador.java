@@ -5,11 +5,11 @@ import org.modelo.barco.ETipoBarco;
 import org.modelo.misil.ETipoMisil;
 
 public class FormularioControlador {
-    private int posicion;
-    private boolean tableroEnemigo;
-    private ETipoBarco tipoBarco;
-    private boolean escudo;
-    private EOrientaconBarco orientacion;
+    public int posicion;
+    public boolean tableroEnemigo;
+    public ETipoBarco tipoBarco;
+    public boolean escudo;
+    public EOrientaconBarco orientacion;
 
     private ETipoMisil tipoMisil;
 
@@ -20,6 +20,7 @@ public class FormularioControlador {
         tipoMisil = pTipoMisil;
         tableroEnemigo = pTaableroEnemigo;
         escudo = pEscudo;
+
     }
 
     public int getPosicion() {
@@ -45,4 +46,5 @@ public class FormularioControlador {
     public ETipoMisil getTipoMisil() {
         return tipoMisil;
     }
+
 }

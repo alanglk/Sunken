@@ -257,9 +257,23 @@ public class Jugador implements Entidad{
 	}
 
 	@Override
-	public void repararPos(int pCasilla) {
-
+	public void repararPos(int pCasilla){
+		Integer idBarco = tablero.obtenerIdBarcoCasilla(pCasilla);
+		if(idBarco == null){
+			System.out.println("No es posible repararlo");
+		}
+		else{
+			Barco barco = listaBarcos.obtenerBarco(idBarco);
+			if (barco==null){
+				System.out.println("No es posible repararlo");
+			}
+			else{
+				barco.repararPos(pCasilla,false);
+				ListaJugadores.getInstance().getEntidad(1).notificarCasReparada(pCasilla);
+			}
+		}
 	}
+
 
 	@Override
 	public void notificarCasReparada(int pCasilla) {

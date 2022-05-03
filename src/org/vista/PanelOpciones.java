@@ -15,6 +15,8 @@ public class PanelOpciones extends JPanel implements Observer {
     private JRadioButton botonBomba;
     private JLabel numBombas;
 
+    private JButton reparar;
+
     private JRadioButton botonBombaOneTap;
     private JLabel numBombasOneTap;
 
@@ -53,6 +55,9 @@ public class PanelOpciones extends JPanel implements Observer {
 
         botonRecolocarRadar=getBoton(("Recolocar Radar"));
         panelRadar.add(botonRecolocarRadar, c);
+
+        reparar=getBoton(("Reparar barco"));
+        panelRadar.add(reparar,c);
 
         add(panelRadar);
 

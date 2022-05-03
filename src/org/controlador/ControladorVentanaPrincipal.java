@@ -42,7 +42,6 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
         // Casilla del tablero. Llamar al modelo para colocar barco o disparar misil.
         if(e.getSource() instanceof JCasilla){
             JCasilla casilla = (JCasilla) e.getSource();
-
             posCasilla = casilla.getPos();
             boolean casillaEnemigo = casilla.esEnemigo();
             FormularioControlador datos = new FormularioControlador(posCasilla, casillaEnemigo, barcoSel, escudoBarco, orientacionSel, misilSel);
@@ -102,7 +101,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
                 VentanaTienda.getInstance();
             }
             if(boton.getText().equals("Reparar barco")){
-                ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
+               // ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
             }
         }
     }

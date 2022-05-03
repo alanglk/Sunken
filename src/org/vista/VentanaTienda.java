@@ -10,16 +10,11 @@ import java.awt.*;
 public class VentanaTienda extends JFrame{
     private static VentanaTienda miVentanaTienda;
 
-    private JPanel panelTienda;
-    private JPanel panelArmamento;
+    private JPanelTienda panelTienda;
+    private JPanel botones;
 
     private JButton comprar;
     private JButton salir;
-    private JRadioButton misilOneTap;
-    private JRadioButton radar;
-    private JLabel numMisilesOneTap;
-    private JLabel numRadares;
-    private final ButtonGroup grupoBotonesArmamento;
 
 
     private VentanaTienda(){
@@ -27,34 +22,20 @@ public class VentanaTienda extends JFrame{
         setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 
         setMinimumSize(new Dimension(300,200));
+        setLayout(new GridLayout(2,1,0,0));
+        panelTienda=new JPanelTienda();
 
-        panelTienda=new JPanel();
-        panelArmamento=new JPanel();
-        grupoBotonesArmamento=new ButtonGroup();
-
-        panelTienda.setLayout(new GridLayout(2, 2, 0, 0));
-        panelArmamento.setLayout(new GridLayout(2, 2, 0, 0));
 
         add(panelTienda, BorderLayout.SOUTH);
-        add(panelArmamento, BorderLayout.CENTER);
-
-        misilOneTap=getBotonRadio("Bomba Tap");
-        radar=getBotonRadio("Radar 3x3");
-
-        panelArmamento.add(misilOneTap,BorderLayout.CENTER);
-        numMisilesOneTap=new JLabel();
-        numMisilesOneTap.setText("5 restantes");
-        panelArmamento.add(numMisilesOneTap,BorderLayout.CENTER);
-
-        panelArmamento.add(radar,BorderLayout.CENTER);
-        numRadares=new JLabel();
-        numRadares.setText("5 restantes");
-        panelArmamento.add(numRadares,BorderLayout.CENTER);
 
         comprar=getBoton("COMPRAR");
         salir=getBoton("SALIR TIENDA");
-        panelTienda.add(comprar,BorderLayout.CENTER);
-        panelTienda.add(salir,BorderLayout.CENTER);
+
+        botones=new JPanel();
+        GridBagConstraints c = new GridBagConstraints();
+        botones.add(comprar,c);
+        botones.add(salir,c);
+        add(botones);
         addMouseListener(ControladorVentanaTienda.getInstance());
         setVisible(true);
     }
@@ -75,12 +56,4 @@ public class VentanaTienda extends JFrame{
         return boton;
     }
 
-    private JRadioButton getBotonRadio(String text){
-        JRadioButton boton = new JRadioButton(text);
-        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
-        boton.setHorizontalAlignment(SwingConstants.CENTER);
-
-        grupoBotonesArmamento.add(boton);
-        return boton;
-    }
 }

@@ -15,11 +15,14 @@ public class PanelOpciones extends JPanel implements Observer {
     private JRadioButton botonBomba;
     private JLabel numBombas;
 
+    private JButton reparar;
+
     private JRadioButton botonBombaOneTap;
     private JLabel numBombasOneTap;
 
     private JButton botonUsarRadar;
     private JButton botonRecolocarRadar;
+    private JButton botonTienda;
     private JLabel numUsosRadar;
 
     private final ButtonGroup grupoBotonesMisiles=new ButtonGroup();
@@ -28,7 +31,7 @@ public class PanelOpciones extends JPanel implements Observer {
         super();
         GestorDelJuego.getInstance().addObserver(this);
 
-        setLayout(new GridLayout(3, 1, 0, 0));
+        setLayout(new GridLayout(4, 1, 0, 0));
 
         JPanel panelMisiles = new JPanel(new GridLayout(2, 2, 0, 0));
 
@@ -47,16 +50,22 @@ public class PanelOpciones extends JPanel implements Observer {
         JPanel panelRadar = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        botonUsarRadar=getBotonRadar(("Usar Radar"));
+        botonUsarRadar=getBoton(("Usar Radar"));
         panelRadar.add(botonUsarRadar, c);
 
-        botonRecolocarRadar=getBotonRadar(("Recolocar Radar"));
+        botonRecolocarRadar=getBoton(("Recolocar Radar"));
         panelRadar.add(botonRecolocarRadar, c);
+
+        reparar=getBoton(("Reparar barco"));
+        panelRadar.add(reparar,c);
 
         add(panelRadar);
 
         numUsosRadar = new JLabel();
         add(numUsosRadar);
+
+        botonTienda=getBoton("TIENDA");
+        add(botonTienda);
     }
 
     private JRadioButton getBotonRadio(String text) {
@@ -70,7 +79,7 @@ public class PanelOpciones extends JPanel implements Observer {
         return boton;
     }
 
-    private JButton getBotonRadar(String text){
+    private JButton getBoton(String text){
         JButton boton=new JButton(text);
         boton.setHorizontalAlignment(SwingConstants.CENTER);
         boton.addMouseListener(ControladorVentanaPrincipal.getInstance());

@@ -2,13 +2,11 @@ package org.controlador;
 
 import org.ProgramaPrincipal;
 import org.modelo.GestorDelJuego;
+import org.modelo.ListaJugadores;
 import org.modelo.barco.EOrientaconBarco;
 import org.modelo.barco.ETipoBarco;
 import org.modelo.misil.ETipoMisil;
-import org.vista.JCasilla;
-import org.vista.JDespOrien;
-import org.vista.VentanaMenu;
-import org.vista.VentanaPrincipal;
+import org.vista.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -24,6 +22,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
     private ETipoBarco barcoSel = null;
     private boolean escudoBarco = false;
     private EOrientaconBarco orientacionSel = EOrientaconBarco.NORTE;
+    private int posCasilla=0;
 
     private ETipoMisil misilSel = null;
 
@@ -43,10 +42,9 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
         // Casilla del tablero. Llamar al modelo para colocar barco o disparar misil.
         if(e.getSource() instanceof JCasilla){
             JCasilla casilla = (JCasilla) e.getSource();
-
-            int pos = casilla.getPos();
+            posCasilla = casilla.getPos();
             boolean casillaEnemigo = casilla.esEnemigo();
-            FormularioControlador datos = new FormularioControlador(pos, casillaEnemigo, barcoSel, escudoBarco, orientacionSel, misilSel);
+            FormularioControlador datos = new FormularioControlador(posCasilla, casillaEnemigo, barcoSel, escudoBarco, orientacionSel, misilSel);
 
             // Llamamos al modelo con la informacion necesaria
             try {
@@ -98,6 +96,12 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
 
             if(boton.getText().equals("Recolocar Radar")){
                 GestorDelJuego.getInstance().notificarBotonRecolocarRadarPresionado();
+            }
+            if(boton.getText().equals("TIENDA")){
+                VentanaTienda.getInstance();
+            }
+            if(boton.getText().equals("Reparar barco")){
+                 ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
             }
         }
     }

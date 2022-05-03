@@ -469,6 +469,11 @@ public class Enemigo implements Entidad {
 		return numEscudos;
 	}
 
+	@Override
+	public void repararPos(int pCasilla) {
+
+	}
+
 	private boolean guardarPosArriba() {
 		boolean disparo=false;//BOOLEANO PARA SABER SI SE HA PODIDO DISPARAR ARRIBA
 		if (this.listaCasillasAReventar.get(0) != -1) {//SI HAY POSICION ARRIBA
@@ -601,6 +606,12 @@ public class Enemigo implements Entidad {
 			}
 		}
 		return(disparo);
+	}
+
+	//Notif casilla reparada
+
+	public void notificarCasReparada(int pCas){
+		this.listaCasillasImportantes.add(pCas);
 	}
 
 }

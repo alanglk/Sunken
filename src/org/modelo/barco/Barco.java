@@ -202,4 +202,44 @@ public abstract class Barco {
 			}
 		}
 	}
+
+	public void repararPos(int pPos, boolean pEnemigo){
+		int i=0;
+		boolean enc=false;
+		while (i<this.longitud&&!enc){
+			if(this.posicionesBarcoDestr.get(i) ==pPos){
+				enc=true;
+			}
+			else{
+				i++;
+			}
+		}
+		if(enc){
+			boolean enc2=false;
+			int buscarPosLibre=0;
+			while(buscarPosLibre<this.longitud-1&&!enc2){
+				if(this.posicionesBarco[buscarPosLibre]==-1){
+					enc2=true;
+				}
+				else{
+					buscarPosLibre++;
+				}
+			}
+			if(enc){
+				this.posicionesBarco[buscarPosLibre]=pPos;
+				if (!pEnemigo) {
+					ListaJugadores.getInstance().getEntidad(0).actualizarEstadoCasilla(pPos,EEstadoCasilla.BARCO);
+				}
+				else{
+					ListaJugadores.getInstance().getEntidad(1).actualizarEstadoCasilla(pPos, EEstadoCasilla.BARCO);
+				}
+			}
+			else{
+				System.out.println("No es posible repararlo");
+			}
+		}
+		else{
+			System.out.println("No es posible repararlo");
+		}
+	}
 }

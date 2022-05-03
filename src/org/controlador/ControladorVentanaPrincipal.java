@@ -101,7 +101,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
                 VentanaTienda.getInstance();
             }
             if(boton.getText().equals("Reparar barco")){
-               // ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
+                 ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
             }
         }
     }

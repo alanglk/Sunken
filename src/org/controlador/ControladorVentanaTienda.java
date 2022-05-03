@@ -1,6 +1,8 @@
 package org.controlador;
 
 import org.modelo.EObjetoComprable;
+import org.modelo.ListaJugadores;
+import org.modelo.Tienda;
 import org.vista.VentanaTienda;
 
 import javax.swing.*;
@@ -46,7 +48,7 @@ public class ControladorVentanaTienda implements MouseListener, ItemListener {
             JButton boton= (JButton) e.getSource();
             if(boton.getText().equals("COMPRAR")){
                 //TODO HACER ESTO
-
+                Tienda.getInstance().comprar(armamentoSel, ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible());
             }
             if(boton.getText().equals("SALIR TIENDA")) {
                 VentanaTienda.getInstance().setVisible(false);

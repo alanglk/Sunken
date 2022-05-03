@@ -10,7 +10,13 @@ public class Tienda {
 
     private Tienda(){
         precios = new HashMap<EObjetoComprable, Integer>();
+        precios.put(EObjetoComprable.BOMBAONETAP,3);
+        precios.put(EObjetoComprable.RADAR3x3,2);
         stock = new ArrayList<EObjetoComprable>();
+        for(int i=0;i<5;i++){
+            stock.add(EObjetoComprable.BOMBAONETAP);
+            stock.add(EObjetoComprable.RADAR3x3);
+        }
     }
 
     public static Tienda getInstance(){
@@ -35,5 +41,15 @@ public class Tienda {
         // POST: Actualiza el stock y devuelve el dinero después de la compra
         stock.remove(pObjeto);
         return dineroDisponible - precios.get(pObjeto);
+    }
+
+    public int obtNumArmamento(EObjetoComprable pObjeto){
+        int numObjeto=0;
+        for(EObjetoComprable objeto:stock){
+            if(objeto.equals(pObjeto)){
+                numObjeto++;
+            }
+        }
+        return numObjeto;
     }
 }

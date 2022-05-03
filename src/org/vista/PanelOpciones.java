@@ -15,7 +15,7 @@ public class PanelOpciones extends JPanel implements Observer {
     private JRadioButton botonBomba;
     private JLabel numBombas;
 
-    private JButton reparar;
+    private JRadioButton reparar;
 
     private JRadioButton botonBombaOneTap;
     private JLabel numBombasOneTap;
@@ -24,6 +24,7 @@ public class PanelOpciones extends JPanel implements Observer {
     private JButton botonRecolocarRadar;
     private JButton botonTienda;
     private JLabel numUsosRadar;
+
 
     private final ButtonGroup grupoBotonesMisiles=new ButtonGroup();
 
@@ -56,7 +57,7 @@ public class PanelOpciones extends JPanel implements Observer {
         botonRecolocarRadar=getBoton(("Recolocar Radar"));
         panelRadar.add(botonRecolocarRadar, c);
 
-        reparar=getBoton(("Reparar barco"));
+        reparar=getBotonRepararBarco(("Reparar barco"));
         panelRadar.add(reparar,c);
 
         add(panelRadar);
@@ -120,6 +121,14 @@ public class PanelOpciones extends JPanel implements Observer {
             actualizarNumMisiles(form);
             actualizarNumRadar(form);
         }
+    }
+
+    private JRadioButton getBotonRepararBarco(String text){
+        JRadioButton boton = new JRadioButton(text);
+        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
+        boton.setHorizontalAlignment(SwingConstants.CENTER);
+
+        return boton;
     }
 
     /*private ImageIcon loadImage(){

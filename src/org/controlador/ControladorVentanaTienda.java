@@ -1,6 +1,7 @@
 package org.controlador;
 
 import org.modelo.EObjetoComprable;
+import org.modelo.GestorDelJuego;
 import org.modelo.ListaJugadores;
 import org.modelo.Tienda;
 import org.vista.VentanaTienda;
@@ -37,10 +38,10 @@ public class ControladorVentanaTienda implements MouseListener, ItemListener {
     public void mousePressed(MouseEvent e) {
         if(e.getSource() instanceof JRadioButton){
             JRadioButton boton = (JRadioButton) e.getSource();
-            if(boton.getText().equals("BOMBAONETAP")){
+            if(boton.getText().equals("Bomba Tap")){
                 armamentoSel=EObjetoComprable.BOMBAONETAP;
             }
-            if(boton.getText().equals("RADAR3X3")){
+            if(boton.getText().equals("Radar 3x3")){
                 armamentoSel=EObjetoComprable.RADAR3x3;
             }
         }
@@ -48,7 +49,7 @@ public class ControladorVentanaTienda implements MouseListener, ItemListener {
             JButton boton= (JButton) e.getSource();
             if(boton.getText().equals("COMPRAR")){
                 //TODO HACER ESTO
-                Tienda.getInstance().comprar(armamentoSel, ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible());
+                GestorDelJuego.getInstance().comprar(armamentoSel, ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible());
             }
             if(boton.getText().equals("SALIR TIENDA")) {
                 VentanaTienda.getInstance().setVisible(false);

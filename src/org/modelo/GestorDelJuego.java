@@ -185,4 +185,8 @@ public class GestorDelJuego extends Observable {
 		return new FormularioModelo(colocandoBarcos, juegoTerminado, casillasJugador, casillasEnemigo, numBarcosNoColocados, numBarcosNoHundidos, numMisilesJugador, numUsosRadarJugador, numEscudosJugador,dineroJugador,dineroEnemigo);
 	}
 
+    public void comprar(EObjetoComprable armamentoSel, int obtenerDineroDisponible) {
+		ListaJugadores.getInstance().getEntidad(0).comprarObjeto(armamentoSel);
+		actualizarIntefaz();
+    }
 }

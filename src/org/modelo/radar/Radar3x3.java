@@ -2,6 +2,8 @@ package org.modelo.radar;
 
 import org.modelo.Comprable;
 
+import org.modelo.ListaJugadores;
+
 import java.util.ArrayList;
 
 public class Radar3x3 extends Radar implements Comprable{
@@ -20,6 +22,7 @@ public class Radar3x3 extends Radar implements Comprable{
     public ArrayList<Integer> obtenerPosicionesReveladas(int pAnchuraTablero, boolean pEnemigo) {
         ArrayList<Integer> area = new ArrayList<Integer>();
         area.add(posRadar);
+
 
         if(sePuedeUtilizar()){
             if(posValida(posRadar-10, pAnchuraTablero)&&(posRadar/10-(posRadar-10)/10)==1){
@@ -52,7 +55,14 @@ public class Radar3x3 extends Radar implements Comprable{
         }
 
         posicionesUsos.addAll(area);
-        cambiarPosicionRadar(pEnemigo);
+        //cambiarPosicionRadar(pEnemigo);
+        if(pEnemigo){
+            ListaJugadores.getInstance().getEntidad(1).quitarRadar(posRadar);
+        }
+        else{
+            ListaJugadores.getInstance().getEntidad(0).quitarRadar(posRadar);
+        }
+
         return area;
     }
 

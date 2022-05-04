@@ -61,23 +61,35 @@ public class JPanelTienda extends JPanel implements Observer {
         return boton;
     }
 
-    private Integer getDineroRestante(String turno, FormularioModelo form){
+    private String getDineroRestante(String turno, FormularioModelo form){
+        String texto=null;
         if(turno.equals("Jugador")){
-            return form.dineroJugador;
+             texto="Dinero Jugador: " + String.valueOf(form.dineroJugador);
         }
         else{
-            return form.dineroEnemigo;
+             texto="Dinero Enemigo: " + String.valueOf(form.dineroEnemigo);
         }
+        return texto;
     }
 
     private void actualizarDinero(FormularioModelo form){
-        dineroJugador.setText(String.valueOf(getDineroRestante("Jugador",form)));
-        dineroEnemigo.setText(String.valueOf(getDineroRestante("Enemigo",form)));
+        dineroJugador.setText(getDineroRestante("Jugador",form));
+        dineroEnemigo.setText(getDineroRestante("Enemigo",form));
     }
 
+    private int getNumArmamento(EObjetoComprable armamento, FormularioModelo form){
+        int numArmamento=0;
+        if(armamento.equals(EObjetoComprable.BOMBAONETAP)){
+            numArmamento= form.numBombaOneTap;
+        }
+        if(armamento.equals(EObjetoComprable.RADAR3x3)){
+            numArmamento= form.numRadar3x3;
+        }
+        return numArmamento;
+    }
     private void actualizarAlmacenDisponible(FormularioModelo form){
-        numMisilesOneTap.setText(String.valueOf(Tienda.getInstance().obtNumArmamento(EObjetoComprable.BOMBAONETAP)));
-        numRadares.setText(String.valueOf(Tienda.getInstance().obtNumArmamento(EObjetoComprable.RADAR3x3)));
+        numMisilesOneTap.setText(String.valueOf(getNumArmamento(EObjetoComprable.BOMBAONETAP,form)));
+        numRadares.setText(String.valueOf(getNumArmamento(EObjetoComprable.RADAR3x3,form)));
     }
 
     @Override

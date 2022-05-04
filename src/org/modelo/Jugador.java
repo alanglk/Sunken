@@ -26,6 +26,7 @@ public class Jugador implements Entidad{
 		this.tablero=new Tablero(false);
 		this.listaBarcos=new GeneradorDeBarcos().generarListaBarcos();
 		this.listaMisiles=new GeneradorDeMisiles().generarListaMisiles();
+		radar=new Radar3x3();
 	}
 
 	private boolean posValidaDisparo(int pos){
@@ -316,6 +317,7 @@ public class Jugador implements Entidad{
 				dineroJugador = Tienda.getInstance().comprar(pObj, dineroJugador);
 
 		}
+
 	}
 
 	// Para visualizar el dinero en la interfaz

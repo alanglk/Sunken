@@ -10,8 +10,8 @@ public class Tienda {
 
     private Tienda(){
         precios = new HashMap<EObjetoComprable, Integer>();
-        precios.put(EObjetoComprable.BOMBAONETAP,new Integer(3));
-        precios.put(EObjetoComprable.RADAR3x3,new Integer(2));
+        precios.put(EObjetoComprable.BOMBAONETAP,3);
+        precios.put(EObjetoComprable.RADAR3x3,2);
         stock = new ArrayList<EObjetoComprable>();
         for(int i=0;i<5;i++){
             stock.add(EObjetoComprable.BOMBAONETAP);
@@ -28,13 +28,7 @@ public class Tienda {
         // PRE: Recibe como parámetros el objeto a comprar y el dinero disponibl
         // POST: Devuelve un booleano indicando si la compra se puede realizar
         Integer precio = precios.get(pObjeto);
-        boolean compraSatisfactoria = precio == null;
-
-        if(compraSatisfactoria){
-            assert precio != null;
-            compraSatisfactoria = precio <= dineroDisponible;
-        }
-
+        boolean compraSatisfactoria = precio <= dineroDisponible;
         if(compraSatisfactoria){
             compraSatisfactoria = stock.contains(pObjeto);
         }
@@ -45,15 +39,10 @@ public class Tienda {
     public int comprar(EObjetoComprable pObjeto, int dineroDisponible){
         // POST: Actualiza el stock y devuelve el dinero después de la compra
         stock.remove(pObjeto);
-        System.out.println("Objeto: " + pObjeto);
         Integer precio = precios.get(pObjeto);
-        if (precio!=null){
-            return dineroDisponible - (int) precio;
-        }
-        else{
-            System.out.println("Error: " + precio);
-        }
-        return -1;
+        System.out.println(precio);
+        return dineroDisponible - precio;
+
     }
 
     public int obtNumArmamento(EObjetoComprable pObjeto){

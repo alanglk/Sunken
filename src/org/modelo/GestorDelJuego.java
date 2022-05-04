@@ -158,6 +158,8 @@ public class GestorDelJuego extends Observable {
 		HashMap<ETipoMisil, Integer> numMisilesJugador = new HashMap<ETipoMisil, Integer>();
 		int dineroJugador = ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible();
 		int dineroEnemigo = ListaJugadores.getInstance().getEntidad(1).obtenerDineroDisponible();
+		int numBotonesOneTap = Tienda.getInstance().obtNumArmamento(EObjetoComprable.BOMBAONETAP);
+		int numRadar3x3= Tienda.getInstance().obtNumArmamento(EObjetoComprable.RADAR3x3);
 
 		for(int i = 0; i < 100; i++){
 			casillasJugador.add(i, ListaJugadores.getInstance().getEntidad(0).getEstadoCasilla(i));
@@ -182,7 +184,7 @@ public class GestorDelJuego extends Observable {
 		Integer numUsosRadarJugador = ListaJugadores.getInstance().getEntidad(0).obtenerNumUsosRadar();
 		Integer numEscudosJugador = ListaJugadores.getInstance().getEntidad(0).obtenerNumEscudos();
 
-		return new FormularioModelo(colocandoBarcos, juegoTerminado, casillasJugador, casillasEnemigo, numBarcosNoColocados, numBarcosNoHundidos, numMisilesJugador, numUsosRadarJugador, numEscudosJugador,dineroJugador,dineroEnemigo);
+		return new FormularioModelo(colocandoBarcos, juegoTerminado, casillasJugador, casillasEnemigo, numBarcosNoColocados, numBarcosNoHundidos, numMisilesJugador, numUsosRadarJugador, numEscudosJugador,dineroJugador,dineroEnemigo,numBotonesOneTap,numRadar3x3);
 	}
 
     public void comprar(EObjetoComprable armamentoSel, int obtenerDineroDisponible) {

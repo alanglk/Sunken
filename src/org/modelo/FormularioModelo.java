@@ -18,8 +18,10 @@ public class FormularioModelo {
     public Integer numEscudosJugador;
     public int dineroJugador;
     public int dineroEnemigo;
+    public int numBombaOneTap;
+    public int numRadar3x3;
 
-    public FormularioModelo(boolean pColocandoBarcos, boolean pJuegoTerminado,ArrayList<EEstadoCasilla> pCasillasJugador, ArrayList<EEstadoCasilla> pCasillasEnemigo, HashMap<ETipoBarco, Integer> pNumBarcosNoColocados, HashMap<ETipoBarco, Integer> pNumBarcosNoHundidos, HashMap<ETipoMisil, Integer> pNumMisilesJugador,Integer pNumUsosRadarJugador, Integer pNumEscudosJugador,int pDineroJugador,int pDineroEnemigo){
+    public FormularioModelo(boolean pColocandoBarcos, boolean pJuegoTerminado,ArrayList<EEstadoCasilla> pCasillasJugador, ArrayList<EEstadoCasilla> pCasillasEnemigo, HashMap<ETipoBarco, Integer> pNumBarcosNoColocados, HashMap<ETipoBarco, Integer> pNumBarcosNoHundidos, HashMap<ETipoMisil, Integer> pNumMisilesJugador,Integer pNumUsosRadarJugador, Integer pNumEscudosJugador,int pDineroJugador,int pDineroEnemigo,int pNumBombaOneTap, int pNumRadar3x3){
         colocandoBarcos = pColocandoBarcos;
         juegoTerminado = pJuegoTerminado;
         casillasJugador = pCasillasJugador;
@@ -31,5 +33,7 @@ public class FormularioModelo {
         numEscudosJugador = pNumEscudosJugador;
         dineroJugador=pDineroJugador;
         dineroEnemigo=pDineroEnemigo;
+        numBombaOneTap=pNumBombaOneTap;
+        numRadar3x3=pNumRadar3x3;
     }
 }

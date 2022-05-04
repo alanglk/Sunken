@@ -309,6 +309,9 @@ public class Tablero {
 		if(posValida(pCasilla))
 			listaCasillas.get(pCasilla).actualizarEstadoCasillaOneTap(pEstado);
 	}
+	public void quitarRadar(int pCasilla){
+		this.listaCasillas.get(pCasilla).quitarRadar();
+	}
 
 	public Integer obtenerIdBarcoCasilla(int pCasilla){
 		if(posValida(pCasilla))

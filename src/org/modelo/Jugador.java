@@ -20,6 +20,7 @@ public class Jugador implements Entidad{
 
 	private int numEscudos = 3;
 	private int dineroJugador = 10;
+	private int numReparar=1;
 
 	public Jugador() {
 		this.tablero=new Tablero(false);
@@ -175,6 +176,7 @@ public class Jugador implements Entidad{
 	public void usarRadar() throws ImposibleUsarRadarException {
 		if(radar.sePuedeUtilizar()){
 			ListaJugadores.getInstance().getEntidad(1).revelarCasillasRadar(radar.obtenerPosicionesReveladas(10, false));
+
 		}else{
 			throw new ImposibleUsarRadarException();
 		}
@@ -250,6 +252,9 @@ public class Jugador implements Entidad{
 
 	@Override
 	public void colocarEscudoBarco(){}
+	public void quitarRadar(int pCasilla){
+		this.tablero.quitarRadar(pCasilla);
+	}
 
 	@Override
 	public Integer obtenerNumEscudos() {
@@ -258,20 +263,23 @@ public class Jugador implements Entidad{
 
 	@Override
 	public void repararPos(int pCasilla){
+		boolean reparado=false;
 		Integer idBarco = tablero.obtenerIdBarcoCasilla(pCasilla);
-		if(idBarco == null){
-			System.out.println("No es posible repararlo");
-		}
-		else{
+		if(this.numReparar>0&&idBarco!=null){
 			Barco barco = listaBarcos.obtenerBarco(idBarco);
-			if (barco==null){
-				System.out.println("No es posible repararlo");
-			}
-			else{
+			if(!barco.estaHundido()&&barco!=null&&!barco.tieneEscudo()){
 				barco.repararPos(pCasilla,false);
 				ListaJugadores.getInstance().getEntidad(1).notificarCasReparada(pCasilla);
+				this.numReparar--;
+				reparado=true;
+				System.out.println("Se reparo con exito la casilla "+pCasilla+" con un el id barco:"+idBarco);
 			}
+
 		}
+		if(!reparado){
+			System.out.println("No es posible repararlo");
+		}
+
 	}
 
 

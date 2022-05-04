@@ -208,6 +208,7 @@ public abstract class Barco {
 		boolean enc=false;
 		while (i<this.longitud&&!enc){
 			if(this.posicionesBarcoDestr.get(i) ==pPos){
+				this.posicionesBarcoDestr.set(i,pPos);
 				enc=true;
 			}
 			else{
@@ -241,5 +242,17 @@ public abstract class Barco {
 		else{
 			System.out.println("No es posible repararlo");
 		}
+	}
+	public int posicionDestruida(){
+		boolean enc=false;
+		int aux=-1;
+		Iterator<Integer> itr=this.posicionesBarcoDestr.iterator();
+		while(itr.hasNext()&&!enc){
+			aux=itr.next();
+			if (aux!=-1){
+				enc=true;
+			}
+		}
+		return(aux);
 	}
 }

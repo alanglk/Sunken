@@ -25,7 +25,7 @@ public class Enemigo implements Entidad {
 	private ArrayList<Integer> listaCasillasAReventar;
 	private Queue<Integer> listaCasillasImportantes;
 	private int patronMemoria;
-
+	private int numReparar;
 	private int onetap;
 	private int IA;
 	private boolean radarRecolocado = false;
@@ -42,6 +42,7 @@ public class Enemigo implements Entidad {
 		this.onetap = -1;
 		this.IA = -1;
 		this.patronMemoria=-1;
+		this.numReparar=1;
 	}
 
 	private int obtPosBarco() {
@@ -143,6 +144,15 @@ public class Enemigo implements Entidad {
 			System.out.println("GANA EL JUGADOR");
 			new VentanaInformacion("GANA JUGADOR");
 		} else {
+			float a = new Random().nextFloat();
+			System.out.println("El numero alatorio es:"+a);
+			if(a<0.075){  //7.5% de reparar
+				this.repararPos(-1);
+				System.out.println("Se va a reparar");
+			}
+			else{
+				System.out.println("No se va a reparar");
+			}
 			Enemigo enemigo = (Enemigo) ListaJugadores.getInstance().getEntidad(1);
 			//Creamos un booleano que dictamine qu� va a hacer el enemigo
 			boolean accionRealizada = false;
@@ -393,6 +403,7 @@ public class Enemigo implements Entidad {
 						this.radarRecolocado = false;
 					}
 				}
+				this.quitarRadar(listaRadar.get(0));
 
 			} else {
 				throw new ImposibleUsarRadarException();
@@ -472,7 +483,27 @@ public class Enemigo implements Entidad {
 
 	@Override
 	public void repararPos(int pCasilla) {
+	boolean enc=false;
+	int i=0;
+	int pos;
+	Barco aux=null;
+	while(!enc&&i<this.listaBarcos.size()){
+		aux=this.listaBarcos.obtenerBarcoEnPos(i);
+		if(!aux.estaHundido()&&!aux.tieneEscudo()&&this.numReparar>0){
+			pos=aux.posicionDestruida();
+			if(pos!=-1){
+				aux.repararPos(pos,true);
+				this.numReparar--;
+				enc=true;
 
+			}
+			else{
+				System.out.println("No hay barcos a reparar");
+			}
+
+		}
+		i++;
+	}
 	}
 
 	private boolean guardarPosArriba() {
@@ -607,6 +638,9 @@ public class Enemigo implements Entidad {
 			}
 		}
 		return(disparo);
+	}
+	public void quitarRadar(int pCasilla){
+		this.tablero.quitarRadar(pCasilla);
 	}
 
 	//Notif casilla reparada

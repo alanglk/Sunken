@@ -315,7 +315,7 @@ public class Jugador implements Entidad{
 			// Actualizamos el dinero y la tienda
 			if(!error)
 				dineroJugador = Tienda.getInstance().comprar(pObj, dineroJugador);
-
+				System.out.println("El Jugador ha comprado " + pObj);
 		}
 
 	}

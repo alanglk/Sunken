@@ -70,6 +70,17 @@ public class GestorDelJuego extends Observable {
 			// Si los datos no son del Jugador podemos hacer otra cosa (avisar al usuario o no hacer nada)
 
 		}else if(!colocandoBarcos && !juegoTerminado){
+			//Cada vez que se presiona una casilla el enemigo tiene una 20% de probabilidad de comprar en la tienda
+			float rCompra=new Random().nextFloat();
+			if(rCompra<=0.2){
+				int rArmamento=new Random().nextInt(2);
+				if(rArmamento==0){
+					ListaJugadores.getInstance().getEntidad(1).comprarObjeto(EObjetoComprable.BOMBAONETAP);
+				}
+				else{
+					ListaJugadores.getInstance().getEntidad(1).comprarObjeto(EObjetoComprable.RADAR3x3);
+				}
+			}
 			// Presionamos una casilla para realizar un disparo
 			if(pDatos.isTableroEnemigo()){
 				if(pDatos.getTipoMisil()!=null){

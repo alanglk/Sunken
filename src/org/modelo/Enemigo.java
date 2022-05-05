@@ -649,9 +649,35 @@ public class Enemigo implements Entidad {
 		this.listaCasillasImportantes.add(pCas);
 	}
 
-	//---------- TIENDA
+	// TIENDA --------
 	@Override
-	public void comprarObjeto(EObjetoComprable pObj) {
+	public void comprarObjeto(EObjetoComprable pObj){
+		if(Tienda.getInstance().sePuedeComprar(pObj, dineroEnemigo)){
+			boolean error = false;
+
+			// Incrementamos los usos del objeto comprado
+			if(pObj.equals(EObjetoComprable.BOMBAONETAP)) {
+				Comprable misil = (Comprable) listaMisiles.obtMisil(ETipoMisil.BOMBAONETAP);
+				if(misil != null)
+					misil.comprar();
+				else
+					error = true;
+			}
+
+			if(pObj.equals(EObjetoComprable.RADAR3x3)){
+				Comprable radar3x3 = (Comprable) radar;
+				if(radar3x3 != null)
+					radar3x3.comprar();
+				else
+					error = true;
+			}
+
+			// Actualizamos el dinero y la tienda
+			if(!error)
+				dineroEnemigo = Tienda.getInstance().comprar(pObj, dineroEnemigo);
+				System.out.println("El enemigo ha comprado " + pObj);
+
+		}
 
 	}
 

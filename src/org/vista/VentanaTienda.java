@@ -21,7 +21,7 @@ public class VentanaTienda extends JFrame{
         super("TIENDA");
         setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
 
-        setMinimumSize(new Dimension(350,200));
+        setMinimumSize(new Dimension(500,200));
         setLayout(new GridLayout(2,1,0,0));
         panelTienda=new JPanelTienda();
 

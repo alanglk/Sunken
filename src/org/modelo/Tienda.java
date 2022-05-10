@@ -54,4 +54,7 @@ public class Tienda {
         }
         return numObjeto;
     }
+    public int getPrecio(EObjetoComprable armamento){
+        return precios.get(armamento);
+    }
 }

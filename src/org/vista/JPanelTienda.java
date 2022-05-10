@@ -17,6 +17,12 @@ public class JPanelTienda extends JPanel implements Observer {
     private JLabel numRadares;
     private JLabel dineroJugador;
     private JLabel dineroEnemigo;
+    private JLabel precioBombaOneTap;
+    private JLabel precioRadar3x3;
+    private JLabel armamento;
+    private JLabel almacen;
+    private JLabel precio;
+    private JLabel dinero;
     private final ButtonGroup grupoBotonesArmamento;
 
 
@@ -24,17 +30,36 @@ public class JPanelTienda extends JPanel implements Observer {
         super();
         GestorDelJuego.getInstance().addObserver(this);
 
-        setLayout(new GridLayout(2,3,0,0));
+        setLayout(new GridLayout(3,4,0,0));
 
         grupoBotonesArmamento=new ButtonGroup();
 
+        armamento=new JLabel();
+        armamento.setText("ARMAMENTO");
+        armamento.setForeground(Color.BLUE);
+        add(armamento);
+        almacen=new JLabel();
+        almacen.setText("ALMACEN");
+        almacen.setForeground(Color.BLUE);
+        add(almacen);
+        precio=new JLabel();
+        precio.setText("PRECIO");
+        precio.setForeground(Color.BLUE);
+        add(precio);
+        dinero=new JLabel();
+        dinero.setText("DINERO");
+        dinero.setForeground(Color.BLUE);
+        add(dinero);
         misilOneTap=getBotonRadio("Bomba Tap");
         add(misilOneTap);
         numMisilesOneTap=new JLabel();
         numMisilesOneTap.setText(String.valueOf(Tienda.getInstance().obtNumArmamento(EObjetoComprable.BOMBAONETAP)));
         add(numMisilesOneTap);
+        precioBombaOneTap=new JLabel();
+        precioBombaOneTap.setText(String.valueOf(Tienda.getInstance().getPrecio(EObjetoComprable.BOMBAONETAP)));
+        add(precioBombaOneTap);
         dineroJugador=new JLabel();
-        dineroJugador.setText("Dinero Jugador: " + String.valueOf(ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible()));
+        dineroJugador.setText("Jugador: " + String.valueOf(ListaJugadores.getInstance().getEntidad(0).obtenerDineroDisponible()));
         dineroJugador.setForeground(Color.green);
         add(dineroJugador);
 
@@ -43,8 +68,11 @@ public class JPanelTienda extends JPanel implements Observer {
         numRadares=new JLabel();
         numRadares.setText(String.valueOf(Tienda.getInstance().obtNumArmamento(EObjetoComprable.RADAR3x3)));
         add(numRadares);
+        precioRadar3x3=new JLabel();
+        precioRadar3x3.setText(String.valueOf(Tienda.getInstance().getPrecio(EObjetoComprable.RADAR3x3)));
+        add(precioRadar3x3);
         dineroEnemigo=new JLabel();
-        dineroEnemigo.setText("Dinero Enemigo: " + String.valueOf(ListaJugadores.getInstance().getEntidad(1).obtenerDineroDisponible()));
+        dineroEnemigo.setText("Enemigo: " + String.valueOf(ListaJugadores.getInstance().getEntidad(1).obtenerDineroDisponible()));
         dineroEnemigo.setForeground(Color.red);
         add(dineroEnemigo);
 
@@ -64,10 +92,10 @@ public class JPanelTienda extends JPanel implements Observer {
     private String getDineroRestante(String turno, FormularioModelo form){
         String texto=null;
         if(turno.equals("Jugador")){
-             texto="Dinero Jugador: " + String.valueOf(form.dineroJugador);
+             texto="Jugador: " + String.valueOf(form.dineroJugador);
         }
         else{
-             texto="Dinero Enemigo: " + String.valueOf(form.dineroEnemigo);
+             texto="Enemigo: " + String.valueOf(form.dineroEnemigo);
         }
         return texto;
     }

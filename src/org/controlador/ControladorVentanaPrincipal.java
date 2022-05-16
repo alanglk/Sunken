@@ -24,6 +24,7 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
     private EOrientaconBarco orientacionSel = EOrientaconBarco.NORTE;
     private int posCasilla=0;
     private JRadioButton botonReparar=null;
+    private boolean repararCasilla = false;
 
     private ETipoMisil misilSel = null;
 
@@ -45,18 +46,12 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
             JCasilla casilla = (JCasilla) e.getSource();
             posCasilla = casilla.getPos();
             boolean casillaEnemigo = casilla.esEnemigo();
-            if(botonReparar!=null && !casillaEnemigo){
-                ListaJugadores.getInstance().getEntidad(0).repararPos(posCasilla);
-                botonReparar.setSelected(true);
-                System.out.println("REPARAR");
+
+            if(botonReparar!=null){
+                repararCasilla= botonReparar.isSelected();
             }
-            else{
-                if(botonReparar!=null){
-                    botonReparar.setSelected(false);
-                    botonReparar=null;
-                }
-            }
-            FormularioControlador datos = new FormularioControlador(posCasilla, casillaEnemigo, barcoSel, escudoBarco, orientacionSel, misilSel);
+
+            FormularioControlador datos = new FormularioControlador(posCasilla, casillaEnemigo, barcoSel, escudoBarco, orientacionSel, misilSel, repararCasilla);
 
             // Llamamos al modelo con la informacion necesaria
             try {

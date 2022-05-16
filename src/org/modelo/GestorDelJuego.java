@@ -112,7 +112,11 @@ public class GestorDelJuego extends Observable {
 					}
 				}
 			}else{
-				System.out.println("NO TE PUEDES DISPARAR A TI MISMO");
+				System.out.println("Casilla del jugador pulsada. ¿Reparar?: " + pDatos.repararCasilla);
+				if(pDatos.repararCasilla){
+					ListaJugadores.getInstance().getEntidad(0).repararPos(pDatos.getPosicion());
+				}
+
 			}
 		}
 

@@ -48,6 +48,9 @@ public class PanelOpciones extends JPanel implements Observer {
 
         add(panelMisiles);
 
+        reparar=getBotonRadio(("Reparar barco"));
+        add(reparar);
+
         JPanel panelRadar = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -56,9 +59,6 @@ public class PanelOpciones extends JPanel implements Observer {
 
         botonRecolocarRadar=getBoton(("Recolocar Radar"));
         panelRadar.add(botonRecolocarRadar, c);
-
-        reparar=getBotonRepararBarco(("Reparar barco"));
-        panelRadar.add(reparar,c);
 
         add(panelRadar);
 
@@ -123,28 +123,4 @@ public class PanelOpciones extends JPanel implements Observer {
         }
     }
 
-    private JRadioButton getBotonRepararBarco(String text){
-        JRadioButton boton = new JRadioButton(text);
-        boton.addMouseListener(ControladorVentanaPrincipal.getInstance());
-        boton.setHorizontalAlignment(SwingConstants.CENTER);
-
-        return boton;
-    }
-
-    /*private ImageIcon loadImage(){
-        URL url = getClass().getResource("images/submarino.png");
-        ImageIcon imageIcon = null; // load the image to a imageIcon
-        try {
-            assert url != null;
-            imageIcon = new ImageIcon(ImageIO.read(url));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        assert imageIcon != null;
-        System.out.println(imageIcon.getIconHeight());
-        Image image = imageIcon.getImage(); // transform it
-        Image newimg = image.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        return new ImageIcon(newimg);  // transform it back
-    }*/
 }

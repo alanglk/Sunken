@@ -10,17 +10,18 @@ public class FormularioControlador {
     public ETipoBarco tipoBarco;
     public boolean escudo;
     public EOrientaconBarco orientacion;
+    public boolean repararCasilla;
 
     private ETipoMisil tipoMisil;
 
-    public FormularioControlador(int pPosicion, boolean pTaableroEnemigo, ETipoBarco pTipoBarco, boolean pEscudo, EOrientaconBarco pOrientacion, ETipoMisil pTipoMisil){
+    public FormularioControlador(int pPosicion, boolean pTaableroEnemigo, ETipoBarco pTipoBarco, boolean pEscudo, EOrientaconBarco pOrientacion, ETipoMisil pTipoMisil, boolean pRepararCasilla){
         posicion = pPosicion;
         tipoBarco = pTipoBarco;
         orientacion = pOrientacion;
         tipoMisil = pTipoMisil;
         tableroEnemigo = pTaableroEnemigo;
         escudo = pEscudo;
-
+        repararCasilla = pRepararCasilla;
     }
 
     public int getPosicion() {

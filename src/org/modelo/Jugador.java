@@ -268,7 +268,7 @@ public class Jugador implements Entidad{
 		Integer idBarco = tablero.obtenerIdBarcoCasilla(pCasilla);
 		if(this.numReparar>0&&idBarco!=null){
 			Barco barco = listaBarcos.obtenerBarco(idBarco);
-			if(!barco.estaHundido()&&barco!=null&&!barco.tieneEscudo()){
+			if(!barco.estaHundido()&&barco!=null&&!barco.tieneEscudo()&&this.tablero.getEstadoCasilla(pCasilla)==EEstadoCasilla.HUNDIDO){
 				barco.repararPos(pCasilla,false);
 				ListaJugadores.getInstance().getEntidad(1).notificarCasReparada(pCasilla);
 				this.numReparar--;

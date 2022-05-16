@@ -29,6 +29,13 @@ public class GestorDelJuego extends Observable {
 		return miGestorDelJuego;
 	}
 
+	public void reiniciarPartida(){
+		colocandoBarcos = true;
+		juegoTerminado = false;
+		ListaJugadores.getInstance().reiniciarJugadores();
+		actualizarIntefaz();
+	}
+
 	public void iniciarPartida() {
 		// Se han colocado todos los barcos del jugador.
 		// Marcamos el estado como partida iniciada y decidimos el orden de juego.

@@ -100,21 +100,25 @@ public class ControladorVentanaPrincipal implements MouseListener, ItemListener 
         if(e.getSource() instanceof JButton){
             JButton boton = (JButton) e.getSource();
 
-            if(boton.getText().equals("Iniciar Partida")){
+            if(boton.getText().equals("Iniciar Partida") && boton.isEnabled()){
                 GestorDelJuego.getInstance().iniciarPartida();
             }
 
-            if(boton.getText().equals("Usar Radar")){
+            if(boton.getText().equals("Reiniciar Partida") && boton.isEnabled()) {
+                GestorDelJuego.getInstance().reiniciarPartida();
+            }
+
+            if(boton.getText().equals("Usar Radar") && boton.isEnabled()){
                 GestorDelJuego.getInstance().notificarBotonRevelarRadarPresionado();
             }
 
-            if(boton.getText().equals("Recolocar Radar")){
+            if(boton.getText().equals("Recolocar Radar") && boton.isEnabled()){
                 GestorDelJuego.getInstance().notificarBotonRecolocarRadarPresionado();
             }
-            if(boton.getText().equals("TIENDA")){
+            if(boton.getText().equals("TIENDA") && boton.isEnabled()){
                 VentanaTienda.getInstance().setVisible(true);
             }
-            if(boton.getText().equals("Colocar Barcos")){
+            if(boton.getText().equals("Colocar Barcos") && boton.isEnabled()){
                 ListaJugadores.getInstance().getEntidad(0).colocarBarco();
                 GestorDelJuego.getInstance().actualizarIntefaz();
             }

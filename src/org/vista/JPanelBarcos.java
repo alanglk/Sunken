@@ -27,8 +27,11 @@ public class JPanelBarcos extends JPanel implements Observer {
     private JLabel numBarcosDestructor;
 
     private JDespOrien despegableOrientacion;
+
     private JButton botonIniciarPartida;
+    private JButton botonReiniciarPartida;
     private JButton colocarAutomatico;
+    private GridBagConstraints c;
 
     private JRadioButton escudo;
     private JLabel numEscudos;
@@ -68,15 +71,23 @@ public class JPanelBarcos extends JPanel implements Observer {
         add(numEscudos);
 
         despegableOrientacion = new JDespOrien();
+        add(despegableOrientacion);
+
         JPanel panelBotonInicio = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+
+        c = new GridBagConstraints();
         botonIniciarPartida=getBoton("Iniciar Partida");
         botonIniciarPartida.setEnabled(false);
         panelBotonInicio.add(botonIniciarPartida, c);
+
+        botonReiniciarPartida = getBoton("Reiniciar Partida");
+        botonReiniciarPartida.setVisible(false);
+        panelBotonInicio.add(botonReiniciarPartida, c);
+
         colocarAutomatico=getBoton("Colocar Barcos");
         panelBotonInicio.add(colocarAutomatico,c);
 
-        add(despegableOrientacion);
+
         add(panelBotonInicio);
     }
 
@@ -133,11 +144,22 @@ public class JPanelBarcos extends JPanel implements Observer {
         FormularioModelo form = (FormularioModelo) arg;
         if(form != null) {
             int numNoColocados = form.numBarcosNoColocados.values().stream().mapToInt(p -> p).sum();
-            if(numNoColocados != 10)
-                colocarAutomatico.setEnabled(false);
+
+            colocarAutomatico.setEnabled(numNoColocados == 10);
 
             if(numNoColocados == 0 && form.numEscudosJugador == 0)
                 botonIniciarPartida.setEnabled(true);
+
+            if(!form.colocandoBarcos){
+                botonIniciarPartida.setVisible(false);
+                colocarAutomatico.setVisible(false);
+                botonReiniciarPartida.setVisible(true);
+            }else{
+                botonIniciarPartida.setVisible(true);
+                colocarAutomatico.setVisible(true);
+                botonReiniciarPartida.setVisible(false);
+            }
+
 
             actualizarNumBarcos(form);
             actualizarNumEscudos(form);

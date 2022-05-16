@@ -18,6 +18,10 @@ public class ListaJugadores {
         return miLista;
     }
 
+    public void reiniciarJugadores(){
+        miLista = new ListaJugadores();
+    }
+
     public Entidad getEntidad(int pos){
         return lista.get(pos);
     }

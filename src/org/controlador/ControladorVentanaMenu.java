@@ -1,5 +1,6 @@
 package org.controlador;
 
+import org.vista.VentanaManual;
 import org.vista.VentanaMenu;
 import org.vista.VentanaPrincipal;
 
@@ -30,6 +31,10 @@ public class ControladorVentanaMenu implements MouseListener, ItemListener {
             JButton boton = (JButton) e.getSource();
             if (boton.getText().equals("EMPEZAR PARTIDA")){
                 VentanaPrincipal.getInstance();
+                VentanaMenu.getInstance().setVisible(false);
+            }
+            else if (boton.getText().equals("MANUAL")){
+                VentanaManual.getInstance();
                 VentanaMenu.getInstance().setVisible(false);
             }
             else{

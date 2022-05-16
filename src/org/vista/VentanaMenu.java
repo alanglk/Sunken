@@ -5,7 +5,6 @@ import org.controlador.ControladorVentanaMenu;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class VentanaMenu extends JFrame {
     private static VentanaMenu miMenu;
 
@@ -14,6 +13,7 @@ public class VentanaMenu extends JFrame {
 
     private JButton empezar;
     private JButton salir;
+    private JButton manual;
 
     private VentanaMenu(){
         super("SUNKEN");
@@ -25,16 +25,17 @@ public class VentanaMenu extends JFrame {
         panelFondo=new JPanelImagen("EMPEZAR PARTIDA");
 
         panelMenu.setLayout(new GridLayout(3, 0, 0, 0));
-        add(panelMenu, BorderLayout.SOUTH);
+        getContentPane().add(panelMenu, BorderLayout.SOUTH);
 
         setLocationRelativeTo(null);
-        add(panelFondo,BorderLayout.CENTER);
+        getContentPane().add(panelFondo,BorderLayout.CENTER);
 
         empezar=getBoton("EMPEZAR PARTIDA");
         salir=getBoton("SALIR");
+        manual = getBoton("MANUAL");
         panelMenu.add(empezar,BorderLayout.CENTER);
         panelMenu.add(salir,BorderLayout.CENTER);
-        addMouseListener(ControladorVentanaMenu.getInstance());
+        panelMenu.add(manual, BorderLayout.CENTER);
 
         setVisible(true);
     }

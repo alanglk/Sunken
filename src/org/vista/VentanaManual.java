@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VentanaManual extends JFrame {
-	private static VentanaManual miVentanaManual;
 
-	private VentanaManual(){
+	public VentanaManual(){
 		getContentPane().setLayout(null);
 		setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         setMinimumSize(new Dimension(1000,400));
@@ -24,11 +23,4 @@ public class VentanaManual extends JFrame {
 		
 		setVisible(true);
     }
-
-	public static VentanaManual getInstance() {
-		if(VentanaManual.miVentanaManual==null){
-			VentanaManual.miVentanaManual=new VentanaManual();
-        }
-        return VentanaManual.miVentanaManual;
-	}
 }

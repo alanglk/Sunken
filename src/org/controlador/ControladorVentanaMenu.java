@@ -34,8 +34,7 @@ public class ControladorVentanaMenu implements MouseListener, ItemListener {
                 VentanaMenu.getInstance().setVisible(false);
             }
             else if (boton.getText().equals("MANUAL")){
-                VentanaManual.getInstance();
-                VentanaMenu.getInstance().setVisible(false);
+                new VentanaManual();
             }
             else{
                System.exit(0);

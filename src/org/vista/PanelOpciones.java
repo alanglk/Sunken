@@ -25,7 +25,6 @@ public class PanelOpciones extends JPanel implements Observer {
     private JButton botonTienda;
     private JLabel numUsosRadar;
 
-
     private final ButtonGroup grupoBotonesMisiles=new ButtonGroup();
 
     public PanelOpciones(){

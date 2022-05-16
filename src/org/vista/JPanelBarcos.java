@@ -9,6 +9,7 @@ import org.modelo.barco.ETipoBarco;
 import javax.swing.*;
 import java.awt.*;
 import java.text.Normalizer;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -70,6 +71,7 @@ public class JPanelBarcos extends JPanel implements Observer {
         JPanel panelBotonInicio = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
         botonIniciarPartida=getBoton("Iniciar Partida");
+        botonIniciarPartida.setEnabled(false);
         panelBotonInicio.add(botonIniciarPartida, c);
         colocarAutomatico=getBoton("Colocar Barcos");
         panelBotonInicio.add(colocarAutomatico,c);
@@ -130,6 +132,13 @@ public class JPanelBarcos extends JPanel implements Observer {
     public void update(Observable o, Object arg) {
         FormularioModelo form = (FormularioModelo) arg;
         if(form != null) {
+            int numNoColocados = form.numBarcosNoColocados.values().stream().mapToInt(p -> p).sum();
+            if(numNoColocados != 10)
+                colocarAutomatico.setEnabled(false);
+
+            if(numNoColocados == 0)
+                botonIniciarPartida.setEnabled(true);
+
             actualizarNumBarcos(form);
             actualizarNumEscudos(form);
         }

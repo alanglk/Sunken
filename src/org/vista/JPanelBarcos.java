@@ -136,7 +136,7 @@ public class JPanelBarcos extends JPanel implements Observer {
             if(numNoColocados != 10)
                 colocarAutomatico.setEnabled(false);
 
-            if(numNoColocados == 0)
+            if(numNoColocados == 0 && form.numEscudosJugador == 0)
                 botonIniciarPartida.setEnabled(true);
 
             actualizarNumBarcos(form);

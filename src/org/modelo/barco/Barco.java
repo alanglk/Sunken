@@ -5,6 +5,7 @@ import org.modelo.Enemigo;
 import org.modelo.Jugador;
 import org.modelo.ListaJugadores;
 import org.modelo.misil.ETipoMisil;
+import org.vista.VentanaInformacion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -142,10 +143,13 @@ public abstract class Barco {
 
 		if(estaHundido()) {
 			System.out.println("HUNDIDO");
-			if(!pEnemigo)
+			if(!pEnemigo) {
 				ListaJugadores.getInstance().getEntidad(0).actualizarContorno(posicionesBarcoDestr);
-			else
+				new VentanaInformacion("TE HAN HUNDIDO UN BARCO D:");
+			}else {
 				ListaJugadores.getInstance().getEntidad(1).actualizarContorno(posicionesBarcoDestr);
+				new VentanaInformacion("HAS HUNDIDO UN BARCO :D");
+			}
 
 		}
 

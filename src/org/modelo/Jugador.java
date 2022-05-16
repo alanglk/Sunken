@@ -275,7 +275,6 @@ public class Jugador implements Entidad{
 				reparado=true;
 				System.out.println("Se reparo con exito la casilla "+pCasilla+" con un el id barco:"+idBarco);
 			}
-
 		}
 		if(!reparado){
 			System.out.println("No es posible repararlo");

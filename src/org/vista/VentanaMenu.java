@@ -31,11 +31,13 @@ public class VentanaMenu extends JFrame {
         getContentPane().add(panelFondo,BorderLayout.CENTER);
 
         empezar=getBoton("EMPEZAR PARTIDA");
-        salir=getBoton("SALIR");
         manual = getBoton("MANUAL");
+        salir=getBoton("SALIR");
+        salir.setBackground(new Color(255, 150, 150));
+
         panelMenu.add(empezar,BorderLayout.CENTER);
-        panelMenu.add(salir,BorderLayout.CENTER);
         panelMenu.add(manual, BorderLayout.CENTER);
+        panelMenu.add(salir,BorderLayout.CENTER);
 
         setVisible(true);
     }
